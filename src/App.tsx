@@ -6,36 +6,26 @@ import { useMediaQuery } from "@material-ui/core";
 
 function App() {
   const [formValue, setFormValue] = useState({
-    present: { label: "Present:", value: "" },
-    past: { label: "Past:", value: "" },
-    pastParticiple: { label: "Past Participle:", value: "" },
-    presentParticiple: { label: "Present Participle:", value: "" },
-    meaning: { label: "Meaning:", value: "" },
+    present: "",
+    past: "",
+    pastParticiple: "",
+    presentParticiple: "",
+    meaning: "",
   });
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormValue({
       ...formValue,
-      present: { ...formValue.present, value: e.target.value },
+      [e.target.name]: e.target.value,
     });
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    console.log("formValue", formValue);
   };
   const verb = verbs[0];
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
   return (
     <div>
-      {/* <h1>English Verbs Practice</h1>
-      <h5>{verb.tenses.infinitive}</h5>
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <label htmlFor="present">{formValue.present.label}</label>
-        <input
-          id="present"
-          type="text"
-          value={formValue.present.value}
-          onChange={(e) => handleInputChange(e)}
-        />
-      </form> */}
       <div css={tw`flex justify-center items-center h-screen bg-gray-600`}>
         <div
           css={tw`flex flex-wrap rounded-lg h-screen md:h-auto bg-white shadow-md overflow-hidden w-full md:mx-8 lg:w-4/5 xl:w-3/5`}
@@ -86,107 +76,111 @@ function App() {
                 </div>
               </div>
             </div>
-            <div
-              css={tw`flex flex-wrap lg:flex-nowrap text-lg text-gray-900 items-center mt-1 lg:mt-5 w-full`}
-            >
+            <form onSubmit={(e) => handleSubmit(e)}>
               <div
-                css={tw`block w-full lg:w-1/2 text-gray-700 mr-2 font-bold py-1`}
+                css={tw`flex flex-wrap lg:flex-nowrap text-lg text-gray-900 items-center mt-1 lg:mt-5 w-full`}
               >
-                <label htmlFor="present">{formValue.present.label}</label>
+                <div
+                  css={tw`block w-full lg:w-1/2 text-gray-700 mr-2 font-bold py-1`}
+                >
+                  <label htmlFor="present">Present: </label>
+                </div>
+                <div css={tw`block w-full`}>
+                  <input
+                    id="present"
+                    type="text"
+                    name="present"
+                    value={formValue.present}
+                    css={tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`}
+                    onChange={(e) => handleInputChange(e)}
+                  />
+                </div>
               </div>
-              <div css={tw`block w-full`}>
-                <input
-                  id="present"
-                  type="text"
-                  value={formValue.present.value}
-                  css={tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`}
-                  onChange={(e) => handleInputChange(e)}
-                />
-              </div>
-            </div>
-            <div
-              css={tw`flex flex-wrap lg:flex-nowrap text-lg text-gray-900 items-center mt-1 lg:mt-5`}
-            >
               <div
-                css={tw`block w-full lg:w-1/2 text-gray-700 mr-2 font-bold py-1`}
+                css={tw`flex flex-wrap lg:flex-nowrap text-lg text-gray-900 items-center mt-1 lg:mt-5`}
               >
-                <label htmlFor="past">{formValue.past.label}</label>
+                <div
+                  css={tw`block w-full lg:w-1/2 text-gray-700 mr-2 font-bold py-1`}
+                >
+                  <label htmlFor="past">Past: </label>
+                </div>
+                <div css={tw`block w-full`}>
+                  <input
+                    id="past"
+                    type="text"
+                    name="past"
+                    value={formValue.past}
+                    css={tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`}
+                    onChange={(e) => handleInputChange(e)}
+                  />
+                </div>
               </div>
-              <div css={tw`block w-full`}>
-                <input
-                  id="past"
-                  type="text"
-                  value={formValue.past.value}
-                  css={tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`}
-                  onChange={(e) => handleInputChange(e)}
-                />
-              </div>
-            </div>
-            <div
-              css={tw`flex flex-wrap lg:flex-nowrap text-lg text-gray-900 items-center mt-1 lg:mt-5`}
-            >
               <div
-                css={tw`block w-full lg:w-1/2 text-gray-700 mr-2 font-bold py-1`}
+                css={tw`flex flex-wrap lg:flex-nowrap text-lg text-gray-900 items-center mt-1 lg:mt-5`}
               >
-                <label htmlFor="presentParticiple">
-                  {formValue.presentParticiple.label}
-                </label>
+                <div
+                  css={tw`block w-full lg:w-1/2 text-gray-700 mr-2 font-bold py-1`}
+                >
+                  <label htmlFor="presentParticiple">Present Participle:</label>
+                </div>
+                <div css={tw`block w-full`}>
+                  <input
+                    id="presentParticiple"
+                    type="text"
+                    name="presentParticiple"
+                    value={formValue.presentParticiple}
+                    css={tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`}
+                    onChange={(e) => handleInputChange(e)}
+                  />
+                </div>
               </div>
-              <div css={tw`block w-full`}>
-                <input
-                  id="presentParticiple"
-                  type="text"
-                  value={formValue.presentParticiple.value}
-                  css={tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`}
-                  onChange={(e) => handleInputChange(e)}
-                />
-              </div>
-            </div>
-            <div
-              css={tw`flex flex-wrap lg:flex-nowrap text-lg text-gray-900 items-center mt-1 lg:mt-5`}
-            >
               <div
-                css={tw`block w-full lg:w-1/2 text-gray-700 mr-2 font-bold py-1`}
+                css={tw`flex flex-wrap lg:flex-nowrap text-lg text-gray-900 items-center mt-1 lg:mt-5`}
               >
-                <label htmlFor="pastParticiple">
-                  {formValue.pastParticiple.label}
-                </label>
+                <div
+                  css={tw`block w-full lg:w-1/2 text-gray-700 mr-2 font-bold py-1`}
+                >
+                  <label htmlFor="pastParticiple">Past Participle:</label>
+                </div>
+                <div css={tw`block w-full`}>
+                  <input
+                    id="pastParticiple"
+                    type="text"
+                    name="pastParticiple"
+                    value={formValue.pastParticiple}
+                    css={tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`}
+                    onChange={(e) => handleInputChange(e)}
+                  />
+                </div>
               </div>
-              <div css={tw`block w-full`}>
-                <input
-                  id="pastParticiple"
-                  type="text"
-                  value={formValue.pastParticiple.value}
-                  css={tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`}
-                  onChange={(e) => handleInputChange(e)}
-                />
-              </div>
-            </div>
-            <div
-              css={tw`flex flex-wrap lg:flex-nowrap text-lg text-gray-900 items-center mt-1 lg:mt-5`}
-            >
               <div
-                css={tw`block w-full lg:w-1/2 text-gray-700 mr-2 font-bold py-1`}
+                css={tw`flex flex-wrap lg:flex-nowrap text-lg text-gray-900 items-center mt-1 lg:mt-5`}
               >
-                <label htmlFor="meaning">{formValue.meaning.label}</label>
+                <div
+                  css={tw`block w-full lg:w-1/2 text-gray-700 mr-2 font-bold py-1`}
+                >
+                  <label htmlFor="meaning">Meaning</label>
+                </div>
+                <div css={tw`block w-full`}>
+                  <input
+                    id="meaning"
+                    type="text"
+                    name="meaning"
+                    value={formValue.meaning}
+                    css={tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`}
+                    onChange={(e) => handleInputChange(e)}
+                  />
+                </div>
               </div>
-              <div css={tw`block w-full`}>
-                <input
-                  id="meaning"
-                  type="text"
-                  value={formValue.meaning.value}
-                  css={tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`}
-                  onChange={(e) => handleInputChange(e)}
-                />
+              <div css={tw`flex justify-end py-2 lg:pt-12`}>
+                <button
+                  css={tw`px-12 py-2 bg-gray-900 rounded-full text-gray-100 text-lg shadow-md hover:bg-gray-800 focus:outline-none`}
+                  type="submit"
+                >
+                  Check
+                </button>
               </div>
-            </div>
-            <div css={tw`flex justify-end py-2 lg:pt-12`}>
-              <button
-                css={tw`px-12 py-2 bg-gray-900 rounded-full text-gray-100 text-lg shadow-md hover:bg-gray-800 focus:outline-none`}
-              >
-                Check
-              </button>
-            </div>
+            </form>
           </div>
         </div>
       </div>
