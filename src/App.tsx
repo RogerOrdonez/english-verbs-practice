@@ -6,6 +6,7 @@ import { useMediaQuery } from "@material-ui/core";
 
 function App() {
   const [counter, setCounter] = useState(0);
+  const [isVerbChecked, setIsVerbChecked] = useState(false);
   const [formValue, setFormValue] = useState({
     present: "",
     past: "",
@@ -25,25 +26,6 @@ function App() {
       meaning: [""],
     },
   });
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    setFormValue({
-      ...formValue,
-      [e.target.name]: e.target.value,
-    });
-  };
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    console.log("isPresentVerbCorrect", isPresentVerbCorrect());
-    console.log("isPastVerbCorrect", isPastVerbCorrect());
-    console.log(
-      "isPresentParticipleVerbCorrect",
-      isPresentParticipleVerbCorrect()
-    );
-    console.log("isPastParticipleVerbCorrect", isPastParticipleVerbCorrect());
-    console.log("isMeaningVerbCorrect", isMeaningVerbCorrect());
-    console.log(currentVerb.tenses.present.join(", "));
-    /* counter < verbs.length - 1 ? setCounter((counter) => counter + 1) : reset(); */
-  };
   const isPresentVerbCorrect = () => {
     const inputPresent = formValue.present
       .toLowerCase()
@@ -114,6 +96,45 @@ function App() {
       if (inputMeaningParticiple.includes(verbTense)) validInput++;
     });
     return validInput === correctMeaningParticipleVerb.length;
+  };
+  const checkVerb = () => {
+    if (!isVerbChecked) {
+      console.log("isPresentVerbCorrect", isPresentVerbCorrect());
+      console.log("isPastVerbCorrect", isPastVerbCorrect());
+      console.log(
+        "isPresentParticipleVerbCorrect",
+        isPresentParticipleVerbCorrect()
+      );
+      console.log("isPastParticipleVerbCorrect", isPastParticipleVerbCorrect());
+      console.log("isMeaningVerbCorrect", isMeaningVerbCorrect());
+      setIsVerbChecked(true);
+    }
+    if (isVerbChecked) {
+      if (counter < verbs.length - 1) {
+        setCounter((counter) => counter + 1);
+        setIsVerbChecked(false);
+      } else {
+        reset();
+      }
+    }
+  };
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    setFormValue({
+      ...formValue,
+      [e.target.name]: e.target.value,
+    });
+  };
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault();
+    checkVerb();
+    console.log(currentVerb.tenses.present.join(", "));
+    /* if (counter < verbs.length - 1 && !isVerbChecked) {
+      setCounter((counter) => counter + 1);
+      setIsVerbChecked(false);
+    } else {
+      reset();
+    } */
+    console.log("isVerbChecked", isVerbChecked);
   };
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
   useEffect(() => {
@@ -275,7 +296,8 @@ function App() {
                   css={tw`px-12 py-2 bg-gray-900 rounded-full text-gray-100 text-lg shadow-md hover:bg-gray-800 focus:outline-none`}
                   type="submit"
                 >
-                  {counter < verbs.length - 1 && `Check`}
+                  {counter < verbs.length - 1 && !isVerbChecked && `Check`}
+                  {counter < verbs.length - 1 && isVerbChecked && `Next`}
                   {counter >= verbs.length - 1 && `Finish`}
                 </button>
               </div>

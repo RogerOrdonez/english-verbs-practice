@@ -12,6 +12,18 @@ export const verbs = [
     },
   },
   {
+    verb: "Answer",
+    type: "regular",
+    tenses: {
+      infinitive: "To Answer",
+      present: ["Answer", "Answers"],
+      past: ["Answered"],
+      pastParticiple: ["Answered"],
+      presentParticiple: ["Answering"],
+      meaning: ["Responder", "Contestar"],
+    },
+  },
+  {
     verb: "Ask",
     type: "regular",
     tenses: {
