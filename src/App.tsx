@@ -1,16 +1,29 @@
 /** @jsxImportSource @emotion/react */
-import { useState } from "react";
-import { verbs } from "./verbs";
+import { useEffect, useState } from "react";
+import { verbs } from "./data/verbs";
 import tw, { theme as twTheme } from "twin.macro";
 import { useMediaQuery } from "@material-ui/core";
 
 function App() {
+  const [counter, setCounter] = useState(0);
   const [formValue, setFormValue] = useState({
     present: "",
     past: "",
     pastParticiple: "",
     presentParticiple: "",
     meaning: "",
+  });
+  const [currentVerb, setCurrentVerb] = useState({
+    verb: "",
+    type: "",
+    tenses: {
+      infinitive: "",
+      present: [""],
+      past: [""],
+      pastParticiple: [""],
+      presentParticiple: [""],
+      meaning: [""],
+    },
   });
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setFormValue({
@@ -20,10 +33,95 @@ function App() {
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    console.log("formValue", formValue);
+    console.log("isPresentVerbCorrect", isPresentVerbCorrect());
+    console.log("isPastVerbCorrect", isPastVerbCorrect());
+    console.log(
+      "isPresentParticipleVerbCorrect",
+      isPresentParticipleVerbCorrect()
+    );
+    console.log("isPastParticipleVerbCorrect", isPastParticipleVerbCorrect());
+    console.log("isMeaningVerbCorrect", isMeaningVerbCorrect());
+    console.log(currentVerb.tenses.present.join(", "));
+    /* counter < verbs.length - 1 ? setCounter((counter) => counter + 1) : reset(); */
   };
-  const verb = verbs[0];
+  const isPresentVerbCorrect = () => {
+    const inputPresent = formValue.present
+      .toLowerCase()
+      .split(",")
+      .map((presentVerb) => presentVerb.trim());
+    const correctPresentVerb = currentVerb.tenses.present.map((presentVerb) =>
+      presentVerb.trim().toLowerCase()
+    );
+    let validInput = 0;
+    correctPresentVerb.forEach((presentVerb) => {
+      if (inputPresent.includes(presentVerb)) validInput++;
+    });
+    return validInput === correctPresentVerb.length;
+  };
+  const isPastVerbCorrect = () => {
+    const inputPast = formValue.past
+      .toLowerCase()
+      .split(",")
+      .map((verbTense) => verbTense.trim());
+    const correctPastVerb = currentVerb.tenses.past.map((verbTense) =>
+      verbTense.trim().toLowerCase()
+    );
+    let validInput = 0;
+    correctPastVerb.forEach((verbTense) => {
+      if (inputPast.includes(verbTense)) validInput++;
+    });
+    return validInput === correctPastVerb.length;
+  };
+  const isPresentParticipleVerbCorrect = () => {
+    const inputPresentParticiple = formValue.presentParticiple
+      .toLowerCase()
+      .split(",")
+      .map((verbTense) => verbTense.trim());
+    const correctPresentParticipleVerb =
+      currentVerb.tenses.presentParticiple.map((verbTense) =>
+        verbTense.trim().toLowerCase()
+      );
+    let validInput = 0;
+    correctPresentParticipleVerb.forEach((verbTense) => {
+      if (inputPresentParticiple.includes(verbTense)) validInput++;
+    });
+    return validInput === correctPresentParticipleVerb.length;
+  };
+  const isPastParticipleVerbCorrect = () => {
+    const inputPastParticiple = formValue.pastParticiple
+      .toLowerCase()
+      .split(",")
+      .map((verbTense) => verbTense.trim());
+    const correctPastParticipleVerb = currentVerb.tenses.pastParticiple.map(
+      (verbTense) => verbTense.trim().toLowerCase()
+    );
+    let validInput = 0;
+    correctPastParticipleVerb.forEach((verbTense) => {
+      if (inputPastParticiple.includes(verbTense)) validInput++;
+    });
+    return validInput === correctPastParticipleVerb.length;
+  };
+  const isMeaningVerbCorrect = () => {
+    const inputMeaningParticiple = formValue.meaning
+      .toLowerCase()
+      .split(",")
+      .map((verbTense) => verbTense.trim());
+    const correctMeaningParticipleVerb = currentVerb.tenses.meaning.map(
+      (verbTense) => verbTense.trim().toLowerCase()
+    );
+    let validInput = 0;
+    correctMeaningParticipleVerb.forEach((verbTense) => {
+      if (inputMeaningParticiple.includes(verbTense)) validInput++;
+    });
+    return validInput === correctMeaningParticipleVerb.length;
+  };
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
+  useEffect(() => {
+    setCurrentVerb(verbs[counter]);
+  }, [counter]);
+  const reset = () => {
+    setCounter(0);
+  };
   return (
     <div>
       <div css={tw`flex justify-center items-center h-screen bg-gray-600`}>
@@ -44,7 +142,7 @@ function App() {
                 verb
               </div>
               <div css={tw`text-white text-2xl lg:text-4xl mt-2 lg:mt-4`}>
-                {verb.tenses.infinitive}
+                {currentVerb.tenses.infinitive}
               </div>
             </div>
             <div>
@@ -121,14 +219,14 @@ function App() {
                 <div
                   css={tw`block w-full lg:w-1/2 text-gray-700 mr-2 font-bold py-1`}
                 >
-                  <label htmlFor="presentParticiple">Present Participle:</label>
+                  <label htmlFor="pastParticiple">Past Participle:</label>
                 </div>
                 <div css={tw`block w-full`}>
                   <input
-                    id="presentParticiple"
+                    id="pastParticiple"
                     type="text"
-                    name="presentParticiple"
-                    value={formValue.presentParticiple}
+                    name="pastParticiple"
+                    value={formValue.pastParticiple}
                     css={tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`}
                     onChange={(e) => handleInputChange(e)}
                   />
@@ -140,14 +238,14 @@ function App() {
                 <div
                   css={tw`block w-full lg:w-1/2 text-gray-700 mr-2 font-bold py-1`}
                 >
-                  <label htmlFor="pastParticiple">Past Participle:</label>
+                  <label htmlFor="presentParticiple">Present Participle:</label>
                 </div>
                 <div css={tw`block w-full`}>
                   <input
-                    id="pastParticiple"
+                    id="presentParticiple"
                     type="text"
-                    name="pastParticiple"
-                    value={formValue.pastParticiple}
+                    name="presentParticiple"
+                    value={formValue.presentParticiple}
                     css={tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`}
                     onChange={(e) => handleInputChange(e)}
                   />
@@ -177,7 +275,8 @@ function App() {
                   css={tw`px-12 py-2 bg-gray-900 rounded-full text-gray-100 text-lg shadow-md hover:bg-gray-800 focus:outline-none`}
                   type="submit"
                 >
-                  Check
+                  {counter < verbs.length - 1 && `Check`}
+                  {counter >= verbs.length - 1 && `Finish`}
                 </button>
               </div>
             </form>
