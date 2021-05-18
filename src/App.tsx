@@ -6,6 +6,7 @@ import { useMediaQuery } from "@material-ui/core";
 
 function App() {
   const [counter, setCounter] = useState(0);
+  const [isVerbCorrect, setIsVerbCorrect] = useState(false);
   const [isVerbChecked, setIsVerbChecked] = useState(false);
   const [formValue, setFormValue] = useState({
     present: "",
@@ -13,6 +14,13 @@ function App() {
     pastParticiple: "",
     presentParticiple: "",
     meaning: "",
+  });
+  const [checkedVerb, setcheckedVerb] = useState({
+    isPresentCorrect: false,
+    isPastCorrect: false,
+    isPastParticipleCorrect: false,
+    isPresentParticipleCorrect: false,
+    isMeaningCorrect: false,
   });
   const [currentVerb, setCurrentVerb] = useState({
     verb: "",
@@ -26,7 +34,8 @@ function App() {
       meaning: [""],
     },
   });
-  const isPresentVerbCorrect = () => {
+  const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
+  const checkPresentVerb = () => {
     const inputPresent = formValue.present
       .toLowerCase()
       .split(",")
@@ -40,7 +49,7 @@ function App() {
     });
     return validInput === correctPresentVerb.length;
   };
-  const isPastVerbCorrect = () => {
+  const checkPastVerb = () => {
     const inputPast = formValue.past
       .toLowerCase()
       .split(",")
@@ -54,7 +63,7 @@ function App() {
     });
     return validInput === correctPastVerb.length;
   };
-  const isPresentParticipleVerbCorrect = () => {
+  const checkPresentParticipleVerb = () => {
     const inputPresentParticiple = formValue.presentParticiple
       .toLowerCase()
       .split(",")
@@ -69,7 +78,7 @@ function App() {
     });
     return validInput === correctPresentParticipleVerb.length;
   };
-  const isPastParticipleVerbCorrect = () => {
+  const checkPastParticipleVerb = () => {
     const inputPastParticiple = formValue.pastParticiple
       .toLowerCase()
       .split(",")
@@ -83,7 +92,7 @@ function App() {
     });
     return validInput === correctPastParticipleVerb.length;
   };
-  const isMeaningVerbCorrect = () => {
+  const checkVerbMeaning = () => {
     const inputMeaningParticiple = formValue.meaning
       .toLowerCase()
       .split(",")
@@ -99,19 +108,36 @@ function App() {
   };
   const checkVerb = () => {
     if (!isVerbChecked) {
-      console.log("isPresentVerbCorrect", isPresentVerbCorrect());
-      console.log("isPastVerbCorrect", isPastVerbCorrect());
-      console.log(
-        "isPresentParticipleVerbCorrect",
-        isPresentParticipleVerbCorrect()
-      );
-      console.log("isPastParticipleVerbCorrect", isPastParticipleVerbCorrect());
-      console.log("isMeaningVerbCorrect", isMeaningVerbCorrect());
+      setcheckedVerb(() => {
+        const verb = {
+          isPresentCorrect: checkPresentVerb(),
+          isPastCorrect: checkPastVerb(),
+          isPastParticipleCorrect: checkPastParticipleVerb(),
+          isPresentParticipleCorrect: checkPresentParticipleVerb(),
+          isMeaningCorrect: checkVerbMeaning(),
+        };
+        console.log("checkedVerb", verb);
+        setIsVerbCorrect(
+          verb.isPresentCorrect &&
+            verb.isPastCorrect &&
+            verb.isPastParticipleCorrect &&
+            verb.isPresentParticipleCorrect &&
+            verb.isMeaningCorrect
+        );
+        return verb;
+      });
       setIsVerbChecked(true);
     }
     if (isVerbChecked) {
       if (counter < verbs.length - 1) {
         setCounter((counter) => counter + 1);
+        setFormValue({
+          present: "",
+          past: "",
+          pastParticiple: "",
+          presentParticiple: "",
+          meaning: "",
+        });
         setIsVerbChecked(false);
       } else {
         reset();
@@ -127,16 +153,7 @@ function App() {
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     checkVerb();
-    console.log(currentVerb.tenses.present.join(", "));
-    /* if (counter < verbs.length - 1 && !isVerbChecked) {
-      setCounter((counter) => counter + 1);
-      setIsVerbChecked(false);
-    } else {
-      reset();
-    } */
-    console.log("isVerbChecked", isVerbChecked);
   };
-  const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
   useEffect(() => {
     setCurrentVerb(verbs[counter]);
   }, [counter]);
@@ -291,15 +308,29 @@ function App() {
                   />
                 </div>
               </div>
-              <div css={tw`flex justify-end py-2 lg:pt-12`}>
-                <button
-                  css={tw`px-12 py-2 bg-gray-900 rounded-full text-gray-100 text-lg shadow-md hover:bg-gray-800 focus:outline-none`}
-                  type="submit"
+              <div
+                css={tw`flex flex-wrap justify-between items-center py-2 lg:pt-12`}
+              >
+                <div
+                  css={[
+                    isVerbChecked && isVerbCorrect && tw`text-gray-700`,
+                    isVerbChecked && !isVerbCorrect && tw`text-red-700`,
+                    tw`text-2xl`,
+                  ]}
                 >
-                  {counter < verbs.length - 1 && !isVerbChecked && `Check`}
-                  {counter < verbs.length - 1 && isVerbChecked && `Next`}
-                  {counter >= verbs.length - 1 && `Finish`}
-                </button>
+                  {isVerbChecked && isVerbCorrect && `Correct`}
+                  {isVerbChecked && !isVerbCorrect && `Incorrect`}
+                </div>
+                <div css={tw`flex justify-end`}>
+                  <button
+                    css={tw`px-12 py-2 bg-gray-900 rounded-full text-gray-100 text-lg shadow-md hover:bg-gray-800 focus:outline-none`}
+                    type="submit"
+                  >
+                    {counter < verbs.length - 1 && !isVerbChecked && `Check`}
+                    {counter < verbs.length - 1 && isVerbChecked && `Next`}
+                    {counter >= verbs.length - 1 && `Finish`}
+                  </button>
+                </div>
               </div>
             </form>
           </div>
