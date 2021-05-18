@@ -116,7 +116,6 @@ function App() {
           isPresentParticipleCorrect: checkPresentParticipleVerb(),
           isMeaningCorrect: checkVerbMeaning(),
         };
-        console.log("checkedVerb", verb);
         setIsVerbCorrect(
           verb.isPresentCorrect &&
             verb.isPastCorrect &&
@@ -170,10 +169,10 @@ function App() {
             css={[
               tw`flex flex-col justify-between p-4 bg-gray-900 w-full lg:w-1/3`,
               isDesktop && { minHeight: "10rem" },
-              !isDesktop && { minHeight: "5rem" },
+              !isDesktop && { minHeight: "8rem" },
             ]}
           >
-            <div css={tw`flex flex-col `}>
+            <div css={tw`flex flex-col lg:items-center`}>
               <div
                 css={tw`text-gray-400 uppercase tracking-wider text-sm lg:text-lg`}
               >
@@ -183,16 +182,36 @@ function App() {
                 {currentVerb.tenses.infinitive}
               </div>
             </div>
-            <div>
-              <div css={tw`text-gray-400 text-base lg:text-lg mt-2 lg:mt-0`}>
-                View all verbs{" "}
-                <svg
-                  css={tw`inline w-2 h-2 fill-current`}
-                  xmlns="http://www.w3.org/2000/svg"
-                  viewBox="0 0 24 24"
+
+            <div
+              css={tw`flex flex-wrap lg:flex-col-reverse justify-between items-end lg:items-center`}
+            >
+              <div>
+                <div css={tw`text-gray-400 text-base lg:text-lg mt-2 lg:mt-0`}>
+                  View all verbs{" "}
+                  <svg
+                    css={tw`inline w-2 h-2 fill-current`}
+                    xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 24 24"
+                  >
+                    <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
+                  </svg>
+                </div>
+              </div>
+              <div>
+                <button
+                  css={[
+                    counter < verbs.length - 1 &&
+                      isVerbChecked &&
+                      tw`px-6 py-1 lg:px-12 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
+                    counter < verbs.length - 1 && !isVerbChecked && tw`hidden`,
+                  ]}
+                  type="button"
                 >
-                  <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
-                </svg>
+                  {counter < verbs.length - 1 && !isVerbChecked && `Check`}
+                  {counter < verbs.length - 1 && isVerbChecked && `Show Answer`}
+                  {counter >= verbs.length - 1 && `Finish`}
+                </button>
               </div>
             </div>
           </div>
@@ -227,7 +246,16 @@ function App() {
                     type="text"
                     name="present"
                     value={formValue.present}
-                    css={tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`}
+                    readOnly={isVerbChecked && !isVerbCorrect}
+                    css={[
+                      tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
+                      isVerbChecked &&
+                        checkedVerb.isPresentCorrect &&
+                        tw`border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-gray-600`,
+                      isVerbChecked &&
+                        !checkedVerb.isPresentCorrect &&
+                        tw`border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-red-600`,
+                    ]}
                     onChange={(e) => handleInputChange(e)}
                   />
                 </div>
@@ -246,7 +274,14 @@ function App() {
                     type="text"
                     name="past"
                     value={formValue.past}
-                    css={tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`}
+                    readOnly={isVerbChecked && !isVerbCorrect}
+                    css={[
+                      !isVerbChecked &&
+                        tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
+                      isVerbChecked &&
+                        !isVerbCorrect &&
+                        tw`w-full p-1 border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-red-600`,
+                    ]}
                     onChange={(e) => handleInputChange(e)}
                   />
                 </div>
@@ -265,7 +300,14 @@ function App() {
                     type="text"
                     name="pastParticiple"
                     value={formValue.pastParticiple}
-                    css={tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`}
+                    readOnly={isVerbChecked && !isVerbCorrect}
+                    css={[
+                      !isVerbChecked &&
+                        tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
+                      isVerbChecked &&
+                        !isVerbCorrect &&
+                        tw`w-full p-1 border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-red-600`,
+                    ]}
                     onChange={(e) => handleInputChange(e)}
                   />
                 </div>
@@ -284,7 +326,14 @@ function App() {
                     type="text"
                     name="presentParticiple"
                     value={formValue.presentParticiple}
-                    css={tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`}
+                    readOnly={isVerbChecked && !isVerbCorrect}
+                    css={[
+                      !isVerbChecked &&
+                        tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
+                      isVerbChecked &&
+                        !isVerbCorrect &&
+                        tw`w-full p-1 border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-red-600`,
+                    ]}
                     onChange={(e) => handleInputChange(e)}
                   />
                 </div>
@@ -303,7 +352,14 @@ function App() {
                     type="text"
                     name="meaning"
                     value={formValue.meaning}
-                    css={tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`}
+                    readOnly={isVerbChecked && !isVerbCorrect}
+                    css={[
+                      !isVerbChecked &&
+                        tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
+                      isVerbChecked &&
+                        !isVerbCorrect &&
+                        tw`w-full p-1 border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-red-600`,
+                    ]}
                     onChange={(e) => handleInputChange(e)}
                   />
                 </div>
@@ -315,7 +371,7 @@ function App() {
                   css={[
                     isVerbChecked && isVerbCorrect && tw`text-gray-700`,
                     isVerbChecked && !isVerbCorrect && tw`text-red-700`,
-                    tw`text-2xl`,
+                    tw`text-lg lg:text-2xl`,
                   ]}
                 >
                   {isVerbChecked && isVerbCorrect && `Correct`}
@@ -323,7 +379,7 @@ function App() {
                 </div>
                 <div css={tw`flex justify-end`}>
                   <button
-                    css={tw`px-12 py-2 bg-gray-900 rounded-full text-gray-100 text-lg shadow-md hover:bg-gray-800 focus:outline-none`}
+                    css={tw`px-6 py-1 lg:px-12 lg:py-2 bg-gray-900 rounded-full text-gray-100 text-lg shadow-md hover:bg-gray-800 focus:outline-none`}
                     type="submit"
                   >
                     {counter < verbs.length - 1 && !isVerbChecked && `Check`}
