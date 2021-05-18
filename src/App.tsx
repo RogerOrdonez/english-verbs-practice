@@ -240,27 +240,35 @@ function App() {
                       isVerbChecked &&
                       tw`px-6 py-1 lg:px-12 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
                     counter < verbs.length - 1 && !isVerbChecked && tw`hidden`,
+                    isVerbCorrect && tw`hidden`,
                   ]}
                   type="button"
                   onClick={showAnswer}
                 >
-                  {counter < verbs.length - 1 && !isVerbChecked && `Check`}
-                  {counter < verbs.length - 1 && isVerbChecked && `Show Answer`}
-                  {counter >= verbs.length - 1 && `Finish`}
+                  {counter < verbs.length - 1 &&
+                    isVerbChecked &&
+                    !isShowingAnswer &&
+                    `Show Answer`}
+                  {counter < verbs.length - 1 &&
+                    isVerbChecked &&
+                    isShowingAnswer &&
+                    `Hide Answer`}
                 </button>
               </div>
             </div>
           </div>
           <div css={tw`px-4 pt-1 lg:pt-4 w-full lg:w-2/3`}>
-            <div css={tw`flex justify-between`}>
+            <div
+              css={tw`flex flex-wrap flex-col lg:flex-row justify-start items-center lg:items-start lg:justify-between`}
+            >
               <div css={tw`text-gray-400 uppercase tracking-wider text-base`}>
                 Complete the following fields
               </div>
-              <div css={tw`hidden pt-1 pl-32`}>
+              <div css={tw`pt-1`}>
                 <div
-                  css={tw`bg-gray-200 rounded-full h-2 w-4/5 overflow-hidden`}
+                  css={tw`bg-gray-200 rounded-full h-2 w-80 lg:w-52 overflow-hidden`}
                 >
-                  <div css={tw`h-2 bg-gray-900 w-1/5`}></div>
+                  <div css={tw`h-2 bg-gray-900 w-24`}></div>
                 </div>
                 <div css={tw`text-xs text-gray-400 text-right uppercase`}>
                   6/9 Verbs
@@ -282,7 +290,7 @@ function App() {
                     type="text"
                     name="present"
                     value={formValue.present}
-                    readOnly={isVerbChecked && !isVerbCorrect}
+                    readOnly={isVerbChecked}
                     css={[
                       tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
                       isVerbChecked &&
@@ -310,13 +318,15 @@ function App() {
                     type="text"
                     name="past"
                     value={formValue.past}
-                    readOnly={isVerbChecked && !isVerbCorrect}
+                    readOnly={isVerbChecked}
                     css={[
-                      !isVerbChecked &&
-                        tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
+                      tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
                       isVerbChecked &&
-                        !isVerbCorrect &&
-                        tw`w-full p-1 border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-red-600`,
+                        checkedVerb.isPastCorrect &&
+                        tw`border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-gray-600`,
+                      isVerbChecked &&
+                        !checkedVerb.isPastCorrect &&
+                        tw`border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-red-600`,
                     ]}
                     onChange={(e) => handleInputChange(e)}
                   />
@@ -336,13 +346,15 @@ function App() {
                     type="text"
                     name="pastParticiple"
                     value={formValue.pastParticiple}
-                    readOnly={isVerbChecked && !isVerbCorrect}
+                    readOnly={isVerbChecked}
                     css={[
-                      !isVerbChecked &&
-                        tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
+                      tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
                       isVerbChecked &&
-                        !isVerbCorrect &&
-                        tw`w-full p-1 border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-red-600`,
+                        checkedVerb.isPastParticipleCorrect &&
+                        tw`border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-gray-600`,
+                      isVerbChecked &&
+                        !checkedVerb.isPastParticipleCorrect &&
+                        tw`border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-red-600`,
                     ]}
                     onChange={(e) => handleInputChange(e)}
                   />
@@ -362,13 +374,15 @@ function App() {
                     type="text"
                     name="presentParticiple"
                     value={formValue.presentParticiple}
-                    readOnly={isVerbChecked && !isVerbCorrect}
+                    readOnly={isVerbChecked}
                     css={[
-                      !isVerbChecked &&
-                        tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
+                      tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
                       isVerbChecked &&
-                        !isVerbCorrect &&
-                        tw`w-full p-1 border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-red-600`,
+                        checkedVerb.isPresentParticipleCorrect &&
+                        tw`border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-gray-600`,
+                      isVerbChecked &&
+                        !checkedVerb.isPresentParticipleCorrect &&
+                        tw`border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-red-600`,
                     ]}
                     onChange={(e) => handleInputChange(e)}
                   />
@@ -388,13 +402,15 @@ function App() {
                     type="text"
                     name="meaning"
                     value={formValue.meaning}
-                    readOnly={isVerbChecked && !isVerbCorrect}
+                    readOnly={isVerbChecked}
                     css={[
-                      !isVerbChecked &&
-                        tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
+                      tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
                       isVerbChecked &&
-                        !isVerbCorrect &&
-                        tw`w-full p-1 border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-red-600`,
+                        checkedVerb.isMeaningCorrect &&
+                        tw`border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-gray-600`,
+                      isVerbChecked &&
+                        !checkedVerb.isMeaningCorrect &&
+                        tw`border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-red-600`,
                     ]}
                     onChange={(e) => handleInputChange(e)}
                   />
