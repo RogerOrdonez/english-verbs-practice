@@ -7,6 +7,7 @@ import { useMediaQuery } from "@material-ui/core";
 function App() {
   const [counter, setCounter] = useState(0);
   const [isVerbCorrect, setIsVerbCorrect] = useState(false);
+  const [isShowingAnswer, setIsShowingAnswer] = useState(false);
   const [isVerbChecked, setIsVerbChecked] = useState(false);
   const [formValue, setFormValue] = useState({
     present: "",
@@ -15,7 +16,7 @@ function App() {
     presentParticiple: "",
     meaning: "",
   });
-  const [checkedVerb, setcheckedVerb] = useState({
+  const [checkedVerb, setCheckedVerb] = useState({
     isPresentCorrect: false,
     isPastCorrect: false,
     isPastParticipleCorrect: false,
@@ -33,6 +34,13 @@ function App() {
       presentParticiple: [""],
       meaning: [""],
     },
+  });
+  const [inputVerb, setInputVerb] = useState({
+    present: "",
+    past: "",
+    pastParticiple: "",
+    presentParticiple: "",
+    meaning: "",
   });
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
   const checkPresentVerb = () => {
@@ -108,7 +116,7 @@ function App() {
   };
   const checkVerb = () => {
     if (!isVerbChecked) {
-      setcheckedVerb(() => {
+      setCheckedVerb(() => {
         const verb = {
           isPresentCorrect: checkPresentVerb(),
           isPastCorrect: checkPastVerb(),
@@ -159,6 +167,33 @@ function App() {
   const reset = () => {
     setCounter(0);
   };
+  const showAnswer = () => {
+    setIsShowingAnswer(() => {
+      if (!isShowingAnswer) {
+        setInputVerb(formValue);
+        setFormValue({
+          present: !checkedVerb.isPresentCorrect
+            ? currentVerb.tenses.present.join(", ")
+            : formValue.present,
+          past: !checkedVerb.isPastCorrect
+            ? currentVerb.tenses.past.join(", ")
+            : formValue.past,
+          pastParticiple: !checkedVerb.isPastParticipleCorrect
+            ? currentVerb.tenses.pastParticiple.join(", ")
+            : formValue.pastParticiple,
+          presentParticiple: !checkedVerb.isPresentParticipleCorrect
+            ? currentVerb.tenses.presentParticiple.join(", ")
+            : formValue.presentParticiple,
+          meaning: !checkedVerb.isMeaningCorrect
+            ? currentVerb.tenses.meaning.join(", ")
+            : formValue.meaning,
+        });
+      } else {
+        setFormValue(inputVerb);
+      }
+      return !isShowingAnswer;
+    });
+  };
   return (
     <div>
       <div css={tw`flex justify-center items-center h-screen bg-gray-600`}>
@@ -207,6 +242,7 @@ function App() {
                     counter < verbs.length - 1 && !isVerbChecked && tw`hidden`,
                   ]}
                   type="button"
+                  onClick={showAnswer}
                 >
                   {counter < verbs.length - 1 && !isVerbChecked && `Check`}
                   {counter < verbs.length - 1 && isVerbChecked && `Show Answer`}
@@ -365,7 +401,7 @@ function App() {
                 </div>
               </div>
               <div
-                css={tw`flex flex-wrap justify-between items-center py-2 lg:pt-12`}
+                css={tw`flex flex-wrap justify-between items-center py-2 lg:pt-12 mt-5 lg:mt-0`}
               >
                 <div
                   css={[
