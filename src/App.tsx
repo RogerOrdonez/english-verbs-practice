@@ -171,6 +171,7 @@ function App() {
   }, []);
   const reset = () => {
     setCounter(0);
+    setIsVerbChecked(false);
   };
   const showAnswer = () => {
     setIsShowingAnswer(() => {
