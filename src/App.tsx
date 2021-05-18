@@ -6,6 +6,7 @@ import { useMediaQuery } from "@material-ui/core";
 
 function App() {
   const [counter, setCounter] = useState(0);
+  const [totalVerbsCount, setTotalVerbsCount] = useState(0);
   const [isVerbCorrect, setIsVerbCorrect] = useState(false);
   const [isShowingAnswer, setIsShowingAnswer] = useState(false);
   const [isVerbChecked, setIsVerbChecked] = useState(false);
@@ -43,6 +44,7 @@ function App() {
     meaning: "",
   });
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
+  const progressBarWidth = isDesktop ? 13 : 20;
   const checkPresentVerb = () => {
     const inputPresent = formValue.present
       .toLowerCase()
@@ -164,6 +166,9 @@ function App() {
   useEffect(() => {
     setCurrentVerb(verbs[counter]);
   }, [counter]);
+  useEffect(() => {
+    setTotalVerbsCount(verbs.length);
+  }, []);
   const reset = () => {
     setCounter(0);
   };
@@ -266,12 +271,31 @@ function App() {
               </div>
               <div css={tw`pt-1`}>
                 <div
-                  css={tw`bg-gray-200 rounded-full h-2 w-80 lg:w-52 overflow-hidden`}
+                  css={[
+                    tw`bg-gray-200 rounded-full h-2 overflow-hidden`,
+                    { width: `${progressBarWidth}rem` },
+                  ]}
                 >
-                  <div css={tw`h-2 bg-gray-900 w-24`}></div>
+                  <div
+                    css={[
+                      counter > 0 &&
+                        tw`transition-all duration-1000 ease-in-out`,
+                      tw`h-2 bg-gray-900`,
+                      {
+                        width: `${
+                          ((counter * 100) / totalVerbsCount / 100) *
+                          progressBarWidth
+                        }rem`,
+                      },
+                      counter + 1 === totalVerbsCount &&
+                        isVerbChecked && {
+                          width: `${progressBarWidth}rem`,
+                        },
+                    ]}
+                  ></div>
                 </div>
                 <div css={tw`text-xs text-gray-400 text-right uppercase`}>
-                  6/9 Verbs
+                  {counter + 1}/{totalVerbsCount} Verbs
                 </div>
               </div>
             </div>
@@ -434,9 +458,9 @@ function App() {
                     css={tw`px-6 py-1 lg:px-12 lg:py-2 bg-gray-900 rounded-full text-gray-100 text-lg shadow-md hover:bg-gray-800 focus:outline-none`}
                     type="submit"
                   >
-                    {counter < verbs.length - 1 && !isVerbChecked && `Check`}
+                    {counter <= verbs.length - 1 && !isVerbChecked && `Check`}
                     {counter < verbs.length - 1 && isVerbChecked && `Next`}
-                    {counter >= verbs.length - 1 && `Finish`}
+                    {counter >= verbs.length - 1 && isVerbChecked && `Finish`}
                   </button>
                 </div>
               </div>
