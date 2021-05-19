@@ -60,23 +60,16 @@ export const InfoSection: FC<Props> = ({
         <div>
           <button
             css={[
-              counter < verbs.length - 1 &&
-                isVerbChecked &&
+              isVerbChecked &&
                 tw`px-6 py-1 lg:px-12 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
-              counter < verbs.length - 1 && !isVerbChecked && tw`hidden`,
+              !isVerbChecked && tw`hidden`,
               isVerbCorrect && tw`hidden`,
             ]}
             type="button"
             onClick={showAnswer}
           >
-            {counter < verbs.length - 1 &&
-              isVerbChecked &&
-              !isShowingAnswer &&
-              `Show Answer`}
-            {counter < verbs.length - 1 &&
-              isVerbChecked &&
-              isShowingAnswer &&
-              `Hide Answer`}
+            {!isVerbCorrect && !isShowingAnswer && `Show Answer`}
+            {!isVerbCorrect && isShowingAnswer && `Hide Answer`}
           </button>
         </div>
       </div>

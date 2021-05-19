@@ -22,6 +22,7 @@ type Props = {
   setCheckedVerb: Function;
   setIsVerbCorrect: Function;
   setIsVerbChecked: Function;
+  setIsShowingAnswer: Function;
   setCounter: Function;
 };
 
@@ -38,6 +39,7 @@ export const PracticeForm: FC<Props> = ({
   setCheckedVerb,
   setIsVerbCorrect,
   setIsVerbChecked,
+  setIsShowingAnswer,
   setCounter,
 }) => {
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
@@ -56,9 +58,11 @@ export const PracticeForm: FC<Props> = ({
       setIsVerbChecked,
       setCounter,
       setFormValue,
+      setIsShowingAnswer,
       formValue,
       currentVerb,
       isVerbChecked,
+      isVerbCorrect,
       counter,
       verbsLength
     );
@@ -81,7 +85,7 @@ export const PracticeForm: FC<Props> = ({
       <form onSubmit={(e) => handleSubmit(e)}>
         <PracticeFormField
           id="present"
-          label="Present:"
+          label="Present Tense:"
           formValue={formValue.present}
           isVerbChecked={isVerbChecked}
           isTenseCorrect={checkedVerb.isPresentCorrect}
@@ -89,7 +93,7 @@ export const PracticeForm: FC<Props> = ({
         />
         <PracticeFormField
           id="past"
-          label="Past:"
+          label="Past Tense:"
           formValue={formValue.past}
           isVerbChecked={isVerbChecked}
           isTenseCorrect={checkedVerb.isPastCorrect}
@@ -97,7 +101,7 @@ export const PracticeForm: FC<Props> = ({
         />
         <PracticeFormField
           id="pastParticiple"
-          label="Past Participe:"
+          label="Past Participle:"
           formValue={formValue.pastParticiple}
           isVerbChecked={isVerbChecked}
           isTenseCorrect={checkedVerb.isPastParticipleCorrect}
@@ -105,7 +109,7 @@ export const PracticeForm: FC<Props> = ({
         />
         <PracticeFormField
           id="presentParticiple"
-          label="Present Participe:"
+          label="Present Participle:"
           formValue={formValue.presentParticiple}
           isVerbChecked={isVerbChecked}
           isTenseCorrect={checkedVerb.isPresentParticipleCorrect}

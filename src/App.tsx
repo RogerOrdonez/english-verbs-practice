@@ -107,6 +107,7 @@ function App() {
             setCheckedVerb={setCheckedVerb}
             setIsVerbCorrect={setIsVerbCorrect}
             setIsVerbChecked={setIsVerbChecked}
+            setIsShowingAnswer={setIsShowingAnswer}
             setCounter={setCounter}
           />
         </div>

@@ -32,7 +32,7 @@ export const PracticeFormField: FC<Props> = ({
           type="text"
           name={id}
           value={formValue}
-          readOnly={isVerbChecked}
+          readOnly={isTenseCorrect}
           css={[
             tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
             isVerbChecked &&
