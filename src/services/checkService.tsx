@@ -152,6 +152,13 @@ export const checkVerb = (
       setIsVerbChecked(false);
     } else {
       reset(setCounter, setIsVerbChecked);
+      setFormValue({
+        present: "",
+        past: "",
+        pastParticiple: "",
+        presentParticiple: "",
+        meaning: "",
+      });
     }
   }
 };
