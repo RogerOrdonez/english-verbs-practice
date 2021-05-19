@@ -1,4 +1,6 @@
-export const verbs = [
+import { VerbType } from "../shared/Types";
+
+export const verbs: Array<VerbType> = [
   {
     verb: "Be",
     type: "irregular",
