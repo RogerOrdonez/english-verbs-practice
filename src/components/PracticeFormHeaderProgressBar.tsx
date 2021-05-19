@@ -9,7 +9,7 @@ type Props = {
   isVerbChecked: boolean;
 };
 
-export const ProgressBar: FC<Props> = ({
+export const PracticeFormHeaderProgressBar: FC<Props> = ({
   progressBarWidth,
   counter,
   totalVerbsCount,

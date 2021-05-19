@@ -8,6 +8,7 @@ type Props = {
   formValue: string;
   isVerbChecked: boolean;
   isTenseCorrect: boolean;
+  isShowingAnswer: boolean;
   handleInputChange: Function;
 };
 
@@ -17,6 +18,7 @@ export const PracticeFormField: FC<Props> = ({
   formValue,
   isVerbChecked,
   isTenseCorrect,
+  isShowingAnswer,
   handleInputChange,
 }) => {
   return (
@@ -32,7 +34,7 @@ export const PracticeFormField: FC<Props> = ({
           type="text"
           name={id}
           value={formValue}
-          readOnly={isTenseCorrect}
+          readOnly={isTenseCorrect || isShowingAnswer}
           css={[
             tw`w-full p-1 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
             isVerbChecked &&
@@ -40,6 +42,7 @@ export const PracticeFormField: FC<Props> = ({
               tw`border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-gray-600`,
             isVerbChecked &&
               !isTenseCorrect &&
+              !isShowingAnswer &&
               tw`border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-red-600`,
           ]}
           onChange={(e) => handleInputChange(e)}

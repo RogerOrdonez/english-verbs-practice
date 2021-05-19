@@ -1,19 +1,19 @@
 /** @jsxImportSource @emotion/react */
-import { FC, MouseEventHandler } from "react";
-import { verbs } from "../data/verbs";
+import { FC } from "react";
 import tw, { theme as twTheme } from "twin.macro";
 import { useMediaQuery } from "@material-ui/core";
 import { checkVerb } from "../services/checkService";
 import { CheckedVerbType, FormType, VerbType } from "../shared/Types";
-import { ProgressBar } from "./ProgressBar";
 import { PracticeFormField } from "./PracticeFormField";
-import { PracticeFormButton } from "./PracticeFormButton";
+import { PracticeFormFooter } from "./PracticeFormFooter";
+import { PracticeFormHeader } from "./PracticeFormHeader";
 
 type Props = {
   verbsLength: number;
   counter: number;
   isVerbChecked: boolean;
   isVerbCorrect: boolean;
+  isShowingAnswer: boolean;
   totalVerbsCount: number;
   checkedVerb: CheckedVerbType;
   formValue: FormType;
@@ -31,6 +31,7 @@ export const PracticeForm: FC<Props> = ({
   counter,
   isVerbChecked,
   isVerbCorrect,
+  isShowingAnswer,
   totalVerbsCount,
   checkedVerb,
   formValue,
@@ -69,19 +70,12 @@ export const PracticeForm: FC<Props> = ({
   };
   return (
     <div css={tw`px-4 pt-1 lg:pt-4 w-full lg:w-2/3`}>
-      <div
-        css={tw`flex flex-wrap flex-col lg:flex-row justify-start items-center lg:items-start lg:justify-between`}
-      >
-        <div css={tw`text-gray-400 uppercase tracking-wider text-base`}>
-          Complete the following fields
-        </div>
-        <ProgressBar
-          progressBarWidth={progressBarWidth}
-          counter={counter}
-          totalVerbsCount={totalVerbsCount}
-          isVerbChecked={isVerbChecked}
-        />
-      </div>
+      <PracticeFormHeader
+        progressBarWidth={progressBarWidth}
+        counter={counter}
+        totalVerbsCount={totalVerbsCount}
+        isVerbChecked={isVerbChecked}
+      />
       <form onSubmit={(e) => handleSubmit(e)}>
         <PracticeFormField
           id="present"
@@ -90,6 +84,7 @@ export const PracticeForm: FC<Props> = ({
           isVerbChecked={isVerbChecked}
           isTenseCorrect={checkedVerb.isPresentCorrect}
           handleInputChange={handleInputChange}
+          isShowingAnswer={isShowingAnswer}
         />
         <PracticeFormField
           id="past"
@@ -98,6 +93,7 @@ export const PracticeForm: FC<Props> = ({
           isVerbChecked={isVerbChecked}
           isTenseCorrect={checkedVerb.isPastCorrect}
           handleInputChange={handleInputChange}
+          isShowingAnswer={isShowingAnswer}
         />
         <PracticeFormField
           id="pastParticiple"
@@ -106,6 +102,7 @@ export const PracticeForm: FC<Props> = ({
           isVerbChecked={isVerbChecked}
           isTenseCorrect={checkedVerb.isPastParticipleCorrect}
           handleInputChange={handleInputChange}
+          isShowingAnswer={isShowingAnswer}
         />
         <PracticeFormField
           id="presentParticiple"
@@ -114,6 +111,7 @@ export const PracticeForm: FC<Props> = ({
           isVerbChecked={isVerbChecked}
           isTenseCorrect={checkedVerb.isPresentParticipleCorrect}
           handleInputChange={handleInputChange}
+          isShowingAnswer={isShowingAnswer}
         />
         <PracticeFormField
           id="meaning"
@@ -122,12 +120,14 @@ export const PracticeForm: FC<Props> = ({
           isVerbChecked={isVerbChecked}
           isTenseCorrect={checkedVerb.isMeaningCorrect}
           handleInputChange={handleInputChange}
+          isShowingAnswer={isShowingAnswer}
         />
-        <PracticeFormButton
+        <PracticeFormFooter
           isVerbChecked={isVerbChecked}
           isVerbCorrect={isVerbCorrect}
           counter={counter}
           verbsLength={verbsLength}
+          isShowingAnswer={isShowingAnswer}
         />
       </form>
     </div>

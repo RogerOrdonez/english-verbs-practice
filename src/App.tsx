@@ -99,6 +99,7 @@ function App() {
             counter={counter}
             isVerbChecked={isVerbChecked}
             isVerbCorrect={isVerbCorrect}
+            isShowingAnswer={isShowingAnswer}
             totalVerbsCount={totalVerbsCount}
             checkedVerb={checkedVerb}
             formValue={formValue}

@@ -37,7 +37,7 @@ export const InfoSection: FC<Props> = ({
         >
           verb
         </div>
-        <div css={tw`text-white text-2xl lg:text-4xl mt-2 lg:mt-4`}>
+        <div css={tw`text-white text-3xl lg:text-4xl mt-2 lg:mt-4`}>
           {currentVerb.tenses.infinitive}
         </div>
       </div>
