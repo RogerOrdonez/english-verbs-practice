@@ -1,26 +1,16 @@
 /** @jsxImportSource @emotion/react */
-import { FC, MouseEventHandler } from "react";
+import { FC, MouseEventHandler, useContext } from "react";
 import { verbs } from "../data/verbs";
 import tw, { theme as twTheme } from "twin.macro";
 import { useMediaQuery } from "@material-ui/core";
-import { VerbType } from "../shared/Types";
+import { VerbType } from "../shared/types";
+import { AppContext } from "../shared/context";
 
-type Props = {
-  currentVerb: VerbType;
-  isVerbChecked: boolean;
-  isVerbCorrect: boolean;
-  isShowingAnswer: boolean;
-  showAnswer: MouseEventHandler<HTMLButtonElement>;
-};
+type Props = {};
 
-export const InfoSection: FC<Props> = ({
-  currentVerb,
-  isVerbChecked,
-  isVerbCorrect,
-  isShowingAnswer,
-  showAnswer,
-}) => {
+export const InfoSection: FC<Props> = () => {
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
+  const { state, dispatch } = useContext(AppContext);
   return (
     <div
       css={[
@@ -36,7 +26,7 @@ export const InfoSection: FC<Props> = ({
           verb
         </div>
         <div css={tw`text-white text-3xl lg:text-4xl mt-2 lg:mt-4`}>
-          {currentVerb.tenses.infinitive}
+          {state.currentVerb.verbTense.tenses.infinitive}
         </div>
       </div>
 
@@ -83,16 +73,20 @@ export const InfoSection: FC<Props> = ({
           <div>
             <button
               css={[
-                isVerbChecked &&
+                state.currentVerb.isVerbChecked &&
                   tw`px-6 py-1 lg:px-12 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
-                !isVerbChecked && tw`hidden`,
-                isVerbCorrect && tw`hidden`,
+                !state.currentVerb.isVerbChecked && tw`hidden`,
+                state.currentVerb.isVerbCorrect && tw`hidden`,
               ]}
               type="button"
-              onClick={showAnswer}
+              /* onClick={showAnswer} */
             >
-              {!isVerbCorrect && !isShowingAnswer && `Show Answer`}
-              {!isVerbCorrect && isShowingAnswer && `Hide Answer`}
+              {!state.currentVerb.isVerbCorrect &&
+                !state.currentVerb.isShowingAnswer &&
+                `Show Answer`}
+              {!state.currentVerb.isVerbCorrect &&
+                state.currentVerb.isShowingAnswer &&
+                `Hide Answer`}
             </button>
           </div>
         </div>

@@ -9,67 +9,11 @@ import {
   CurrentVerbType,
   FormType,
   VerbType,
-} from "./shared/Types";
+} from "./shared/types";
 import { PracticeForm } from "./components/PracticeForm";
-import {
-  controlStateReducer,
-  currentVerbReducer,
-} from "./services/reducerService";
-
-const initialCurrentVerb: CurrentVerbType = {
-  verbTense: {
-    verb: "",
-    type: "",
-    tenses: {
-      infinitive: "",
-      present: [""],
-      past: [""],
-      pastParticiple: [""],
-      presentParticiple: [""],
-      meaning: [""],
-    },
-  },
-  isVerbCorrect: false,
-  isVerbChecked: false,
-  isPresentCorrect: false,
-  isPastCorrect: false,
-  isPastParticipleCorrect: false,
-  isPresentParticipleCorrect: false,
-  isMeaningCorrect: false,
-  isShowingAnswer: false,
-};
-
-const initialControlState = {
-  counter: 0,
-  totalVerbsCount: 0,
-  isShowingAnswer: false,
-};
-
-const CurrentVerbContext = createContext<{
-  currentVerb: CurrentVerbType;
-  dispatchCurrentVerb: React.Dispatch<any>;
-}>({
-  currentVerb: initialCurrentVerb,
-  dispatchCurrentVerb: () => null,
-});
-
-const ControlStateContext = createContext<{
-  controlState: ControlStateType;
-  dispatchControlState: React.Dispatch<any>;
-}>({
-  controlState: initialControlState,
-  dispatchControlState: () => null,
-});
+import { AppProvider } from "./shared/context";
 
 function App() {
-  const [currentVerb, dispatchCurrentVerb] = useReducer(
-    currentVerbReducer,
-    initialCurrentVerb
-  );
-  const [controlState, dispatchControlState] = useReducer(
-    controlStateReducer,
-    initialControlState
-  );
   /* const [counter, setCounter] = useState(0); */
   /* const [totalVerbsCount, setTotalVerbsCount] = useState(0); */
   /* const [isShowingAnswer, setIsShowingAnswer] = useState(false); */
@@ -121,23 +65,14 @@ function App() {
     });
   }; */
   return (
-    <ControlStateContext.Provider
-      value={{ controlState, dispatchControlState }}
-    >
-      <CurrentVerbContext.Provider value={{ currentVerb, dispatchCurrentVerb }}>
-        <div>
-          <div css={tw`flex justify-center items-center h-screen bg-gray-600`}>
-            <div
-              css={tw`flex flex-wrap rounded-lg h-screen md:h-auto bg-white shadow-md overflow-hidden w-full md:mx-8 lg:w-4/5 xl:w-3/5`}
-            >
-              {/* <InfoSection
-              currentVerb={currentVerb}
-              isVerbChecked={isVerbChecked}
-              isVerbCorrect={isVerbCorrect}
-              isShowingAnswer={isShowingAnswer}
-              showAnswer={showAnswer}
-            />
-            <PracticeForm
+    <AppProvider>
+      <div>
+        <div css={tw`flex justify-center items-center h-screen bg-gray-600`}>
+          <div
+            css={tw`flex flex-wrap rounded-lg h-screen md:h-auto bg-white shadow-md overflow-hidden w-full md:mx-8 lg:w-4/5 xl:w-3/5`}
+          >
+            <InfoSection />
+            {/* <PracticeForm
               verbsLength={verbs.length}
               counter={counter}
               isVerbChecked={isVerbChecked}
@@ -154,11 +89,10 @@ function App() {
               setIsShowingAnswer={setIsShowingAnswer}
               setCounter={setCounter}
             /> */}
-            </div>
           </div>
         </div>
-      </CurrentVerbContext.Provider>
-    </ControlStateContext.Provider>
+      </div>
+    </AppProvider>
   );
 }
 

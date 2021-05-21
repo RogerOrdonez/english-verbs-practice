@@ -1,4 +1,4 @@
-import { VerbType } from "../shared/Types";
+import { VerbType } from "../shared/types";
 
 export const verbs: Array<VerbType> = [
   {

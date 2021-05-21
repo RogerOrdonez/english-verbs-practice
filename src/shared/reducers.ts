@@ -1,43 +1,45 @@
-import { ControlStateAction, CurrentVerbAction } from "../shared/Enums";
+import { ControlStateAction, CurrentVerbAction } from "./enums";
 import {
   ControlStateActionType,
   ControlStateType,
   CurrentVerbActionType,
   CurrentVerbType,
-} from "../shared/Types";
+} from "./types";
 
 export const currentVerbReducer = (
   state: CurrentVerbType,
-  action: CurrentVerbActionType
+  action: CurrentVerbActionType | ControlStateActionType
 ): CurrentVerbType => {
   switch (action.type) {
-    case CurrentVerbAction.markVerbCorrect:
+    case CurrentVerbAction.SetCurrentVerb:
+      return { ...state, verbTense: action.payload.newCurrentVerb.verbTense };
+    case CurrentVerbAction.MarkVerbCorrect:
       return { ...state, isVerbCorrect: true };
-    case CurrentVerbAction.markVerbIncorrect:
+    case CurrentVerbAction.MarkVerbIncorrect:
       return { ...state, isVerbCorrect: false };
-    case CurrentVerbAction.markPresentCorrect:
+    case CurrentVerbAction.MarkPresentCorrect:
       return { ...state, isPresentCorrect: true };
-    case CurrentVerbAction.markVerbIncorrect:
+    case CurrentVerbAction.MarkVerbIncorrect:
       return { ...state, isPresentCorrect: false };
-    case CurrentVerbAction.markPastCorrect:
+    case CurrentVerbAction.MarkPastCorrect:
       return { ...state, isPastCorrect: true };
-    case CurrentVerbAction.markPastIncorrect:
+    case CurrentVerbAction.MarkPastIncorrect:
       return { ...state, isPastCorrect: false };
-    case CurrentVerbAction.markPastParticipleCorrect:
+    case CurrentVerbAction.MarkPastParticipleCorrect:
       return { ...state, isPastParticipleCorrect: true };
-    case CurrentVerbAction.markPastParticipleIncorrect:
+    case CurrentVerbAction.MarkPastParticipleIncorrect:
       return { ...state, isPastParticipleCorrect: false };
-    case CurrentVerbAction.markPresentParticipleCorrect:
+    case CurrentVerbAction.MarkPresentParticipleCorrect:
       return { ...state, isPresentParticipleCorrect: true };
-    case CurrentVerbAction.markPresentParticipleIncorrect:
+    case CurrentVerbAction.MarkPresentParticipleIncorrect:
       return { ...state, isPresentParticipleCorrect: false };
-    case CurrentVerbAction.markMeaningCorrect:
+    case CurrentVerbAction.MarkMeaningCorrect:
       return { ...state, isMeaningCorrect: true };
-    case CurrentVerbAction.markMeaningIncorrect:
+    case CurrentVerbAction.MarkMeaningIncorrect:
       return { ...state, isMeaningCorrect: false };
-    case CurrentVerbAction.showAnswer:
+    case CurrentVerbAction.ShowAnswer:
       return { ...state, isShowingAnswer: true };
-    case CurrentVerbAction.hideAnswer:
+    case CurrentVerbAction.HideAnswer:
       return { ...state, isShowingAnswer: false };
     default:
       throw new Error();
@@ -46,15 +48,15 @@ export const currentVerbReducer = (
 
 export const controlStateReducer = (
   state: ControlStateType,
-  action: ControlStateActionType
+  action: CurrentVerbActionType | ControlStateActionType
 ): ControlStateType => {
   switch (action.type) {
-    case ControlStateAction.incrementCounter:
+    case ControlStateAction.IncrementCounter:
       return { ...state, counter: state.counter + 1 };
-    case ControlStateAction.decrementCounter:
+    case ControlStateAction.DecrementCounter:
       return { ...state, counter: state.counter - 1 };
-    case ControlStateAction.setTotalVerbsCount:
-      return { ...state, totalVerbsCount: action.value || 0 };
+    case ControlStateAction.SetTotalVerbsCount:
+      return { ...state, totalVerbsCount: action.payload };
     default:
       throw new Error();
   }

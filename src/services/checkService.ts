@@ -1,4 +1,4 @@
-import { FormType, VerbType } from "../shared/Types";
+import { FormType, VerbType } from "../shared/types";
 
 export const reset = (
   setCounter: Function,

@@ -3,7 +3,7 @@ import { FC } from "react";
 import tw, { theme as twTheme } from "twin.macro";
 import { useMediaQuery } from "@material-ui/core";
 import { checkVerb } from "../services/checkService";
-import { CheckedVerbType, FormType, VerbType } from "../shared/Types";
+import { CheckedVerbType, FormType, VerbType } from "../shared/types";
 import { PracticeFormField } from "./PracticeFormField";
 import { PracticeFormFooter } from "./PracticeFormFooter";
 import { PracticeFormHeader } from "./PracticeFormHeader";
