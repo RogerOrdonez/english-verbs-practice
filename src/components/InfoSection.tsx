@@ -7,7 +7,6 @@ import { VerbType } from "../shared/Types";
 
 type Props = {
   currentVerb: VerbType;
-  counter: number;
   isVerbChecked: boolean;
   isVerbCorrect: boolean;
   isShowingAnswer: boolean;
@@ -16,7 +15,6 @@ type Props = {
 
 export const InfoSection: FC<Props> = ({
   currentVerb,
-  counter,
   isVerbChecked,
   isVerbCorrect,
   isShowingAnswer,
@@ -58,19 +56,45 @@ export const InfoSection: FC<Props> = ({
           </div>
         </div>
         <div>
-          <button
-            css={[
-              isVerbChecked &&
-                tw`px-6 py-1 lg:px-12 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
-              !isVerbChecked && tw`hidden`,
-              isVerbCorrect && tw`hidden`,
-            ]}
-            type="button"
-            onClick={showAnswer}
-          >
-            {!isVerbCorrect && !isShowingAnswer && `Show Answer`}
-            {!isVerbCorrect && isShowingAnswer && `Hide Answer`}
-          </button>
+          {/* <div css={tw`text-gray-200 mt-4`}>
+            Errors:{" "}
+            <span
+              css={tw`pt-0.5 pb-0.5 text-sm px-3 bg-red-200 text-gray-800 rounded-full`}
+            >
+              5
+            </span>
+          </div>
+          <div css={tw`text-gray-200 mt-4`}>
+            Success:{" "}
+            <span
+              css={tw`pt-0.5 pb-0.5 text-sm px-3 bg-green-200 text-gray-800 rounded-full`}
+            >
+              3
+            </span>
+          </div>
+          <div css={tw`text-gray-200 mt-4`}>
+            Skipped:{" "}
+            <span
+              css={tw`pt-0.5 pb-0.5 text-sm px-3 bg-yellow-200 text-gray-800 rounded-full`}
+            >
+              2
+            </span>
+          </div> */}
+          <div>
+            <button
+              css={[
+                isVerbChecked &&
+                  tw`px-6 py-1 lg:px-12 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
+                !isVerbChecked && tw`hidden`,
+                isVerbCorrect && tw`hidden`,
+              ]}
+              type="button"
+              onClick={showAnswer}
+            >
+              {!isVerbCorrect && !isShowingAnswer && `Show Answer`}
+              {!isVerbCorrect && isShowingAnswer && `Hide Answer`}
+            </button>
+          </div>
         </div>
       </div>
     </div>
