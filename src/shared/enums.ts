@@ -16,6 +16,7 @@ export enum CurrentVerbAction {
   ShowAnswer = "SHOW_ANSWER",
   HideAnswer = "HIDE_ANSWER",
   SetCurrentVerb = "SET_CURRENT_VERB",
+  SetUserInput = "SET_USER_INPUT",
 }
 
 export enum ControlStateAction {

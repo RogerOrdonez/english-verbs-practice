@@ -37,6 +37,10 @@ export const checkVerb = (
 ) => {
   const { verbTense, isVerbCorrect, isVerbChecked } = currentVerb;
   const { counter, verbsLength } = controlState;
+  currentVerbDispatch({
+    type: CurrentVerbAction.SetUserInput,
+    payload: { userInputVerb: practiceForm },
+  });
   const isPresentCorrect = checkVerbTense(
     practiceForm.present,
     verbTense.tenses.present

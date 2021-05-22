@@ -16,38 +16,9 @@ export const InfoSection: FC<Props> = () => {
   const { state: currentVerb, dispatch: currentVerbDispatch } =
     useContext(CurrentVerbContext);
   const showAnswer = () => {
-    /* if (!currentVerb.isShowingAnswer) {
-
-    }
-    
-    currentVerbDispatch({type: CurrentVerbAction.ShowAnswer})
-    
-    setIsShowingAnswer(() => {
-      if (!isShowingAnswer) {
-        setInputVerb(formValue);
-        setFormValue({
-          present: !checkedVerb.isPresentCorrect
-            ? currentVerb.tenses.present.join(", ")
-            : formValue.present,
-          past: !checkedVerb.isPastCorrect
-            ? currentVerb.tenses.past.join(", ")
-            : formValue.past,
-          pastParticiple: !checkedVerb.isPastParticipleCorrect
-            ? currentVerb.tenses.pastParticiple.join(", ")
-            : formValue.pastParticiple,
-          presentParticiple: !checkedVerb.isPresentParticipleCorrect
-            ? currentVerb.tenses.presentParticiple.join(", ")
-            : formValue.presentParticiple,
-          meaning: !checkedVerb.isMeaningCorrect
-            ? currentVerb.tenses.meaning.join(", ")
-            : formValue.meaning,
-        });
-      } else {
-        setFormValue(inputVerb);
-      }
-      return !isShowingAnswer; 
-    });*/
-    console.log("showAnswer");
+    currentVerb.isShowingAnswer
+      ? currentVerbDispatch({ type: CurrentVerbAction.HideAnswer })
+      : currentVerbDispatch({ type: CurrentVerbAction.ShowAnswer });
   };
   return (
     <div

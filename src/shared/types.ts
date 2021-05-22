@@ -15,6 +15,7 @@ export type VerbType = {
 
 export type CurrentVerbType = {
   verbTense: VerbType;
+  userInputVerb: FormType;
   isVerbCorrect: boolean;
   isVerbChecked: boolean;
   isPresentCorrect: boolean;
@@ -50,6 +51,9 @@ export type CurrentVerbPayload = {
   [CurrentVerbAction.HideAnswer]: undefined;
   [CurrentVerbAction.MarkVerbChecked]: undefined;
   [CurrentVerbAction.MarkVerbUnchecked]: undefined;
+  [CurrentVerbAction.SetUserInput]: {
+    userInputVerb: FormType;
+  };
 };
 
 export type ControlStatebPayload = {

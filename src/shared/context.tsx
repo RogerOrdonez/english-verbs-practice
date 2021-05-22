@@ -23,6 +23,13 @@ const initialCurrentVerb: CurrentVerbType = {
       meaning: [""],
     },
   },
+  userInputVerb: {
+    present: "",
+    past: "",
+    pastParticiple: "",
+    presentParticiple: "",
+    meaning: "",
+  },
   isVerbCorrect: false,
   isVerbChecked: false,
   isPresentCorrect: false,
@@ -37,19 +44,6 @@ const initialControlState: ControlStateType = {
   counter: 0,
   verbsLength: 0,
 };
-
-const initialState = {
-  currentVerb: initialCurrentVerb,
-  controlState: initialControlState,
-};
-
-/* const AppContext = createContext<{
-  state: InitialStateType;
-  dispatch: Dispatch<ControlStateActionType | CurrentVerbActionType>;
-}>({
-  state: initialState,
-  dispatch: () => null,
-}); */
 
 const CurrentVerbContext = createContext<{
   state: CurrentVerbType;

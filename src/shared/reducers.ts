@@ -49,6 +49,8 @@ export const currentVerbReducer = (
       return { ...state, isVerbChecked: true };
     case CurrentVerbAction.MarkVerbUnchecked:
       return { ...state, isVerbChecked: false };
+    case CurrentVerbAction.SetUserInput:
+      return { ...state, userInputVerb: action.payload.userInputVerb };
     default:
       throw new Error(errorMessage);
   }

@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { FC, useContext, useState } from "react";
+import { FC, useContext, useEffect, useState } from "react";
 import tw, { theme as twTheme } from "twin.macro";
 import { useMediaQuery } from "@material-ui/core";
 import { checkVerb } from "../../services/checkService";
@@ -8,6 +8,7 @@ import { PracticeFormField } from "./PracticeFormField";
 import { PracticeFormFooter } from "./PracticeFormFooter";
 import { PracticeFormHeader } from "./PracticeFormHeader";
 import { CurrentVerbContext, ControlStateContext } from "../../shared/context";
+import { CurrentVerbAction } from "../../shared/enums";
 
 type Props = {};
 
@@ -42,6 +43,35 @@ export const PracticeForm: FC<Props> = ({}) => {
       currentVerbDispatch
     );
   };
+  useEffect(() => {
+    if (currentVerb.isVerbChecked) {
+      if (currentVerb.isShowingAnswer) {
+        currentVerbDispatch({
+          type: CurrentVerbAction.SetUserInput,
+          payload: { userInputVerb: practiceForm },
+        });
+        setPracticeForm({
+          present: !currentVerb.isPresentCorrect
+            ? currentVerb.verbTense.tenses.present.join(", ")
+            : practiceForm.present,
+          past: !currentVerb.isPastCorrect
+            ? currentVerb.verbTense.tenses.past.join(", ")
+            : practiceForm.past,
+          pastParticiple: !currentVerb.isPastParticipleCorrect
+            ? currentVerb.verbTense.tenses.pastParticiple.join(", ")
+            : practiceForm.pastParticiple,
+          presentParticiple: !currentVerb.isPresentParticipleCorrect
+            ? currentVerb.verbTense.tenses.presentParticiple.join(", ")
+            : practiceForm.presentParticiple,
+          meaning: !currentVerb.isMeaningCorrect
+            ? currentVerb.verbTense.tenses.meaning.join(", ")
+            : practiceForm.meaning,
+        });
+      } else {
+        setPracticeForm(currentVerb.userInputVerb);
+      }
+    }
+  }, [currentVerb.isShowingAnswer]);
   return (
     <div css={tw`px-4 pt-1 lg:pt-4 w-full lg:w-2/3`}>
       <PracticeFormHeader
