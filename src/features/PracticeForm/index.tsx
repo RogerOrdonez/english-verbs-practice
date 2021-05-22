@@ -7,15 +7,15 @@ import { FormType } from "../../shared/types";
 import { PracticeFormField } from "./PracticeFormField";
 import { PracticeFormFooter } from "./PracticeFormFooter";
 import { PracticeFormHeader } from "./PracticeFormHeader";
-import { AppContext } from "../../shared/context";
+import { CurrentVerbContext, ControlStateContext } from "../../shared/context";
 
 type Props = {};
 
 export const PracticeForm: FC<Props> = ({}) => {
-  const {
-    state: { controlState, currentVerb },
-    dispatch,
-  } = useContext(AppContext);
+  const { state: controlState, dispatch: controlStateDispatch } =
+    useContext(ControlStateContext);
+  const { state: currentVerb, dispatch: currentVerbDispatch } =
+    useContext(CurrentVerbContext);
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
   const progressBarWidth = isDesktop ? 13 : 20;
   const [practiceForm, setPracticeForm] = useState<FormType>({
@@ -38,7 +38,8 @@ export const PracticeForm: FC<Props> = ({}) => {
       setPracticeForm,
       currentVerb,
       controlState,
-      dispatch
+      controlStateDispatch,
+      currentVerbDispatch
     );
   };
   return (

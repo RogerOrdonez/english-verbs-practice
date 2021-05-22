@@ -6,7 +6,7 @@ import {
   ControlStateActionType,
   CurrentVerbActionType,
 } from "./types";
-import { mainReducer } from "./reducers";
+import { controlStateReducer, currentVerbReducer } from "./reducers";
 import { ControlStateAction, CurrentVerbAction } from "./enums";
 import { verbs } from "../data/verbs";
 
@@ -43,21 +43,51 @@ const initialState = {
   controlState: initialControlState,
 };
 
-const AppContext = createContext<{
+/* const AppContext = createContext<{
   state: InitialStateType;
   dispatch: Dispatch<ControlStateActionType | CurrentVerbActionType>;
 }>({
   state: initialState,
   dispatch: () => null,
+}); */
+
+const CurrentVerbContext = createContext<{
+  state: CurrentVerbType;
+  dispatch: Dispatch<CurrentVerbActionType>;
+}>({
+  state: initialCurrentVerb,
+  dispatch: () => null,
+});
+
+const ControlStateContext = createContext<{
+  state: ControlStateType;
+  dispatch: Dispatch<ControlStateActionType>;
+}>({
+  state: initialControlState,
+  dispatch: () => null,
 });
 
 const AppProvider: React.FC = ({ children }) => {
-  const [state, dispatch] = useReducer(mainReducer, initialState);
+  /* const [state, dispatch] = useReducer(mainReducer, initialState); */
+  const [currentVerb, currentVerbDispatch] = useReducer(
+    currentVerbReducer,
+    initialCurrentVerb
+  );
+  const [controlState, controlStateDispatch] = useReducer(
+    controlStateReducer,
+    initialControlState
+  );
   return (
-    <AppContext.Provider value={{ state, dispatch }}>
-      {children}
-    </AppContext.Provider>
+    <ControlStateContext.Provider
+      value={{ state: controlState, dispatch: controlStateDispatch }}
+    >
+      <CurrentVerbContext.Provider
+        value={{ state: currentVerb, dispatch: currentVerbDispatch }}
+      >
+        {children}
+      </CurrentVerbContext.Provider>
+    </ControlStateContext.Provider>
   );
 };
 
-export { AppContext, AppProvider };
+export { CurrentVerbContext, ControlStateContext, AppProvider };

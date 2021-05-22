@@ -4,13 +4,51 @@ import { verbs } from "../../data/verbs";
 import tw, { theme as twTheme } from "twin.macro";
 import { useMediaQuery } from "@material-ui/core";
 import { VerbType } from "../../shared/types";
-import { AppContext } from "../../shared/context";
+import { CurrentVerbContext, ControlStateContext } from "../../shared/context";
+import { CurrentVerbAction } from "../../shared/enums";
 
 type Props = {};
 
 export const InfoSection: FC<Props> = () => {
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
-  const { state, dispatch } = useContext(AppContext);
+  const { state: controlState, dispatch: controlStateDispatch } =
+    useContext(ControlStateContext);
+  const { state: currentVerb, dispatch: currentVerbDispatch } =
+    useContext(CurrentVerbContext);
+  const showAnswer = () => {
+    /* if (!currentVerb.isShowingAnswer) {
+
+    }
+    
+    currentVerbDispatch({type: CurrentVerbAction.ShowAnswer})
+    
+    setIsShowingAnswer(() => {
+      if (!isShowingAnswer) {
+        setInputVerb(formValue);
+        setFormValue({
+          present: !checkedVerb.isPresentCorrect
+            ? currentVerb.tenses.present.join(", ")
+            : formValue.present,
+          past: !checkedVerb.isPastCorrect
+            ? currentVerb.tenses.past.join(", ")
+            : formValue.past,
+          pastParticiple: !checkedVerb.isPastParticipleCorrect
+            ? currentVerb.tenses.pastParticiple.join(", ")
+            : formValue.pastParticiple,
+          presentParticiple: !checkedVerb.isPresentParticipleCorrect
+            ? currentVerb.tenses.presentParticiple.join(", ")
+            : formValue.presentParticiple,
+          meaning: !checkedVerb.isMeaningCorrect
+            ? currentVerb.tenses.meaning.join(", ")
+            : formValue.meaning,
+        });
+      } else {
+        setFormValue(inputVerb);
+      }
+      return !isShowingAnswer; 
+    });*/
+    console.log("showAnswer");
+  };
   return (
     <div
       css={[
@@ -26,7 +64,7 @@ export const InfoSection: FC<Props> = () => {
           verb
         </div>
         <div css={tw`text-white text-3xl lg:text-4xl mt-2 lg:mt-4`}>
-          {state.currentVerb.verbTense.tenses.infinitive}
+          {currentVerb.verbTense.tenses.infinitive}
         </div>
       </div>
 
@@ -73,19 +111,19 @@ export const InfoSection: FC<Props> = () => {
           <div>
             <button
               css={[
-                state.currentVerb.isVerbChecked &&
+                currentVerb.isVerbChecked &&
                   tw`px-6 py-1 lg:px-12 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
-                !state.currentVerb.isVerbChecked && tw`hidden`,
-                state.currentVerb.isVerbCorrect && tw`hidden`,
+                !currentVerb.isVerbChecked && tw`hidden`,
+                currentVerb.isVerbCorrect && tw`hidden`,
               ]}
               type="button"
-              /* onClick={showAnswer} */
+              onClick={showAnswer}
             >
-              {!state.currentVerb.isVerbCorrect &&
-                !state.currentVerb.isShowingAnswer &&
+              {!currentVerb.isVerbCorrect &&
+                !currentVerb.isShowingAnswer &&
                 `Show Answer`}
-              {!state.currentVerb.isVerbCorrect &&
-                state.currentVerb.isShowingAnswer &&
+              {!currentVerb.isVerbCorrect &&
+                currentVerb.isShowingAnswer &&
                 `Hide Answer`}
             </button>
           </div>

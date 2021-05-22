@@ -9,9 +9,9 @@ import {
 
 export const currentVerbReducer = (
   state: CurrentVerbType,
-  action: CurrentVerbActionType | ControlStateActionType
+  action: CurrentVerbActionType
 ): CurrentVerbType => {
-  console.log(action);
+  const errorMessage = `Action type "${action.type}" is not defined for currentVerbReducer`;
   switch (action.type) {
     case CurrentVerbAction.SetCurrentVerb:
       return { ...state, verbTense: action.payload.newCurrentVerb };
@@ -21,6 +21,8 @@ export const currentVerbReducer = (
       return { ...state, isVerbCorrect: false };
     case CurrentVerbAction.MarkPresentCorrect:
       return { ...state, isPresentCorrect: true };
+    case CurrentVerbAction.MarkPresentIncorrect:
+      return { ...state, isPresentCorrect: false };
     case CurrentVerbAction.MarkVerbIncorrect:
       return { ...state, isPresentCorrect: false };
     case CurrentVerbAction.MarkPastCorrect:
@@ -48,16 +50,15 @@ export const currentVerbReducer = (
     case CurrentVerbAction.MarkVerbUnchecked:
       return { ...state, isVerbChecked: false };
     default:
-      return state;
-    /* throw new Error(); */
+      throw new Error(errorMessage);
   }
 };
 
 export const controlStateReducer = (
   state: ControlStateType,
-  action: CurrentVerbActionType | ControlStateActionType
+  action: ControlStateActionType
 ): ControlStateType => {
-  console.log(action);
+  const errorMessage = `Action type "${action.type}" is not defined for controlStateReducer`;
   switch (action.type) {
     case ControlStateAction.IncrementCounter:
       return { ...state, counter: state.counter + 1 };
@@ -68,15 +69,6 @@ export const controlStateReducer = (
     case ControlStateAction.SetVerbsLenght:
       return { ...state, verbsLength: action.payload };
     default:
-      return state;
-    /* throw new Error(); */
+      throw new Error(errorMessage);
   }
 };
-
-export const mainReducer = (
-  { currentVerb, controlState }: InitialStateType,
-  action: ControlStateActionType | CurrentVerbActionType
-) => ({
-  currentVerb: currentVerbReducer(currentVerb, action),
-  controlState: controlStateReducer(controlState, action),
-});
