@@ -1,10 +1,10 @@
 /** @jsxImportSource @emotion/react */
 import { FC, MouseEventHandler, useContext } from "react";
-import { verbs } from "../data/verbs";
+import { verbs } from "../../data/verbs";
 import tw, { theme as twTheme } from "twin.macro";
 import { useMediaQuery } from "@material-ui/core";
-import { VerbType } from "../shared/types";
-import { AppContext } from "../shared/context";
+import { VerbType } from "../../shared/types";
+import { AppContext } from "../../shared/context";
 
 type Props = {};
 

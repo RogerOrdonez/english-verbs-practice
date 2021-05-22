@@ -1,13 +1,20 @@
-import { FormType, VerbType } from "../shared/types";
+import { Dispatch } from "react";
+import { ControlStateAction, CurrentVerbAction } from "../shared/enums";
+import {
+  ControlStateActionType,
+  ControlStateType,
+  CurrentVerbActionType,
+  CurrentVerbType,
+  FormType,
+  VerbType,
+} from "../shared/types";
 
 export const reset = (
-  setCounter: Function,
-  setIsVerbChecked: Function,
-  setIsShowingAnswer: Function
+  dispatch: Dispatch<ControlStateActionType | CurrentVerbActionType>
 ) => {
-  setCounter(0);
-  setIsVerbChecked(false);
-  setIsShowingAnswer(false);
+  dispatch({ type: ControlStateAction.ResetCounter });
+  dispatch({ type: CurrentVerbAction.MarkVerbUnchecked });
+  dispatch({ type: CurrentVerbAction.HideAnswer });
 };
 
 export const checkVerbTense = (
@@ -29,64 +36,74 @@ export const checkVerbTense = (
 };
 
 export const checkVerb = (
-  setCheckedVerb: Function,
-  setIsVerbCorrect: Function,
-  setIsVerbChecked: Function,
-  setCounter: Function,
-  setFormValue: Function,
-  setIsShowingAnswer: Function,
-  formValue: FormType,
-  currentVerb: VerbType,
-  isVerbChecked: boolean,
-  isVerbCorrect: boolean,
-  counter: number,
-  verbsLength: number
+  practiceForm: FormType,
+  setPracticeForm: Function,
+  currentVerb: CurrentVerbType,
+  controlState: ControlStateType,
+  dispatch: Dispatch<ControlStateActionType | CurrentVerbActionType>
 ) => {
-  setCheckedVerb(() => {
-    const verb = {
-      isPresentCorrect: checkVerbTense(
-        formValue.present,
-        currentVerb.tenses.present
-      ),
-      isPastCorrect: checkVerbTense(formValue.past, currentVerb.tenses.past),
-      isPastParticipleCorrect: checkVerbTense(
-        formValue.pastParticiple,
-        currentVerb.tenses.pastParticiple
-      ),
-      isPresentParticipleCorrect: checkVerbTense(
-        formValue.presentParticiple,
-        currentVerb.tenses.presentParticiple
-      ),
-      isMeaningCorrect: checkVerbTense(
-        formValue.meaning,
-        currentVerb.tenses.meaning
-      ),
-    };
-    setIsVerbCorrect(
-      verb.isPresentCorrect &&
-        verb.isPastCorrect &&
-        verb.isPastParticipleCorrect &&
-        verb.isPresentParticipleCorrect &&
-        verb.isMeaningCorrect
-    );
-    return verb;
-  });
-  setIsVerbChecked(true);
+  const { verbTense, isVerbCorrect, isVerbChecked } = currentVerb;
+  const { counter, verbsLength } = controlState;
+  const isPresentCorrect = checkVerbTense(
+    practiceForm.present,
+    verbTense.tenses.present
+  );
+  isPresentCorrect
+    ? dispatch({ type: CurrentVerbAction.MarkPresentCorrect })
+    : dispatch({ type: CurrentVerbAction.MarkPresentIncorrect });
+  const isPastCorrect = checkVerbTense(
+    practiceForm.past,
+    verbTense.tenses.past
+  );
+  isPastCorrect
+    ? dispatch({ type: CurrentVerbAction.MarkPastCorrect })
+    : dispatch({ type: CurrentVerbAction.MarkPastIncorrect });
+  const isPastParticipleCorrect = checkVerbTense(
+    practiceForm.pastParticiple,
+    verbTense.tenses.pastParticiple
+  );
+  isPastParticipleCorrect
+    ? dispatch({ type: CurrentVerbAction.MarkPastParticipleCorrect })
+    : dispatch({ type: CurrentVerbAction.MarkPastParticipleIncorrect });
+  const isPresentParticipleCorrect = checkVerbTense(
+    practiceForm.presentParticiple,
+    verbTense.tenses.presentParticiple
+  );
+  isPresentParticipleCorrect
+    ? dispatch({ type: CurrentVerbAction.MarkPresentParticipleCorrect })
+    : dispatch({ type: CurrentVerbAction.MarkPresentParticipleIncorrect });
+  const isMeaningCorrect = checkVerbTense(
+    practiceForm.meaning,
+    verbTense.tenses.meaning
+  );
+  isMeaningCorrect
+    ? dispatch({ type: CurrentVerbAction.MarkMeaningCorrect })
+    : dispatch({ type: CurrentVerbAction.MarkMeaningIncorrect });
+  const isCurrentVerbCorrect =
+    isPresentCorrect &&
+    isPastCorrect &&
+    isPastParticipleCorrect &&
+    isPresentParticipleCorrect &&
+    isMeaningCorrect;
+  isCurrentVerbCorrect
+    ? dispatch({ type: CurrentVerbAction.MarkVerbCorrect })
+    : dispatch({ type: CurrentVerbAction.MarkVerbIncorrect });
+  dispatch({ type: CurrentVerbAction.MarkVerbChecked });
   if (isVerbCorrect && isVerbChecked) {
     if (counter < verbsLength - 1) {
-      setCounter(counter + 1);
-      setIsShowingAnswer(false);
-      setFormValue({
+      dispatch({ type: ControlStateAction.IncrementCounter });
+      dispatch({ type: CurrentVerbAction.HideAnswer });
+      setPracticeForm({
         present: "",
         past: "",
         pastParticiple: "",
         presentParticiple: "",
         meaning: "",
       });
-      setIsVerbChecked(false);
+      dispatch({ type: CurrentVerbAction.MarkVerbUnchecked });
     } else {
-      reset(setCounter, setIsVerbChecked, setIsShowingAnswer);
-      setFormValue({
+      reset(dispatch);
+      setPracticeForm({
         present: "",
         past: "",
         pastParticiple: "",

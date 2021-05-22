@@ -1,6 +1,8 @@
 export enum CurrentVerbAction {
   MarkVerbCorrect = "MARK_VERB_CORRECT",
   MarkVerbIncorrect = "MARK_VERB_INCORRECT",
+  MarkVerbChecked = "MARK_VERB_CHECKED",
+  MarkVerbUnchecked = "MARK_VERB_UNCHECKED",
   MarkPresentCorrect = "MARK_PRESENT_CORRECT",
   MarkPresentIncorrect = "MARK_PRESENT_INCORRECT",
   MarkPastCorrect = "MARK_PAST_CORRECT",
@@ -19,5 +21,6 @@ export enum CurrentVerbAction {
 export enum ControlStateAction {
   IncrementCounter = "INCREMENT_COUNTER",
   DecrementCounter = "DECREMENT_COUNTER",
-  SetTotalVerbsCount = "SET_TOTAL_VERBS_COUNT",
+  ResetCounter = "RESET_COUNTER",
+  SetVerbsLenght = "SET_VERBS_LENGTH",
 }

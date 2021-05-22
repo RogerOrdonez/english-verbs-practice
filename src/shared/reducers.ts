@@ -4,15 +4,17 @@ import {
   ControlStateType,
   CurrentVerbActionType,
   CurrentVerbType,
+  InitialStateType,
 } from "./types";
 
 export const currentVerbReducer = (
   state: CurrentVerbType,
   action: CurrentVerbActionType | ControlStateActionType
 ): CurrentVerbType => {
+  console.log(action);
   switch (action.type) {
     case CurrentVerbAction.SetCurrentVerb:
-      return { ...state, verbTense: action.payload.newCurrentVerb.verbTense };
+      return { ...state, verbTense: action.payload.newCurrentVerb };
     case CurrentVerbAction.MarkVerbCorrect:
       return { ...state, isVerbCorrect: true };
     case CurrentVerbAction.MarkVerbIncorrect:
@@ -41,8 +43,13 @@ export const currentVerbReducer = (
       return { ...state, isShowingAnswer: true };
     case CurrentVerbAction.HideAnswer:
       return { ...state, isShowingAnswer: false };
+    case CurrentVerbAction.MarkVerbChecked:
+      return { ...state, isVerbChecked: true };
+    case CurrentVerbAction.MarkVerbUnchecked:
+      return { ...state, isVerbChecked: false };
     default:
-      throw new Error();
+      return state;
+    /* throw new Error(); */
   }
 };
 
@@ -50,14 +57,26 @@ export const controlStateReducer = (
   state: ControlStateType,
   action: CurrentVerbActionType | ControlStateActionType
 ): ControlStateType => {
+  console.log(action);
   switch (action.type) {
     case ControlStateAction.IncrementCounter:
       return { ...state, counter: state.counter + 1 };
     case ControlStateAction.DecrementCounter:
       return { ...state, counter: state.counter - 1 };
-    case ControlStateAction.SetTotalVerbsCount:
-      return { ...state, totalVerbsCount: action.payload };
+    case ControlStateAction.ResetCounter:
+      return { ...state, counter: 0 };
+    case ControlStateAction.SetVerbsLenght:
+      return { ...state, verbsLength: action.payload };
     default:
-      throw new Error();
+      return state;
+    /* throw new Error(); */
   }
 };
+
+export const mainReducer = (
+  { currentVerb, controlState }: InitialStateType,
+  action: ControlStateActionType | CurrentVerbActionType
+) => ({
+  currentVerb: currentVerbReducer(currentVerb, action),
+  controlState: controlStateReducer(controlState, action),
+});

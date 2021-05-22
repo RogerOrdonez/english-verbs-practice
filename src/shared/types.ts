@@ -12,6 +12,7 @@ export type VerbType = {
     meaning: Array<string>;
   };
 };
+
 export type CurrentVerbType = {
   verbTense: VerbType;
   isVerbCorrect: boolean;
@@ -23,33 +24,39 @@ export type CurrentVerbType = {
   isMeaningCorrect: boolean;
   isShowingAnswer: boolean;
 };
+
 export type ControlStateType = {
   counter: number;
-  totalVerbsCount: number;
+  verbsLength: number;
 };
+
 export type CurrentVerbPayload = {
   [CurrentVerbAction.SetCurrentVerb]: {
-    newCurrentVerb: CurrentVerbType;
+    newCurrentVerb: VerbType;
   };
-  [CurrentVerbAction.MarkVerbCorrect]: null;
-  [CurrentVerbAction.MarkVerbIncorrect]: null;
-  [CurrentVerbAction.MarkPresentCorrect]: null;
-  [CurrentVerbAction.MarkPresentIncorrect]: null;
-  [CurrentVerbAction.MarkPastCorrect]: null;
-  [CurrentVerbAction.MarkPastIncorrect]: null;
-  [CurrentVerbAction.MarkPresentParticipleCorrect]: null;
-  [CurrentVerbAction.MarkPresentParticipleIncorrect]: null;
-  [CurrentVerbAction.MarkPastParticipleCorrect]: null;
-  [CurrentVerbAction.MarkPastParticipleIncorrect]: null;
-  [CurrentVerbAction.MarkMeaningCorrect]: null;
-  [CurrentVerbAction.MarkMeaningIncorrect]: null;
-  [CurrentVerbAction.ShowAnswer]: null;
-  [CurrentVerbAction.HideAnswer]: null;
+  [CurrentVerbAction.MarkVerbCorrect]: undefined;
+  [CurrentVerbAction.MarkVerbIncorrect]: undefined;
+  [CurrentVerbAction.MarkPresentCorrect]: undefined;
+  [CurrentVerbAction.MarkPresentIncorrect]: undefined;
+  [CurrentVerbAction.MarkPastCorrect]: undefined;
+  [CurrentVerbAction.MarkPastIncorrect]: undefined;
+  [CurrentVerbAction.MarkPresentParticipleCorrect]: undefined;
+  [CurrentVerbAction.MarkPresentParticipleIncorrect]: undefined;
+  [CurrentVerbAction.MarkPastParticipleCorrect]: undefined;
+  [CurrentVerbAction.MarkPastParticipleIncorrect]: undefined;
+  [CurrentVerbAction.MarkMeaningCorrect]: undefined;
+  [CurrentVerbAction.MarkMeaningIncorrect]: undefined;
+  [CurrentVerbAction.ShowAnswer]: undefined;
+  [CurrentVerbAction.HideAnswer]: undefined;
+  [CurrentVerbAction.MarkVerbChecked]: undefined;
+  [CurrentVerbAction.MarkVerbUnchecked]: undefined;
 };
+
 export type ControlStatebPayload = {
-  [ControlStateAction.SetTotalVerbsCount]: number;
-  [ControlStateAction.IncrementCounter]: null;
-  [ControlStateAction.DecrementCounter]: null;
+  [ControlStateAction.SetVerbsLenght]: number;
+  [ControlStateAction.IncrementCounter]: undefined;
+  [ControlStateAction.DecrementCounter]: undefined;
+  [ControlStateAction.ResetCounter]: undefined;
 };
 
 export type CurrentVerbActionType =
@@ -57,13 +64,7 @@ export type CurrentVerbActionType =
 
 export type ControlStateActionType =
   ActionMap<ControlStatebPayload>[keyof ActionMap<ControlStatebPayload>];
-export type CheckedVerbType = {
-  isPresentCorrect: boolean;
-  isPastCorrect: boolean;
-  isPastParticipleCorrect: boolean;
-  isPresentParticipleCorrect: boolean;
-  isMeaningCorrect: boolean;
-};
+
 export type FormType = {
   present: string;
   past: string;
@@ -71,10 +72,12 @@ export type FormType = {
   presentParticiple: string;
   meaning: string;
 };
+
 export type InitialStateType = {
   currentVerb: CurrentVerbType;
   controlState: ControlStateType;
 };
+
 export type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {
