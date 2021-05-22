@@ -9,6 +9,7 @@ import { PracticeFormFooter } from "./PracticeFormFooter";
 import { PracticeFormHeader } from "./PracticeFormHeader";
 import { CurrentVerbContext, ControlStateContext } from "../../shared/context";
 import { CurrentVerbAction } from "../../shared/enums";
+import { verbs } from "../../data/verbs";
 
 type Props = {};
 
@@ -72,6 +73,12 @@ export const PracticeForm: FC<Props> = ({}) => {
       }
     }
   }, [currentVerb.isShowingAnswer]);
+  useEffect(() => {
+    currentVerbDispatch({
+      type: CurrentVerbAction.SetCurrentVerb,
+      payload: { newCurrentVerb: verbs[controlState.counter] },
+    });
+  }, [controlState.counter]);
   return (
     <div css={tw`px-4 pt-1 lg:pt-4 w-full lg:w-2/3`}>
       <PracticeFormHeader

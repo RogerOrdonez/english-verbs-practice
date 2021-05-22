@@ -2,13 +2,10 @@ import { createContext, Dispatch, useReducer } from "react";
 import {
   ControlStateType,
   CurrentVerbType,
-  InitialStateType,
   ControlStateActionType,
   CurrentVerbActionType,
 } from "./types";
 import { controlStateReducer, currentVerbReducer } from "./reducers";
-import { ControlStateAction, CurrentVerbAction } from "./enums";
-import { verbs } from "../data/verbs";
 
 const initialCurrentVerb: CurrentVerbType = {
   verbTense: {
@@ -62,7 +59,6 @@ const ControlStateContext = createContext<{
 });
 
 const AppProvider: React.FC = ({ children }) => {
-  /* const [state, dispatch] = useReducer(mainReducer, initialState); */
   const [currentVerb, currentVerbDispatch] = useReducer(
     currentVerbReducer,
     initialCurrentVerb

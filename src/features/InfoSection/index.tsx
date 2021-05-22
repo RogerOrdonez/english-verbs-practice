@@ -1,9 +1,7 @@
 /** @jsxImportSource @emotion/react */
-import { FC, MouseEventHandler, useContext } from "react";
-import { verbs } from "../../data/verbs";
+import { FC, useContext } from "react";
 import tw, { theme as twTheme } from "twin.macro";
 import { useMediaQuery } from "@material-ui/core";
-import { VerbType } from "../../shared/types";
 import { CurrentVerbContext, ControlStateContext } from "../../shared/context";
 import { CurrentVerbAction } from "../../shared/enums";
 

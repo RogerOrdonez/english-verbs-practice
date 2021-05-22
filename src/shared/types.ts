@@ -77,11 +77,6 @@ export type FormType = {
   meaning: string;
 };
 
-export type InitialStateType = {
-  currentVerb: CurrentVerbType;
-  controlState: ControlStateType;
-};
-
 export type ActionMap<M extends { [index: string]: any }> = {
   [Key in keyof M]: M[Key] extends undefined
     ? {

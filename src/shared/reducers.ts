@@ -4,7 +4,6 @@ import {
   ControlStateType,
   CurrentVerbActionType,
   CurrentVerbType,
-  InitialStateType,
 } from "./types";
 
 export const currentVerbReducer = (
