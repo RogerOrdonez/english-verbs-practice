@@ -1,6 +1,6 @@
 # English Verbs Practice App
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and it was created to provide a tool for practicing memorize English verbs in their different tenses conjugation.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app) and it was created to provide a practicing tool to memorize English verbs in their different tenses conjugation for people whose native language is Spanish.
 
 ## Available Scripts
 

@@ -126,7 +126,7 @@ export const PracticeForm: FC<Props> = ({}) => {
         />
         <PracticeFormField
           id="meaning"
-          label="Meaning:"
+          label="Spanish Meanings:"
           formValue={practiceForm.meaning}
           isVerbChecked={currentVerb.isVerbChecked}
           isTenseCorrect={currentVerb.isMeaningCorrect}
