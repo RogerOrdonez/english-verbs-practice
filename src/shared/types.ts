@@ -56,7 +56,7 @@ export type CurrentVerbPayload = {
   };
 };
 
-export type ControlStatebPayload = {
+export type ControlStatePayload = {
   [ControlStateAction.SetVerbsLenght]: number;
   [ControlStateAction.IncrementCounter]: undefined;
   [ControlStateAction.DecrementCounter]: undefined;
@@ -67,7 +67,7 @@ export type CurrentVerbActionType =
   ActionMap<CurrentVerbPayload>[keyof ActionMap<CurrentVerbPayload>];
 
 export type ControlStateActionType =
-  ActionMap<ControlStatebPayload>[keyof ActionMap<ControlStatebPayload>];
+  ActionMap<ControlStatePayload>[keyof ActionMap<ControlStatePayload>];
 
 export type FormType = {
   present: string;
