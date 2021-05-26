@@ -1,7 +1,7 @@
 module.exports = {
   env: {
     browser: true,
-    es2021: true,
+    node: true,
   },
   extends: [
     "eslint:recommended",
@@ -10,13 +10,18 @@ module.exports = {
   ],
   parser: "@typescript-eslint/parser",
   parserOptions: {
+    ecmaVersion: 2020,
     ecmaFeatures: {
       jsx: true,
     },
-    ecmaVersion: 12,
     sourceType: "module",
   },
-  plugins: ["react", "@typescript-eslint"],
+  plugins: ["react", "@typescript-eslint", "react-hooks"],
+  settings: {
+    react: {
+      version: "detect",
+    },
+  },
   rules: {
     // base rules
     "no-console": ["error", { allow: ["info", "error"] }],
