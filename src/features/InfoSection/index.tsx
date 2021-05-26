@@ -2,15 +2,11 @@
 import { FC, useContext } from "react";
 import tw, { theme as twTheme } from "twin.macro";
 import { useMediaQuery } from "@material-ui/core";
-import { CurrentVerbContext, ControlStateContext } from "../../shared/context";
+import { CurrentVerbContext } from "../../shared/context";
 import { CurrentVerbAction } from "../../shared/enums";
 
-type Props = {};
-
-export const InfoSection: FC<Props> = () => {
+export const InfoSection: FC = () => {
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
-  const { state: controlState, dispatch: controlStateDispatch } =
-    useContext(ControlStateContext);
   const { state: currentVerb, dispatch: currentVerbDispatch } =
     useContext(CurrentVerbContext);
   const showAnswer = () => {

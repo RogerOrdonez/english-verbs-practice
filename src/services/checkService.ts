@@ -1,5 +1,4 @@
-import { Dispatch } from "react";
-import { verbs } from "../data/verbs";
+import { Dispatch, SetStateAction } from "react";
 import { ControlStateAction, CurrentVerbAction } from "../shared/enums";
 import {
   ControlStateActionType,
@@ -7,7 +6,6 @@ import {
   CurrentVerbActionType,
   CurrentVerbType,
   FormType,
-  VerbType,
 } from "../shared/types";
 
 export const checkVerbTense = (
@@ -30,7 +28,7 @@ export const checkVerbTense = (
 
 export const checkVerb = (
   practiceForm: FormType,
-  setPracticeForm: Function,
+  setPracticeForm: Dispatch<SetStateAction<FormType>>,
   currentVerb: CurrentVerbType,
   controlState: ControlStateType,
   controlStateDispatch: Dispatch<ControlStateActionType>,

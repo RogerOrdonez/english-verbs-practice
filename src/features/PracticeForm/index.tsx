@@ -11,9 +11,7 @@ import { CurrentVerbContext, ControlStateContext } from "../../shared/context";
 import { CurrentVerbAction } from "../../shared/enums";
 import { verbs } from "../../data/verbs";
 
-type Props = {};
-
-export const PracticeForm: FC<Props> = ({}) => {
+export const PracticeForm: FC = () => {
   const { state: controlState, dispatch: controlStateDispatch } =
     useContext(ControlStateContext);
   const { state: currentVerb, dispatch: currentVerbDispatch } =
@@ -72,12 +70,14 @@ export const PracticeForm: FC<Props> = ({}) => {
         setPracticeForm(currentVerb.userInputVerb);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentVerb.isShowingAnswer]);
   useEffect(() => {
     currentVerbDispatch({
       type: CurrentVerbAction.SetCurrentVerb,
       payload: { newCurrentVerb: verbs[controlState.counter] },
     });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [controlState.counter]);
   return (
     <div css={tw`px-4 pt-1 lg:pt-4 w-full lg:w-2/3`}>

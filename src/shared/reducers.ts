@@ -22,8 +22,6 @@ export const currentVerbReducer = (
       return { ...state, isPresentCorrect: true };
     case CurrentVerbAction.MarkPresentIncorrect:
       return { ...state, isPresentCorrect: false };
-    case CurrentVerbAction.MarkVerbIncorrect:
-      return { ...state, isPresentCorrect: false };
     case CurrentVerbAction.MarkPastCorrect:
       return { ...state, isPastCorrect: true };
     case CurrentVerbAction.MarkPastIncorrect:

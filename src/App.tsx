@@ -21,7 +21,7 @@ function App() {
         newCurrentVerb: verbs[0],
       },
     });
-  }, []);
+  }, [controlStateDispatch, currentVerbDispatch]);
   return (
     <div>
       <div css={tw`flex justify-center items-center h-screen bg-gray-600`}>
