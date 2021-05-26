@@ -51,9 +51,13 @@
     "@babel/core": "^7.14.2",
     "@babel/preset-react": "^7.13.13",
     "@emotion/babel-plugin": "^11.3.0",
+    "@typescript-eslint/eslint-plugin": "^4.25.0",
+    "@typescript-eslint/parser": "^4.25.0",
     "autoprefixer": "^9",
     "babel-plugin-macros": "^3.1.0",
     "babel-plugin-twin": "^1.0.2",
+    "eslint": "^7.27.0",
+    "eslint-plugin-react": "^7.23.2",
     "postcss": "^7",
     "tailwindcss": "npm:@tailwindcss/postcss7-compat"
   }
