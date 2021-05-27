@@ -26,11 +26,11 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route path="/config">
-            <Config />
+          <Route path="/play">
+            <Play />
           </Route>
           <Route path="/">
-            <Play />
+            <Config />
           </Route>
         </Switch>
       </div>
