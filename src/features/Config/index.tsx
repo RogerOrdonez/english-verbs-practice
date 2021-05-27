@@ -8,9 +8,10 @@ import {
   useMediaQuery,
   withStyles,
 } from "@material-ui/core";
-import { verbs } from "../../data/verbs";
-import React, { useState } from "react";
+import React, { useContext } from "react";
 import { grey } from "@material-ui/core/colors";
+import { SelectedVerbsContext } from "../../shared/context";
+import { SelectedVerbsAction } from "../../shared/enums";
 
 export const Config = () => {
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
@@ -23,19 +24,23 @@ export const Config = () => {
     },
     checked: {},
   })((props: CheckboxProps) => <Checkbox color="default" {...props} />);
-  const [selectedVerbs, setSelectedVerbs] = useState(verbs);
+  const { state: selectedVerbs, dispatch: selectedVerbsDispatch } =
+    useContext(SelectedVerbsContext);
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     idx: number
   ) => {
-    setSelectedVerbs([
-      ...selectedVerbs.slice(0, idx),
-      {
-        ...selectedVerbs[idx],
-        isSelected: event.target.checked,
-      },
-      ...selectedVerbs.slice(idx + 1),
-    ]);
+    if (event.target.checked) {
+      selectedVerbsDispatch({
+        type: SelectedVerbsAction.SelectVerb,
+        payload: { verb: selectedVerbs[idx], index: idx },
+      });
+    } else {
+      selectedVerbsDispatch({
+        type: SelectedVerbsAction.UnselectVerb,
+        payload: { verb: selectedVerbs[idx], index: idx },
+      });
+    }
   };
   return (
     <div css={[tw`flex justify-center items-center h-screen bg-gray-600`]}>
