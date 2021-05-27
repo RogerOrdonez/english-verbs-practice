@@ -1,7 +1,7 @@
 import { ControlStateAction, CurrentVerbAction } from "./enums";
 
 export type VerbType = {
-  verb: string;
+  name: string;
   type: string;
   tenses: {
     infinitive: string;
@@ -11,6 +11,7 @@ export type VerbType = {
     presentParticiple: Array<string>;
     meaning: Array<string>;
   };
+  isSelected?: boolean;
 };
 
 export type CurrentVerbType = {

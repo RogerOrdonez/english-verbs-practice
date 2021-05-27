@@ -9,7 +9,7 @@ import { controlStateReducer, currentVerbReducer } from "./reducers";
 
 const initialCurrentVerb: CurrentVerbType = {
   verbTense: {
-    verb: "",
+    name: "",
     type: "",
     tenses: {
       infinitive: "",
