@@ -41,21 +41,21 @@ export const Config = () => {
     <div css={[tw`flex justify-center items-center h-screen bg-gray-600`]}>
       <div
         css={[
-          tw`flex flex-wrap rounded-lg h-screen md:h-auto bg-white shadow-md overflow-hidden w-full md:mx-8 lg:w-4/5 xl:w-3/5`,
-          isDesktop && { minHeight: "40rem" },
-          !isDesktop && { minHeight: "8rem" },
+          tw`flex flex-wrap overflow-y-scroll rounded-lg h-screen md:h-auto bg-white shadow-md w-full md:mx-8 lg:w-4/5 xl:w-3/5`,
+          isDesktop && { minHeight: "40rem", maxHeight: "40rem" },
+          !isDesktop && tw`min-h-screen`,
         ]}
       >
         <div css={tw`w-full p-8`}>
           <div css={tw`mb-4 text-2xl lg:text-3xl`}>
             Selected verbs to practice:
           </div>
-          <div css={tw`flex flex-col flex-wrap`}>
+          <div css={tw`flex flex-wrap`}>
             {selectedVerbs.map((verb, idx) => {
               return (
                 <div
                   key={verb.name}
-                  css={tw`text-gray-900 text-base lg:text-lg w-28`}
+                  css={tw`text-gray-900 text-base lg:text-lg w-36`}
                 >
                   <FormControlLabel
                     control={
