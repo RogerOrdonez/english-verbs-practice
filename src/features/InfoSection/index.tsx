@@ -30,7 +30,7 @@ export const InfoSection: FC = () => {
           verb
         </div>
         <div css={tw`text-white text-3xl lg:text-4xl mt-2 lg:mt-4`}>
-          {currentVerb.verbTense.tenses.infinitive}
+          {currentVerb.verbTense?.tenses.infinitive}
         </div>
       </div>
 
