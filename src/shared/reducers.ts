@@ -1,9 +1,16 @@
-import { ControlStateAction, CurrentVerbAction } from "./enums";
+import { setSelectedVerbsOnStorage } from "../services/storageService";
+import {
+  ControlStateAction,
+  CurrentVerbAction,
+  SelectedVerbsAction,
+} from "./enums";
 import {
   ControlStateActionType,
   ControlStateType,
   CurrentVerbActionType,
   CurrentVerbType,
+  SelectedVerbsActionType,
+  VerbType,
 } from "./types";
 
 export const currentVerbReducer = (
@@ -67,6 +74,40 @@ export const controlStateReducer = (
       return { ...state, counter: 0 };
     case ControlStateAction.SetVerbsLenght:
       return { ...state, verbsLength: action.payload };
+    default:
+      throw new Error(errorMessage);
+  }
+};
+
+export const selectedVerbsReducer = (
+  state: VerbType[],
+  action: SelectedVerbsActionType
+): VerbType[] => {
+  const errorMessage = `Action type "${action.type}" is not defined for selectedVerbsReducer`;
+  let newState: VerbType[];
+  switch (action.type) {
+    case SelectedVerbsAction.SelectVerb:
+      newState = [
+        ...state.slice(0, action.payload.index),
+        {
+          ...state[action.payload.index],
+          isSelected: true,
+        },
+        ...state.slice(action.payload.index + 1),
+      ];
+      setSelectedVerbsOnStorage(newState);
+      return newState;
+    case SelectedVerbsAction.UnselectVerb:
+      newState = [
+        ...state.slice(0, action.payload.index),
+        {
+          ...state[action.payload.index],
+          isSelected: false,
+        },
+        ...state.slice(action.payload.index + 1),
+      ];
+      setSelectedVerbsOnStorage(newState);
+      return newState;
     default:
       throw new Error(errorMessage);
   }
