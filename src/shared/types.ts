@@ -1,4 +1,8 @@
-import { ControlStateAction, CurrentVerbAction } from "./enums";
+import {
+  ControlStateAction,
+  CurrentVerbAction,
+  SelectedVerbsAction,
+} from "./enums";
 
 export type VerbType = {
   name: string;
@@ -64,11 +68,25 @@ export type ControlStatePayload = {
   [ControlStateAction.ResetCounter]: undefined;
 };
 
+export type SelectedVerbsPayload = {
+  [SelectedVerbsAction.SelectVerb]: {
+    verb: VerbType;
+    index: number;
+  };
+  [SelectedVerbsAction.UnselectVerb]: {
+    verb: VerbType;
+    index: number;
+  };
+};
+
 export type CurrentVerbActionType =
   ActionMap<CurrentVerbPayload>[keyof ActionMap<CurrentVerbPayload>];
 
 export type ControlStateActionType =
   ActionMap<ControlStatePayload>[keyof ActionMap<ControlStatePayload>];
+
+export type SelectedVerbsActionType =
+  ActionMap<SelectedVerbsPayload>[keyof ActionMap<SelectedVerbsPayload>];
 
 export type FormType = {
   present: string;
