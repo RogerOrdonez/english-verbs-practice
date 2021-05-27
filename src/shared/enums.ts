@@ -25,3 +25,8 @@ export enum ControlStateAction {
   ResetCounter = "RESET_COUNTER",
   SetVerbsLenght = "SET_VERBS_LENGTH",
 }
+
+export enum SelectedVerbsAction {
+  SelectVerb = "SELECT_VERB",
+  UnselectVerb = "UNSELECT_VERB",
+}
