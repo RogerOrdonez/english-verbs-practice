@@ -29,7 +29,7 @@ function App() {
     <Router>
       <div>
         <Switch>
-          <Route path="/play">
+          <Route exact path="/play">
             <Play />
           </Route>
           <Route path="/">

@@ -12,7 +12,7 @@ import {
   ControlStateContext,
   SelectedVerbsContext,
 } from "../../shared/context";
-import { CurrentVerbAction } from "../../shared/enums";
+import { ControlStateAction, CurrentVerbAction } from "../../shared/enums";
 /* import { verbs } from "../../data/verbs"; */
 
 export const PracticeForm: FC = () => {
@@ -85,18 +85,20 @@ export const PracticeForm: FC = () => {
       type: CurrentVerbAction.SetCurrentVerb,
       payload: { newCurrentVerb: verbs[controlState.counter] },
     });
+    // eslint-disable-next-line no-console
+    console.log(currentVerb);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [controlState.counter]);
   useEffect(() => {
-    // eslint-disable-next-line no-console
-    console.log(verbs);
-  }, [verbs]);
+    controlStateDispatch({ type: ControlStateAction.ResetCounter });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div css={tw`px-4 pt-1 lg:pt-4 w-full lg:w-2/3`}>
       <PracticeFormHeader
         progressBarWidth={progressBarWidth}
         counter={controlState.counter}
-        totalVerbsCount={controlState.verbsLength}
+        totalVerbsCount={verbs.length}
         isVerbChecked={currentVerb.isVerbChecked}
       />
       <form onSubmit={(e) => handleSubmit(e)}>
@@ -149,7 +151,7 @@ export const PracticeForm: FC = () => {
           isVerbChecked={currentVerb.isVerbChecked}
           isVerbCorrect={currentVerb.isVerbCorrect}
           counter={controlState.counter}
-          verbsLength={controlState.verbsLength}
+          verbsLength={verbs.length}
           isShowingAnswer={currentVerb.isShowingAnswer}
         />
       </form>

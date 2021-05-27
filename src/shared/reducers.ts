@@ -20,7 +20,11 @@ export const currentVerbReducer = (
   const errorMessage = `Action type "${action.type}" is not defined for currentVerbReducer`;
   switch (action.type) {
     case CurrentVerbAction.SetCurrentVerb:
-      return { ...state, verbTense: action.payload.newCurrentVerb };
+      return {
+        ...state,
+        verbTense: action.payload.newCurrentVerb,
+        isVerbChecked: false,
+      };
     case CurrentVerbAction.MarkVerbCorrect:
       return { ...state, isVerbCorrect: true };
     case CurrentVerbAction.MarkVerbIncorrect:
