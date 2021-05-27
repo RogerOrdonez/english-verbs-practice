@@ -7,13 +7,15 @@ import { FormType } from "../../shared/types";
 import { PracticeFormField } from "./PracticeFormField";
 import { PracticeFormFooter } from "./PracticeFormFooter";
 import { PracticeFormHeader } from "./PracticeFormHeader";
-import { CurrentVerbContext, ControlStateContext } from "../../shared/context";
-import { CurrentVerbAction } from "../../shared/enums";
-import { verbs } from "../../data/verbs";
+import {
+  CurrentVerbContext,
+  ControlStateContext,
+  SelectedVerbsContext,
+} from "../../shared/context";
+import { ControlStateAction, CurrentVerbAction } from "../../shared/enums";
+/* import { verbs } from "../../data/verbs"; */
 
-type Props = {};
-
-export const PracticeForm: FC<Props> = ({}) => {
+export const PracticeForm: FC = () => {
   const { state: controlState, dispatch: controlStateDispatch } =
     useContext(ControlStateContext);
   const { state: currentVerb, dispatch: currentVerbDispatch } =
@@ -26,6 +28,10 @@ export const PracticeForm: FC<Props> = ({}) => {
     pastParticiple: "",
     presentParticiple: "",
     meaning: "",
+  });
+  const { state: selectedVerbs } = useContext(SelectedVerbsContext);
+  const verbs = selectedVerbs.filter((verb) => {
+    return verb.isSelected;
   });
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPracticeForm({
@@ -72,19 +78,27 @@ export const PracticeForm: FC<Props> = ({}) => {
         setPracticeForm(currentVerb.userInputVerb);
       }
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentVerb.isShowingAnswer]);
   useEffect(() => {
     currentVerbDispatch({
       type: CurrentVerbAction.SetCurrentVerb,
       payload: { newCurrentVerb: verbs[controlState.counter] },
     });
+    // eslint-disable-next-line no-console
+    console.log(currentVerb);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [controlState.counter]);
+  useEffect(() => {
+    controlStateDispatch({ type: ControlStateAction.ResetCounter });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div css={tw`px-4 pt-1 lg:pt-4 w-full lg:w-2/3`}>
       <PracticeFormHeader
         progressBarWidth={progressBarWidth}
         counter={controlState.counter}
-        totalVerbsCount={controlState.verbsLength}
+        totalVerbsCount={verbs.length}
         isVerbChecked={currentVerb.isVerbChecked}
       />
       <form onSubmit={(e) => handleSubmit(e)}>
@@ -137,7 +151,7 @@ export const PracticeForm: FC<Props> = ({}) => {
           isVerbChecked={currentVerb.isVerbChecked}
           isVerbCorrect={currentVerb.isVerbCorrect}
           counter={controlState.counter}
-          verbsLength={controlState.verbsLength}
+          verbsLength={verbs.length}
           isShowingAnswer={currentVerb.isShowingAnswer}
         />
       </form>

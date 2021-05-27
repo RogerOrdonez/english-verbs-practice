@@ -9,7 +9,7 @@ type Props = {
   isVerbChecked: boolean;
   isTenseCorrect: boolean;
   isShowingAnswer: boolean;
-  handleInputChange: Function;
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
 };
 
 export const PracticeFormField: FC<Props> = ({

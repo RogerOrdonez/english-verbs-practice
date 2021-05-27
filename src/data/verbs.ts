@@ -2,7 +2,7 @@ import { VerbType } from "../shared/types";
 
 export const verbs: Array<VerbType> = [
   {
-    verb: "Be",
+    name: "Be",
     type: "irregular",
     tenses: {
       infinitive: "To Be",
@@ -14,7 +14,7 @@ export const verbs: Array<VerbType> = [
     },
   },
   {
-    verb: "Answer",
+    name: "Answer",
     type: "regular",
     tenses: {
       infinitive: "To Answer",
@@ -26,7 +26,7 @@ export const verbs: Array<VerbType> = [
     },
   },
   {
-    verb: "Ask",
+    name: "Ask",
     type: "regular",
     tenses: {
       infinitive: "To Ask",

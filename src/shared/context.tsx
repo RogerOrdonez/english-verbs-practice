@@ -4,12 +4,20 @@ import {
   CurrentVerbType,
   ControlStateActionType,
   CurrentVerbActionType,
+  VerbType,
+  SelectedVerbsActionType,
 } from "./types";
-import { controlStateReducer, currentVerbReducer } from "./reducers";
+import {
+  controlStateReducer,
+  currentVerbReducer,
+  selectedVerbsReducer,
+} from "./reducers";
+import { verbs } from "../data/verbs";
+import { getSelectedVerbsOnStorage } from "../services/storageService";
 
 const initialCurrentVerb: CurrentVerbType = {
   verbTense: {
-    verb: "",
+    name: "",
     type: "",
     tenses: {
       infinitive: "",
@@ -42,6 +50,9 @@ const initialControlState: ControlStateType = {
   verbsLength: 0,
 };
 
+const initialSelectedVerbs: VerbType[] =
+  getSelectedVerbsOnStorage().length > 0 ? getSelectedVerbsOnStorage() : verbs;
+
 const CurrentVerbContext = createContext<{
   state: CurrentVerbType;
   dispatch: Dispatch<CurrentVerbActionType>;
@@ -58,6 +69,14 @@ const ControlStateContext = createContext<{
   dispatch: () => null,
 });
 
+const SelectedVerbsContext = createContext<{
+  state: VerbType[];
+  dispatch: Dispatch<SelectedVerbsActionType>;
+}>({
+  state: initialSelectedVerbs,
+  dispatch: () => null,
+});
+
 const AppProvider: React.FC = ({ children }) => {
   const [currentVerb, currentVerbDispatch] = useReducer(
     currentVerbReducer,
@@ -67,17 +86,31 @@ const AppProvider: React.FC = ({ children }) => {
     controlStateReducer,
     initialControlState
   );
+  const [selectedVerbs, selectedVerbsDispatch] = useReducer(
+    selectedVerbsReducer,
+    initialSelectedVerbs
+  );
+
   return (
     <ControlStateContext.Provider
       value={{ state: controlState, dispatch: controlStateDispatch }}
     >
-      <CurrentVerbContext.Provider
-        value={{ state: currentVerb, dispatch: currentVerbDispatch }}
+      <SelectedVerbsContext.Provider
+        value={{ state: selectedVerbs, dispatch: selectedVerbsDispatch }}
       >
-        {children}
-      </CurrentVerbContext.Provider>
+        <CurrentVerbContext.Provider
+          value={{ state: currentVerb, dispatch: currentVerbDispatch }}
+        >
+          {children}
+        </CurrentVerbContext.Provider>
+      </SelectedVerbsContext.Provider>
     </ControlStateContext.Provider>
   );
 };
 
-export { CurrentVerbContext, ControlStateContext, AppProvider };
+export {
+  CurrentVerbContext,
+  ControlStateContext,
+  SelectedVerbsContext,
+  AppProvider,
+};

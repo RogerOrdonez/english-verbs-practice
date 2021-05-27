@@ -1,9 +1,16 @@
-import { ControlStateAction, CurrentVerbAction } from "./enums";
+import { setSelectedVerbsOnStorage } from "../services/storageService";
+import {
+  ControlStateAction,
+  CurrentVerbAction,
+  SelectedVerbsAction,
+} from "./enums";
 import {
   ControlStateActionType,
   ControlStateType,
   CurrentVerbActionType,
   CurrentVerbType,
+  SelectedVerbsActionType,
+  VerbType,
 } from "./types";
 
 export const currentVerbReducer = (
@@ -13,7 +20,11 @@ export const currentVerbReducer = (
   const errorMessage = `Action type "${action.type}" is not defined for currentVerbReducer`;
   switch (action.type) {
     case CurrentVerbAction.SetCurrentVerb:
-      return { ...state, verbTense: action.payload.newCurrentVerb };
+      return {
+        ...state,
+        verbTense: action.payload.newCurrentVerb,
+        isVerbChecked: false,
+      };
     case CurrentVerbAction.MarkVerbCorrect:
       return { ...state, isVerbCorrect: true };
     case CurrentVerbAction.MarkVerbIncorrect:
@@ -21,8 +32,6 @@ export const currentVerbReducer = (
     case CurrentVerbAction.MarkPresentCorrect:
       return { ...state, isPresentCorrect: true };
     case CurrentVerbAction.MarkPresentIncorrect:
-      return { ...state, isPresentCorrect: false };
-    case CurrentVerbAction.MarkVerbIncorrect:
       return { ...state, isPresentCorrect: false };
     case CurrentVerbAction.MarkPastCorrect:
       return { ...state, isPastCorrect: true };
@@ -69,6 +78,40 @@ export const controlStateReducer = (
       return { ...state, counter: 0 };
     case ControlStateAction.SetVerbsLenght:
       return { ...state, verbsLength: action.payload };
+    default:
+      throw new Error(errorMessage);
+  }
+};
+
+export const selectedVerbsReducer = (
+  state: VerbType[],
+  action: SelectedVerbsActionType
+): VerbType[] => {
+  const errorMessage = `Action type "${action.type}" is not defined for selectedVerbsReducer`;
+  let newState: VerbType[];
+  switch (action.type) {
+    case SelectedVerbsAction.SelectVerb:
+      newState = [
+        ...state.slice(0, action.payload.index),
+        {
+          ...state[action.payload.index],
+          isSelected: true,
+        },
+        ...state.slice(action.payload.index + 1),
+      ];
+      setSelectedVerbsOnStorage(newState);
+      return newState;
+    case SelectedVerbsAction.UnselectVerb:
+      newState = [
+        ...state.slice(0, action.payload.index),
+        {
+          ...state[action.payload.index],
+          isSelected: false,
+        },
+        ...state.slice(action.payload.index + 1),
+      ];
+      setSelectedVerbsOnStorage(newState);
+      return newState;
     default:
       throw new Error(errorMessage);
   }
