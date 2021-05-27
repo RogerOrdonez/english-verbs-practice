@@ -1,9 +1,10 @@
 /** @jsxImportSource @emotion/react */
-import { FC, useContext } from "react";
+import React, { FC, useContext } from "react";
 import tw, { theme as twTheme } from "twin.macro";
 import { useMediaQuery } from "@material-ui/core";
 import { CurrentVerbContext } from "../../shared/context";
 import { CurrentVerbAction } from "../../shared/enums";
+import { Link } from "react-router-dom";
 
 export const InfoSection: FC = () => {
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
@@ -36,18 +37,20 @@ export const InfoSection: FC = () => {
       <div
         css={tw`flex flex-wrap lg:flex-col-reverse justify-between items-end lg:items-center`}
       >
-        <div>
-          <div css={tw`text-gray-400 text-base lg:text-lg mt-2 lg:mt-0`}>
-            View all verbs{" "}
-            <svg
-              css={tw`inline w-2 h-2 fill-current`}
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 24 24"
-            >
-              <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
-            </svg>
+        <Link to="/">
+          <div>
+            <div css={tw`text-gray-400 text-base lg:text-lg mt-2 lg:mt-0`}>
+              View all verbs{" "}
+              <svg
+                css={tw`inline w-2 h-2 fill-current`}
+                xmlns="http://www.w3.org/2000/svg"
+                viewBox="0 0 24 24"
+              >
+                <path d="M7.33 24l-2.83-2.829 9.339-9.175-9.339-9.167 2.83-2.829 12.17 11.996z" />
+              </svg>
+            </div>
           </div>
-        </div>
+        </Link>
         <div>
           {/* <div css={tw`text-gray-200 mt-4`}>
             Errors:{" "}

@@ -1,11 +1,11 @@
 /** @jsxImportSource @emotion/react */
 import { useContext, useEffect } from "react";
-import { verbs } from "./data/verbs";
 import { ControlStateContext, CurrentVerbContext } from "./shared/context";
 import { ControlStateAction, CurrentVerbAction } from "./shared/enums";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import { Play } from "./features/Play";
 import { Config } from "./features/Config";
+import { getSelectedVerbsOnStorage } from "./services/storageService";
 
 function App() {
   const { dispatch: controlStateDispatch } = useContext(ControlStateContext);
@@ -13,12 +13,15 @@ function App() {
   useEffect(() => {
     controlStateDispatch({
       type: ControlStateAction.SetVerbsLenght,
-      payload: verbs.length,
+      payload: getSelectedVerbsOnStorage().filter((verb) => verb.isSelected)
+        .length,
     });
     currentVerbDispatch({
       type: CurrentVerbAction.SetCurrentVerb,
       payload: {
-        newCurrentVerb: verbs[0],
+        newCurrentVerb: getSelectedVerbsOnStorage().filter(
+          (verb) => verb.isSelected
+        )[0],
       },
     });
   }, [controlStateDispatch, currentVerbDispatch]);

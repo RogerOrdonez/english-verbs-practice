@@ -7,9 +7,13 @@ import { FormType } from "../../shared/types";
 import { PracticeFormField } from "./PracticeFormField";
 import { PracticeFormFooter } from "./PracticeFormFooter";
 import { PracticeFormHeader } from "./PracticeFormHeader";
-import { CurrentVerbContext, ControlStateContext } from "../../shared/context";
+import {
+  CurrentVerbContext,
+  ControlStateContext,
+  SelectedVerbsContext,
+} from "../../shared/context";
 import { CurrentVerbAction } from "../../shared/enums";
-import { verbs } from "../../data/verbs";
+/* import { verbs } from "../../data/verbs"; */
 
 export const PracticeForm: FC = () => {
   const { state: controlState, dispatch: controlStateDispatch } =
@@ -24,6 +28,10 @@ export const PracticeForm: FC = () => {
     pastParticiple: "",
     presentParticiple: "",
     meaning: "",
+  });
+  const { state: selectedVerbs } = useContext(SelectedVerbsContext);
+  const verbs = selectedVerbs.filter((verb) => {
+    return verb.isSelected;
   });
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPracticeForm({
@@ -79,6 +87,10 @@ export const PracticeForm: FC = () => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [controlState.counter]);
+  useEffect(() => {
+    // eslint-disable-next-line no-console
+    console.log(verbs);
+  }, [verbs]);
   return (
     <div css={tw`px-4 pt-1 lg:pt-4 w-full lg:w-2/3`}>
       <PracticeFormHeader
