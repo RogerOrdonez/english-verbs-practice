@@ -4,7 +4,7 @@ import tw from "twin.macro";
 import {
   ControlStateContext,
   CurrentVerbContext,
-  SelectedVerbsContext,
+  VerbsContext,
 } from "../../shared/context";
 import { ControlStateAction, CurrentVerbAction } from "../../shared/enums";
 import { InfoSection } from "../InfoSection";
@@ -14,14 +14,15 @@ export const Play = () => {
   const { state: controlState, dispatch: controlStateDispatch } =
     useContext(ControlStateContext);
   const { dispatch: currentVerbDispatch } = useContext(CurrentVerbContext);
-  const { state: selectedVerbs } = useContext(SelectedVerbsContext);
-  const verbs = selectedVerbs.filter((verb) => {
-    return verb.isSelected;
-  });
+  const { state: verbs } = useContext(VerbsContext);
   useEffect(() => {
     currentVerbDispatch({
       type: CurrentVerbAction.SetCurrentVerb,
-      payload: { newCurrentVerb: verbs[controlState.counter] },
+      payload: {
+        newCurrentVerb: verbs.filter((verb) => verb.isSelected)[
+          controlState.counter
+        ],
+      },
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [controlState.counter]);
@@ -29,7 +30,7 @@ export const Play = () => {
     controlStateDispatch({ type: ControlStateAction.ResetCounter });
     controlStateDispatch({
       type: ControlStateAction.SetVerbsLenght,
-      payload: verbs.length,
+      payload: verbs.filter((verb) => verb.isSelected).length,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
