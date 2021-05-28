@@ -1,4 +1,4 @@
-import { setSelectedVerbsOnStorage } from "../services/storageService";
+import { setVerbsOnStorage } from "../services/storageService";
 import {
   ControlStateAction,
   CurrentVerbAction,
@@ -83,7 +83,7 @@ export const controlStateReducer = (
   }
 };
 
-export const selectedVerbsReducer = (
+export const verbsReducer = (
   state: VerbType[],
   action: SelectedVerbsActionType
 ): VerbType[] => {
@@ -99,7 +99,7 @@ export const selectedVerbsReducer = (
         },
         ...state.slice(action.payload.index + 1),
       ];
-      setSelectedVerbsOnStorage(newState);
+      setVerbsOnStorage(newState);
       return newState;
     case SelectedVerbsAction.UnselectVerb:
       newState = [
@@ -110,7 +110,7 @@ export const selectedVerbsReducer = (
         },
         ...state.slice(action.payload.index + 1),
       ];
-      setSelectedVerbsOnStorage(newState);
+      setVerbsOnStorage(newState);
       return newState;
     default:
       throw new Error(errorMessage);

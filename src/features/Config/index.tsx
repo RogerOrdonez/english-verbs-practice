@@ -1,4 +1,3 @@
-/* eslint-disable no-console */
 /** @jsxImportSource @emotion/react */
 import tw, { theme as twTheme } from "twin.macro";
 import {
@@ -10,7 +9,7 @@ import {
 } from "@material-ui/core";
 import React, { useContext } from "react";
 import { grey } from "@material-ui/core/colors";
-import { SelectedVerbsContext } from "../../shared/context";
+import { VerbsContext } from "../../shared/context";
 import { SelectedVerbsAction } from "../../shared/enums";
 import { Link } from "react-router-dom";
 
@@ -25,21 +24,20 @@ export const Config = () => {
     },
     checked: {},
   })((props: CheckboxProps) => <Checkbox color="default" {...props} />);
-  const { state: selectedVerbs, dispatch: selectedVerbsDispatch } =
-    useContext(SelectedVerbsContext);
+  const { state: verbs, dispatch: verbsDispatch } = useContext(VerbsContext);
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     idx: number
   ) => {
     if (event.target.checked) {
-      selectedVerbsDispatch({
+      verbsDispatch({
         type: SelectedVerbsAction.SelectVerb,
-        payload: { verb: selectedVerbs[idx], index: idx },
+        payload: { verb: verbs[idx], index: idx },
       });
     } else {
-      selectedVerbsDispatch({
+      verbsDispatch({
         type: SelectedVerbsAction.UnselectVerb,
-        payload: { verb: selectedVerbs[idx], index: idx },
+        payload: { verb: verbs[idx], index: idx },
       });
     }
   };
@@ -59,7 +57,7 @@ export const Config = () => {
           </div>
           <div css={tw`flex flex-col justify-between min-h-full`}>
             <div css={tw`flex flex-wrap justify-start`}>
-              {selectedVerbs.map((verb, idx) => {
+              {verbs.map((verb, idx) => {
                 return (
                   <div
                     key={verb.name}

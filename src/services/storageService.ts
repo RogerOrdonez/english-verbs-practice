@@ -1,9 +1,12 @@
 import { VerbType } from "../shared/types";
 
-export const setSelectedVerbsOnStorage = (selectedVerbs: VerbType[]) => {
-  localStorage.setItem("selectedVerbs", JSON.stringify(selectedVerbs));
+export const setVerbsOnStorage = (selectedVerbs: VerbType[]) => {
+  localStorage.setItem("verbs", JSON.stringify(selectedVerbs));
 };
 
 export const getSelectedVerbsOnStorage = (): VerbType[] => {
-  return JSON.parse(localStorage.getItem("selectedVerbs") || "[]");
+  const selectedVerbs: VerbType[] = JSON.parse(
+    localStorage.getItem("verbs") || "[]"
+  );
+  return selectedVerbs.filter((verb) => verb.isSelected);
 };
