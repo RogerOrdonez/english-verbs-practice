@@ -58,7 +58,7 @@ export const Config = () => {
             Selected verbs to practice:
           </div>
           <div css={tw`flex flex-col justify-between min-h-full`}>
-            <div css={tw`flex flex-wrap justify-between`}>
+            <div css={tw`flex flex-wrap justify-start`}>
               {selectedVerbs.map((verb, idx) => {
                 return (
                   <div
