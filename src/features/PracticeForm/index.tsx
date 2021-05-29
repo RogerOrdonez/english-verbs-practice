@@ -83,6 +83,7 @@ export const PracticeForm: FC = () => {
         <PracticeFormField
           id="present"
           label="Present Tense:"
+          additionalLabel="(1st, 2nd & 3rd person)"
           formValue={practiceForm.present}
           isVerbChecked={currentVerb.isVerbChecked}
           isTenseCorrect={currentVerb.isPresentCorrect}
@@ -92,11 +93,13 @@ export const PracticeForm: FC = () => {
         <PracticeFormField
           id="past"
           label="Past Tense:"
+          additionalLabel="(1st, 2nd & 3rd person)"
           formValue={practiceForm.past}
           isVerbChecked={currentVerb.isVerbChecked}
           isTenseCorrect={currentVerb.isPastCorrect}
           handleInputChange={handleInputChange}
           isShowingAnswer={currentVerb.isShowingAnswer}
+          marginBottom={true}
         />
         <PracticeFormField
           id="pastParticiple"
@@ -115,10 +118,12 @@ export const PracticeForm: FC = () => {
           isTenseCorrect={currentVerb.isPresentParticipleCorrect}
           handleInputChange={handleInputChange}
           isShowingAnswer={currentVerb.isShowingAnswer}
+          marginTop={true}
         />
         <PracticeFormField
           id="meaning"
           label="Spanish Meanings:"
+          additionalLabel="(Maybe more than 1 meaning)"
           formValue={practiceForm.meaning}
           isVerbChecked={currentVerb.isVerbChecked}
           isTenseCorrect={currentVerb.isMeaningCorrect}
