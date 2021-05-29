@@ -16,7 +16,7 @@ export const PracticeFormMessage: FC<Props> = ({
       css={[
         isVerbChecked && isVerbCorrect && tw`text-green-700`,
         isVerbChecked && !isVerbCorrect && tw`text-red-700`,
-        tw`text-base lg:text-xl pr-9 lg:pr-12 tracking-normal leading-tight text-justify`,
+        tw`text-base pr-9 lg:pr-12 tracking-normal leading-tight text-justify`,
       ]}
     >
       {isVerbChecked &&
