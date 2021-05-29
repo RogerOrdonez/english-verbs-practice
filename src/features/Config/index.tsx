@@ -78,10 +78,10 @@ export const Config = () => {
               })}
             </div>
             <Link to="/play">
-              <div css={tw`flex justify-start`}>
+              <div css={tw`flex justify-center lg:justify-start`}>
                 <button
                   css={[
-                    tw`px-6 py-1 mb-5 lg:px-12 lg:py-2 bg-gray-900 rounded-full text-gray-100 text-lg shadow-md hover:bg-gray-800 focus:outline-none`,
+                    tw`px-12 py-3 mb-5 lg:py-2 bg-gray-900 rounded-full text-gray-100 text-lg shadow-md hover:bg-gray-800 focus:outline-none`,
                   ]}
                   type="button"
                 >

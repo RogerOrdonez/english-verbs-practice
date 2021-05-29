@@ -20,7 +20,7 @@ export const PracticeFormFooter: FC<Props> = ({
   isShowingAnswer,
 }) => {
   return (
-    <div css={tw`flex justify-between items-center py-2 lg:pt-8 mt-1 lg:mt-0`}>
+    <div css={tw`flex justify-between items-center py-2 lg:pt-0 mt-1 lg:mt-0`}>
       <PracticeFormMessage
         isVerbChecked={isVerbChecked}
         isVerbCorrect={isVerbCorrect}
