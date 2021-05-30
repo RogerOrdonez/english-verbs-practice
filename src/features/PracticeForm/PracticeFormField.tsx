@@ -56,6 +56,7 @@ export const PracticeFormField: FC<Props> = ({
           name={id}
           value={formValue}
           readOnly={isTenseCorrect || isShowingAnswer}
+          autoComplete="off"
           css={[
             tw`w-full p-1 lg:p-2 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
             isVerbChecked &&
