@@ -25,7 +25,7 @@ export const InfoSection: FC = () => {
     >
       <div css={tw`flex flex-col lg:items-center`}>
         <div css={tw`flex items-center justify-center mb-2 lg:flex-col`}>
-          <div css={tw`flex mb-0 lg:mb-8`}>
+          {/* <div css={tw`flex mb-0 lg:mb-8`}>
             <div css={tw`text-gray-200`}>
               <span
                 css={tw`pt-0.5 pb-0.5 text-sm lg:text-xs px-2 mr-1 bg-green-200 text-gray-800 rounded-full`}
@@ -47,7 +47,7 @@ export const InfoSection: FC = () => {
                 Skipped: 999
               </span>
             </div>
-          </div>
+          </div> */}
           <div
             css={tw`text-gray-400 uppercase tracking-wider text-lg hidden lg:block`}
           >
