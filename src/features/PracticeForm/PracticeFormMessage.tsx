@@ -24,7 +24,7 @@ export const PracticeFormMessage: FC<Props> = ({
         `Great! Your answers are correct, go ahead to the next verb.`}
       {isVerbChecked &&
         !isVerbCorrect &&
-        `Some of your answers are wrong, please correct them and go to the next verb.`}
+        `Some of your answers are wrong, please correct them and check again.`}
     </div>
   );
 };

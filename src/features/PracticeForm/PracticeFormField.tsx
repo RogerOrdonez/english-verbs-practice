@@ -38,7 +38,7 @@ export const PracticeFormField: FC<Props> = ({
       ]}
     >
       <div
-        css={tw`flex flex-row lg:flex-col w-full lg:w-1/2 text-gray-700 mr-2 font-bold py-1`}
+        css={tw`flex flex-row lg:items-end lg:flex-col w-full lg:w-1/2 text-gray-700 lg:mr-4 font-bold py-1`}
       >
         <div>
           <label htmlFor={id}> {label}</label>
