@@ -24,6 +24,11 @@ export const currentVerbReducer = (
         ...state,
         verbTense: action.payload.newCurrentVerb,
         isVerbChecked: false,
+        isPresentCorrect: false,
+        isPastCorrect: false,
+        isPastParticipleCorrect: false,
+        isPresentParticipleCorrect: false,
+        isMeaningCorrect: false,
       };
     case CurrentVerbAction.MarkVerbCorrect:
       return { ...state, isVerbCorrect: true };
@@ -78,6 +83,18 @@ export const controlStateReducer = (
       return { ...state, counter: 0 };
     case ControlStateAction.SetVerbsLenght:
       return { ...state, verbsLength: action.payload };
+    case ControlStateAction.IncrementSuccess:
+      return { ...state, successCounter: state.successCounter + 1 };
+    case ControlStateAction.ResetSuccess:
+      return { ...state, successCounter: 0 };
+    case ControlStateAction.IncrementError:
+      return { ...state, errorCounter: state.errorCounter + 1 };
+    case ControlStateAction.ResetError:
+      return { ...state, errorCounter: 0 };
+    case ControlStateAction.IncrementSkipped:
+      return { ...state, skippedCounter: state.skippedCounter + 1 };
+    case ControlStateAction.ResetSkipped:
+      return { ...state, skippedCounter: 0 };
     default:
       throw new Error(errorMessage);
   }

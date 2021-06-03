@@ -16,6 +16,17 @@ export const Play = () => {
   const { dispatch: currentVerbDispatch } = useContext(CurrentVerbContext);
   const { state: verbs } = useContext(VerbsContext);
   useEffect(() => {
+    controlStateDispatch({ type: ControlStateAction.ResetSuccess });
+    controlStateDispatch({ type: ControlStateAction.ResetError });
+    controlStateDispatch({ type: ControlStateAction.ResetSkipped });
+    controlStateDispatch({ type: ControlStateAction.ResetCounter });
+    controlStateDispatch({
+      type: ControlStateAction.SetVerbsLenght,
+      payload: verbs.filter((verb) => verb.isSelected).length,
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+  useEffect(() => {
     currentVerbDispatch({
       type: CurrentVerbAction.SetCurrentVerb,
       payload: {
@@ -26,14 +37,6 @@ export const Play = () => {
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [controlState.counter]);
-  useEffect(() => {
-    controlStateDispatch({ type: ControlStateAction.ResetCounter });
-    controlStateDispatch({
-      type: ControlStateAction.SetVerbsLenght,
-      payload: verbs.filter((verb) => verb.isSelected).length,
-    });
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
   return (
     <div>
       <div css={tw`flex justify-center items-center h-screen bg-gray-600`}>

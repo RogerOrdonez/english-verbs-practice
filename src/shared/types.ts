@@ -34,6 +34,9 @@ export type CurrentVerbType = {
 export type ControlStateType = {
   counter: number;
   verbsLength: number;
+  successCounter: number;
+  errorCounter: number;
+  skippedCounter: number;
 };
 
 export type CurrentVerbPayload = {
@@ -66,6 +69,12 @@ export type ControlStatePayload = {
   [ControlStateAction.IncrementCounter]: undefined;
   [ControlStateAction.DecrementCounter]: undefined;
   [ControlStateAction.ResetCounter]: undefined;
+  [ControlStateAction.IncrementSuccess]: undefined;
+  [ControlStateAction.ResetSuccess]: undefined;
+  [ControlStateAction.IncrementError]: undefined;
+  [ControlStateAction.ResetError]: undefined;
+  [ControlStateAction.IncrementSkipped]: undefined;
+  [ControlStateAction.ResetSkipped]: undefined;
 };
 
 export type SelectedVerbsPayload = {

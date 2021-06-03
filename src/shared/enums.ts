@@ -22,6 +22,12 @@ export enum CurrentVerbAction {
 export enum ControlStateAction {
   IncrementCounter = "INCREMENT_COUNTER",
   DecrementCounter = "DECREMENT_COUNTER",
+  IncrementSuccess = "INCREMENT_SUCCESS",
+  ResetSuccess = "RESET_SUCCESS",
+  IncrementError = "INCREMENT_ERROR",
+  ResetError = "RESET_ERROR",
+  IncrementSkipped = "INCREMENT_SKIPPED",
+  ResetSkipped = "RESET_SKIPPED",
   ResetCounter = "RESET_COUNTER",
   SetVerbsLenght = "SET_VERBS_LENGTH",
 }

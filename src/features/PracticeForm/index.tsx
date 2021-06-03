@@ -8,7 +8,7 @@ import { PracticeFormField } from "./PracticeFormField";
 import { PracticeFormFooter } from "./PracticeFormFooter";
 import { PracticeFormHeader } from "./PracticeFormHeader";
 import { CurrentVerbContext, ControlStateContext } from "../../shared/context";
-import { CurrentVerbAction } from "../../shared/enums";
+import { ControlStateAction, CurrentVerbAction } from "../../shared/enums";
 
 export const PracticeForm: FC = () => {
   const { state: controlState, dispatch: controlStateDispatch } =
@@ -71,6 +71,34 @@ export const PracticeForm: FC = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentVerb.isShowingAnswer]);
+  useEffect(() => {
+    if (controlState.skippedCounter > 0) {
+      if (controlState.counter < controlState.verbsLength - 1) {
+        controlStateDispatch({ type: ControlStateAction.IncrementCounter });
+        currentVerbDispatch({ type: CurrentVerbAction.HideAnswer });
+        setPracticeForm({
+          present: "",
+          past: "",
+          pastParticiple: "",
+          presentParticiple: "",
+          meaning: "",
+        });
+        currentVerbDispatch({ type: CurrentVerbAction.MarkVerbUnchecked });
+      } else {
+        controlStateDispatch({ type: ControlStateAction.ResetCounter });
+        currentVerbDispatch({ type: CurrentVerbAction.MarkVerbUnchecked });
+        currentVerbDispatch({ type: CurrentVerbAction.HideAnswer });
+        setPracticeForm({
+          present: "",
+          past: "",
+          pastParticiple: "",
+          presentParticiple: "",
+          meaning: "",
+        });
+      }
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [controlState.skippedCounter]);
   return (
     <div css={tw`px-4 pt-1 lg:pt-4 w-full lg:w-2/3`}>
       <PracticeFormHeader

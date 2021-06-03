@@ -47,6 +47,9 @@ const initialCurrentVerb: CurrentVerbType = {
 const initialControlState: ControlStateType = {
   counter: 0,
   verbsLength: 0,
+  successCounter: 0,
+  errorCounter: 0,
+  skippedCounter: 0,
 };
 
 const initialVerbs: VerbType[] = getVerbs();

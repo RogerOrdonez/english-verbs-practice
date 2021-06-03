@@ -2,18 +2,23 @@
 import React, { FC, useContext } from "react";
 import tw, { theme as twTheme } from "twin.macro";
 import { useMediaQuery } from "@material-ui/core";
-import { CurrentVerbContext } from "../../shared/context";
-import { CurrentVerbAction } from "../../shared/enums";
+import { ControlStateContext, CurrentVerbContext } from "../../shared/context";
+import { ControlStateAction, CurrentVerbAction } from "../../shared/enums";
 import { Link } from "react-router-dom";
 
 export const InfoSection: FC = () => {
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
   const { state: currentVerb, dispatch: currentVerbDispatch } =
     useContext(CurrentVerbContext);
+  const { state: controlState, dispatch: controlStateDispatch } =
+    useContext(ControlStateContext);
   const showAnswer = () => {
     currentVerb.isShowingAnswer
       ? currentVerbDispatch({ type: CurrentVerbAction.HideAnswer })
       : currentVerbDispatch({ type: CurrentVerbAction.ShowAnswer });
+  };
+  const skipVerb = () => {
+    controlStateDispatch({ type: ControlStateAction.IncrementSkipped });
   };
   return (
     <div
@@ -30,21 +35,21 @@ export const InfoSection: FC = () => {
               <span
                 css={tw`pt-0.5 pb-0.5 text-sm lg:text-xs px-2 mr-1 bg-green-200 text-gray-800 rounded-full`}
               >
-                Success: 999
+                Success: {controlState.successCounter}
               </span>
             </div>
             <div css={tw`text-gray-200`}>
               <span
                 css={tw`pt-0.5 pb-0.5 text-sm lg:text-xs px-2 mr-1 bg-red-200 text-gray-800 rounded-full`}
               >
-                Error: 999
+                Error: {controlState.errorCounter}
               </span>
             </div>
             <div css={tw`text-gray-200`}>
               <span
                 css={tw`pt-0.5 pb-0.5 text-sm lg:text-xs px-2 mr-1 bg-yellow-200 text-gray-800 rounded-full`}
               >
-                Skipped: 999
+                Skipped: {controlState.skippedCounter}
               </span>
             </div>
           </div>
@@ -63,13 +68,10 @@ export const InfoSection: FC = () => {
           <div css={tw`lg:pt-5`}>
             <button
               css={[
-                currentVerb.isVerbChecked &&
-                  tw`px-10 py-1 lg:px-16 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
-                !currentVerb.isVerbChecked && tw`hidden`,
-                currentVerb.isVerbCorrect && tw`hidden`,
+                tw`px-10 py-1 lg:px-16 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
               ]}
               type="button"
-              onClick={showAnswer}
+              onClick={skipVerb}
             >
               Skip verb
             </button>

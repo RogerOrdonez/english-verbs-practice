@@ -90,7 +90,6 @@ export const checkVerb = (
   isCurrentVerbCorrect
     ? currentVerbDispatch({ type: CurrentVerbAction.MarkVerbCorrect })
     : currentVerbDispatch({ type: CurrentVerbAction.MarkVerbIncorrect });
-  currentVerbDispatch({ type: CurrentVerbAction.MarkVerbChecked });
   if (isVerbCorrect && isVerbChecked) {
     if (counter < verbsLength - 1) {
       controlStateDispatch({ type: ControlStateAction.IncrementCounter });
@@ -116,4 +115,10 @@ export const checkVerb = (
       });
     }
   }
+  if (isCurrentVerbCorrect && !isVerbChecked) {
+    controlStateDispatch({ type: ControlStateAction.IncrementSuccess });
+  } else if (!isCurrentVerbCorrect && !isVerbChecked) {
+    controlStateDispatch({ type: ControlStateAction.IncrementError });
+  }
+  currentVerbDispatch({ type: CurrentVerbAction.MarkVerbChecked });
 };
