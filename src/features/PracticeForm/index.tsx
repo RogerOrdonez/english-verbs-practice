@@ -16,7 +16,7 @@ export const PracticeForm: FC = () => {
   const { state: currentVerb, dispatch: currentVerbDispatch } =
     useContext(CurrentVerbContext);
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
-  const progressBarWidth = isDesktop ? 13 : 20;
+  const progressBarWidth = isDesktop ? 13 : 18;
   const [practiceForm, setPracticeForm] = useState<FormType>({
     present: "",
     past: "",

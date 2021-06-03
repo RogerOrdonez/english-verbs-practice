@@ -23,7 +23,7 @@ export const InfoSection: FC = () => {
   return (
     <div
       css={[
-        tw`flex flex-col justify-between  p-4 bg-gray-900 w-full lg:w-1/3`,
+        tw`flex flex-col justify-around  p-4 bg-gray-900 w-full lg:w-1/3`,
         isDesktop && { minHeight: "10rem" },
         !isDesktop && { minHeight: "8rem" },
       ]}
@@ -59,16 +59,18 @@ export const InfoSection: FC = () => {
             verb
           </div>
         </div>
-        <div css={tw`flex justify-between lg:justify-center lg:flex-col`}>
+        <div
+          css={tw`flex justify-between items-center lg:justify-center lg:flex-col`}
+        >
           <div
-            css={tw`text-white text-center text-3xl lg:text-4xl mt-2 lg:mt-4`}
+            css={tw`text-white text-center text-2xl lg:text-4xl mt-2 lg:mt-4`}
           >
             {currentVerb.verbTense?.tenses.infinitive}
           </div>
           <div css={tw`lg:pt-5`}>
             <button
               css={[
-                tw`px-10 py-1 lg:px-16 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
+                tw`px-7 py-1 w-32 lg:w-auto lg:px-16 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-base lg:text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
               ]}
               type="button"
               onClick={skipVerb}
@@ -100,7 +102,7 @@ export const InfoSection: FC = () => {
             <button
               css={[
                 currentVerb.isVerbChecked &&
-                  tw`px-6 py-1 lg:px-12 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
+                  tw`px-4 py-1 w-32 lg:w-auto lg:px-12 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-base lg:text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
                 !currentVerb.isVerbChecked && tw`hidden`,
                 currentVerb.isVerbCorrect && tw`hidden`,
               ]}
