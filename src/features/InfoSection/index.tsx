@@ -70,7 +70,7 @@ export const InfoSection: FC = () => {
           <div css={tw`lg:pt-5`}>
             <button
               css={[
-                tw`px-7 py-1 w-32 lg:w-auto lg:px-16 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-base lg:text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
+                tw`px-7 py-1 w-36 lg:w-auto lg:px-16 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-base lg:text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
               ]}
               type="button"
               onClick={skipVerb}
@@ -102,7 +102,7 @@ export const InfoSection: FC = () => {
             <button
               css={[
                 currentVerb.isVerbChecked &&
-                  tw`px-4 py-1 w-32 lg:w-auto lg:px-12 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-base lg:text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
+                  tw`px-4 py-1 w-36 lg:w-auto lg:px-12 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-base lg:text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
                 !currentVerb.isVerbChecked && tw`hidden`,
                 currentVerb.isVerbCorrect && tw`hidden`,
               ]}
