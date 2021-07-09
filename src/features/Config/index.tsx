@@ -1,29 +1,13 @@
 /** @jsxImportSource @emotion/react */
 import tw, { theme as twTheme } from "twin.macro";
-import {
-  Checkbox,
-  CheckboxProps,
-  FormControlLabel,
-  useMediaQuery,
-  withStyles,
-} from "@material-ui/core";
+import { useMediaQuery } from "@material-ui/core";
 import React, { useContext } from "react";
-import { grey } from "@material-ui/core/colors";
 import { VerbsContext } from "../../shared/context";
 import { SelectedVerbsAction } from "../../shared/enums";
 import { Link } from "react-router-dom";
 
 export const Config = () => {
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
-  const GreyCheckbox = withStyles({
-    root: {
-      color: grey[400],
-      "&$checked": {
-        color: grey[600],
-      },
-    },
-    checked: {},
-  })((props: CheckboxProps) => <Checkbox color="default" {...props} />);
   const { state: verbs, dispatch: verbsDispatch } = useContext(VerbsContext);
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -61,18 +45,18 @@ export const Config = () => {
                 return (
                   <div
                     key={verb.name}
-                    css={tw`text-gray-900 text-base lg:text-lg w-36`}
+                    css={tw`text-gray-900 text-base lg:text-lg w-36 mt-2`}
                   >
-                    <FormControlLabel
-                      control={
-                        <GreyCheckbox
-                          onChange={(e) => handleChange(e, idx)}
-                          checked={verb.isSelected}
-                          name={verb.name}
-                        />
-                      }
-                      label={verb.name}
-                    />
+                    <label>
+                      <input
+                        css={tw`transform scale-125`}
+                        type="checkbox"
+                        checked={verb.isSelected}
+                        name={verb.name}
+                        onChange={(e) => handleChange(e, idx)}
+                      />
+                      <span css={tw`ml-2 text-lg`}>{verb.name}</span>
+                    </label>
                   </div>
                 );
               })}
