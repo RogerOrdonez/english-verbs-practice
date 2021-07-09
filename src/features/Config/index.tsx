@@ -45,17 +45,19 @@ export const Config = () => {
                 return (
                   <div
                     key={verb.name}
-                    css={tw`text-gray-900 text-base lg:text-lg w-36 mt-2`}
+                    css={tw`text-gray-900 text-base lg:text-lg w-36 mt-2.5`}
                   >
                     <label>
                       <input
-                        css={tw`transform scale-125`}
+                        css={tw`transform scale-125 cursor-pointer`}
                         type="checkbox"
                         checked={verb.isSelected}
                         name={verb.name}
                         onChange={(e) => handleChange(e, idx)}
                       />
-                      <span css={tw`ml-2 text-lg`}>{verb.name}</span>
+                      <span css={tw`ml-2 text-lg cursor-pointer`}>
+                        {verb.name}
+                      </span>
                     </label>
                   </div>
                 );
