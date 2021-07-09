@@ -19,7 +19,7 @@ export type VerbType = {
 };
 
 export type CurrentVerbType = {
-  verbTense: VerbType;
+  verbTense?: VerbType;
   userInputVerb: FormType;
   isVerbCorrect: boolean;
   isVerbChecked: boolean;
@@ -41,7 +41,7 @@ export type ControlStateType = {
 
 export type CurrentVerbPayload = {
   [CurrentVerbAction.SetCurrentVerb]: {
-    newCurrentVerb: VerbType;
+    newCurrentVerb: VerbType | undefined;
   };
   [CurrentVerbAction.MarkVerbCorrect]: undefined;
   [CurrentVerbAction.MarkVerbIncorrect]: undefined;
@@ -79,12 +79,10 @@ export type ControlStatePayload = {
 
 export type SelectedVerbsPayload = {
   [SelectedVerbsAction.SelectVerb]: {
-    verb: VerbType;
-    index: number;
+    verb: VerbType | undefined;
   };
   [SelectedVerbsAction.UnselectVerb]: {
-    verb: VerbType;
-    index: number;
+    verb: VerbType | undefined;
   };
 };
 

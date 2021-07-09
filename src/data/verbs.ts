@@ -1,7 +1,8 @@
 import { VerbType } from "../shared/types";
+import { OrderedMap } from "immutable";
 
-export const verbs: Array<VerbType> = [
-  {
+export const verbs: OrderedMap<string, VerbType> = OrderedMap({
+  Answer: {
     name: "Answer",
     type: "regular",
     tenses: {
@@ -13,7 +14,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Responder", "Contestar"],
     },
   },
-  {
+  Ask: {
     name: "Ask",
     type: "regular",
     tenses: {
@@ -25,7 +26,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Preguntar", "Pedir"],
     },
   },
-  {
+  Be: {
     name: "Be",
     type: "irregular",
     tenses: {
@@ -37,7 +38,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Ser", "Estar"],
     },
   },
-  {
+  Call: {
     name: "Call",
     type: "regular",
     tenses: {
@@ -49,7 +50,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Llamar"],
     },
   },
-  {
+  Clean: {
     name: "Clean",
     type: "regular",
     tenses: {
@@ -61,7 +62,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Limpiar"],
     },
   },
-  {
+  Close: {
     name: "Close",
     type: "regular",
     tenses: {
@@ -73,7 +74,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Cerrar"],
     },
   },
-  {
+  Come: {
     name: "Come",
     type: "irregular",
     tenses: {
@@ -85,7 +86,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Venir"],
     },
   },
-  {
+  Copy: {
     name: "Copy",
     type: "regular",
     tenses: {
@@ -97,7 +98,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Copiar"],
     },
   },
-  {
+  Do: {
     name: "Do",
     type: "irregular",
     tenses: {
@@ -109,7 +110,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Hacer"],
     },
   },
-  {
+  Draw: {
     name: "Draw",
     type: "irregular",
     tenses: {
@@ -121,7 +122,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Dibujar"],
     },
   },
-  {
+  Drink: {
     name: "Drink ",
     type: "irregular",
     tenses: {
@@ -133,7 +134,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Tomar", "Beber"],
     },
   },
-  {
+  Eat: {
     name: "Eat",
     type: "Irregular",
     tenses: {
@@ -145,7 +146,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Comer", "Consumir"],
     },
   },
-  {
+  Erase: {
     name: "Erase",
     type: "Regular",
     tenses: {
@@ -157,7 +158,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Borrar"],
     },
   },
-  {
+  Explain: {
     name: "Explain",
     type: "Regular",
     tenses: {
@@ -169,7 +170,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Explicar"],
     },
   },
-  {
+  Finish: {
     name: "Finish",
     type: "Regular",
     tenses: {
@@ -181,7 +182,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Finalizar", "Terminar"],
     },
   },
-  {
+  Forget: {
     name: "Forget",
     type: "Irregular",
     tenses: {
@@ -193,7 +194,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Olvidar"],
     },
   },
-  {
+  Get: {
     name: "Get",
     type: "Irregular",
     tenses: {
@@ -205,7 +206,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Obtener", "Conseguir"],
     },
   },
-  {
+  Give: {
     name: "Give",
     type: "Irregular",
     tenses: {
@@ -217,7 +218,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Dar"],
     },
   },
-  {
+  Go: {
     name: "Go",
     type: "Irregular",
     tenses: {
@@ -229,7 +230,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Ir"],
     },
   },
-  {
+  Grow: {
     name: "Grow",
     type: "Irregular",
     tenses: {
@@ -241,7 +242,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Crecer", "Desarrollar"],
     },
   },
-  {
+  Have: {
     name: "Have",
     type: "Irregular",
     tenses: {
@@ -253,7 +254,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Tener", "Haber"],
     },
   },
-  {
+  Help: {
     name: "Help",
     type: "Regular",
     tenses: {
@@ -265,7 +266,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Ayudar"],
     },
   },
-  {
+  Know: {
     name: "Know",
     type: "Irregular",
     tenses: {
@@ -277,7 +278,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Saber", "Conocer"],
     },
   },
-  {
+  Laugh: {
     name: "Laugh",
     type: "Regular",
     tenses: {
@@ -289,7 +290,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Reir"],
     },
   },
-  {
+  Learn: {
     name: "Learn",
     type: "Regular",
     tenses: {
@@ -301,7 +302,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Aprender"],
     },
   },
-  {
+  Like: {
     name: "Like",
     type: "Regular",
     tenses: {
@@ -313,7 +314,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Gustar"],
     },
   },
-  {
+  Listen: {
     name: "Listen",
     type: "Regular",
     tenses: {
@@ -325,7 +326,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Escuchar"],
     },
   },
-  {
+  Live: {
     name: "Live",
     type: "Regular",
     tenses: {
@@ -337,7 +338,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Vivir"],
     },
   },
-  {
+  Look: {
     name: "Look",
     type: "Regular",
     tenses: {
@@ -349,7 +350,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Mirar"],
     },
   },
-  {
+  Need: {
     name: "Need",
     type: "Regular",
     tenses: {
@@ -361,7 +362,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Necesitar"],
     },
   },
-  {
+  Open: {
     name: "Open",
     type: "Regular",
     tenses: {
@@ -373,7 +374,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Abrir"],
     },
   },
-  {
+  Play: {
     name: "Play",
     type: "Regular",
     tenses: {
@@ -385,7 +386,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Jugar", "Reproducir", "Tocar"],
     },
   },
-  {
+  Practice: {
     name: "Practice",
     type: "Regular",
     tenses: {
@@ -397,7 +398,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Practicar"],
     },
   },
-  {
+  Pronounce: {
     name: "Pronounce",
     type: "Regular",
     tenses: {
@@ -409,7 +410,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Pronunciar"],
     },
   },
-  {
+  Put: {
     name: "Put",
     type: "Irregular",
     tenses: {
@@ -421,7 +422,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Poner", "Colocar", "Situar"],
     },
   },
-  {
+  Rain: {
     name: "Rain",
     type: "Regular",
     tenses: {
@@ -433,7 +434,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Llover"],
     },
   },
-  {
+  Read: {
     name: "Read",
     type: "Irregular",
     tenses: {
@@ -445,7 +446,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Leer"],
     },
   },
-  {
+  Rent: {
     name: "Rent",
     type: "Regular",
     tenses: {
@@ -457,7 +458,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Rentar"],
     },
   },
-  {
+  Repeat: {
     name: "Repeat",
     type: "Regular",
     tenses: {
@@ -469,7 +470,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Repetir"],
     },
   },
-  {
+  Rest: {
     name: "Rest",
     type: "Regular",
     tenses: {
@@ -481,7 +482,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Descansar"],
     },
   },
-  {
+  Run: {
     name: "Run",
     type: "Irregular",
     tenses: {
@@ -493,7 +494,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Correr"],
     },
   },
-  {
+  Say: {
     name: "Say",
     type: "Irregular",
     tenses: {
@@ -505,7 +506,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Decir"],
     },
   },
-  {
+  See: {
     name: "See",
     type: "Irregular",
     tenses: {
@@ -517,7 +518,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Ver"],
     },
   },
-  {
+  Sing: {
     name: "Sing",
     type: "Irregular",
     tenses: {
@@ -529,7 +530,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Cantar"],
     },
   },
-  {
+  Sit: {
     name: "Sit",
     type: "Irregular",
     tenses: {
@@ -541,7 +542,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Sentarse"],
     },
   },
-  {
+  Sleep: {
     name: "Sleep",
     type: "Irregular",
     tenses: {
@@ -553,7 +554,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Dormir"],
     },
   },
-  {
+  Speak: {
     name: "Speak",
     type: "Irregular",
     tenses: {
@@ -565,7 +566,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Hablar"],
     },
   },
-  {
+  Spend: {
     name: "Spend",
     type: "Irregular",
     tenses: {
@@ -577,7 +578,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Gastar", "Pasar"],
     },
   },
-  {
+  Stay: {
     name: "Stay",
     type: "Regular",
     tenses: {
@@ -589,7 +590,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Quedar", "Permanecer"],
     },
   },
-  {
+  Study: {
     name: "Study",
     type: "Regular",
     tenses: {
@@ -601,7 +602,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Estudiar"],
     },
   },
-  {
+  Swim: {
     name: "Swim",
     type: "Irregular",
     tenses: {
@@ -613,7 +614,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Nadar"],
     },
   },
-  {
+  Take: {
     name: "Take",
     type: "Irregular",
     tenses: {
@@ -625,7 +626,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Tomar", "Agarrar"],
     },
   },
-  {
+  Talk: {
     name: "Talk",
     type: "Regular",
     tenses: {
@@ -637,7 +638,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Hablar", "Platicar"],
     },
   },
-  {
+  Teach: {
     name: "Teach",
     type: "Irregular",
     tenses: {
@@ -649,7 +650,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Enseñar"],
     },
   },
-  {
+  Tell: {
     name: "Tell",
     type: "Irregular",
     tenses: {
@@ -661,7 +662,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Decir", "Contar", "Narrar"],
     },
   },
-  {
+  Think: {
     name: "Think",
     type: "Irregular",
     tenses: {
@@ -673,7 +674,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Pensar", "Creer"],
     },
   },
-  {
+  Throw: {
     name: "Throw",
     type: "Irregular",
     tenses: {
@@ -685,7 +686,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Tirar", "Lanzar"],
     },
   },
-  {
+  Travel: {
     name: "Travel",
     type: "Regular",
     tenses: {
@@ -697,7 +698,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Viajar"],
     },
   },
-  {
+  Try: {
     name: "Try",
     type: "Regular",
     tenses: {
@@ -709,7 +710,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Probar", "Tratar"],
     },
   },
-  {
+  Understand: {
     name: "Understand",
     type: "Irregular",
     tenses: {
@@ -721,7 +722,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Entender", "Comprender"],
     },
   },
-  {
+  Use: {
     name: "Use",
     type: "Regular",
     tenses: {
@@ -733,7 +734,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Usar", "Emplear"],
     },
   },
-  {
+  Visit: {
     name: "Visit",
     type: "Regular",
     tenses: {
@@ -745,7 +746,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Visitar"],
     },
   },
-  {
+  Wait: {
     name: "Wait",
     type: "Regular",
     tenses: {
@@ -757,7 +758,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Esperar"],
     },
   },
-  {
+  Walk: {
     name: "Walk",
     type: "Regular",
     tenses: {
@@ -769,7 +770,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Caminar"],
     },
   },
-  {
+  Want: {
     name: "Want",
     type: "Regular",
     tenses: {
@@ -781,7 +782,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Querer", "Desear"],
     },
   },
-  {
+  Wash: {
     name: "Wash",
     type: "Regular",
     tenses: {
@@ -793,7 +794,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Lavar"],
     },
   },
-  {
+  Watch: {
     name: "Watch",
     type: "Regular",
     tenses: {
@@ -805,7 +806,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Mirar"],
     },
   },
-  {
+  Work: {
     name: "Work",
     type: "Regular",
     tenses: {
@@ -817,7 +818,7 @@ export const verbs: Array<VerbType> = [
       meaning: ["Trabajar"],
     },
   },
-  {
+  Write: {
     name: "Write",
     type: "Irregular",
     tenses: {
@@ -829,4 +830,4 @@ export const verbs: Array<VerbType> = [
       meaning: ["Escribir"],
     },
   },
-];
+});

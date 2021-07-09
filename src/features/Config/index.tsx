@@ -1,30 +1,35 @@
 /** @jsxImportSource @emotion/react */
 import tw, { theme as twTheme } from "twin.macro";
 import { useMediaQuery } from "@material-ui/core";
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { VerbsContext } from "../../shared/context";
 import { SelectedVerbsAction } from "../../shared/enums";
 import { Link } from "react-router-dom";
+import { VerbType } from "../../shared/types";
+import { setVerbsOnStorage } from "../../services/storageService";
 
 export const Config = () => {
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
   const { state: verbs, dispatch: verbsDispatch } = useContext(VerbsContext);
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
-    idx: number
+    verb: VerbType | undefined
   ) => {
     if (event.target.checked) {
       verbsDispatch({
         type: SelectedVerbsAction.SelectVerb,
-        payload: { verb: verbs[idx], index: idx },
+        payload: { verb },
       });
     } else {
       verbsDispatch({
         type: SelectedVerbsAction.UnselectVerb,
-        payload: { verb: verbs[idx], index: idx },
+        payload: { verb },
       });
     }
   };
+  useEffect(() => {
+    setVerbsOnStorage(verbs);
+  }, [verbs]);
   return (
     <div css={[tw`flex justify-center items-center h-screen bg-gray-600`]}>
       <div
@@ -41,22 +46,22 @@ export const Config = () => {
           </div>
           <div css={tw`flex flex-col justify-between min-h-full`}>
             <div css={tw`flex flex-wrap justify-start`}>
-              {verbs.map((verb, idx) => {
+              {verbs?.toIndexedSeq().map((verb) => {
                 return (
                   <div
-                    key={verb.name}
+                    key={verb?.name}
                     css={tw`text-gray-900 text-base lg:text-lg w-36 mt-2.5`}
                   >
                     <label>
                       <input
                         css={tw`transform scale-125 cursor-pointer`}
                         type="checkbox"
-                        checked={verb.isSelected}
-                        name={verb.name}
-                        onChange={(e) => handleChange(e, idx)}
+                        checked={verb?.isSelected}
+                        name={verb?.name}
+                        onChange={(e) => handleChange(e, verb)}
                       />
                       <span css={tw`ml-2 text-lg cursor-pointer`}>
-                        {verb.name}
+                        {verb?.name}
                       </span>
                     </label>
                   </div>

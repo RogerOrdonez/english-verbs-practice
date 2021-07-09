@@ -13,6 +13,7 @@ import {
   verbsReducer,
 } from "./reducers";
 import { getVerbs } from "../services/verbService";
+import { OrderedMap } from "immutable";
 
 const initialCurrentVerb: CurrentVerbType = {
   verbTense: {
@@ -52,7 +53,7 @@ const initialControlState: ControlStateType = {
   skippedCounter: 0,
 };
 
-const initialVerbs: VerbType[] = getVerbs();
+const initialVerbs: OrderedMap<string, VerbType | undefined> = getVerbs();
 
 const CurrentVerbContext = createContext<{
   state: CurrentVerbType;
@@ -71,7 +72,7 @@ const ControlStateContext = createContext<{
 });
 
 const VerbsContext = createContext<{
-  state: VerbType[];
+  state: OrderedMap<string, VerbType | undefined>;
   dispatch: Dispatch<SelectedVerbsActionType>;
 }>({
   state: initialVerbs,

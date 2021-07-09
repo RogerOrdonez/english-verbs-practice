@@ -13,15 +13,12 @@ function App() {
   useEffect(() => {
     controlStateDispatch({
       type: ControlStateAction.SetVerbsLenght,
-      payload: getSelectedVerbsOnStorage().filter((verb) => verb.isSelected)
-        .length,
+      payload: getSelectedVerbsOnStorage().size,
     });
     currentVerbDispatch({
       type: CurrentVerbAction.SetCurrentVerb,
       payload: {
-        newCurrentVerb: getSelectedVerbsOnStorage().filter(
-          (verb) => verb.isSelected
-        )[0],
+        newCurrentVerb: getSelectedVerbsOnStorage().toIndexedSeq().get(0),
       },
     });
   }, [controlStateDispatch, currentVerbDispatch]);

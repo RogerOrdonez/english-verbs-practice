@@ -6,6 +6,8 @@ export const getVerbs = () => {
     (selectedVerb) => selectedVerb.name
   );
   const allVerbs = verbs.map((verb) => {
+    // eslint-disable-next-line no-console
+    console.log(verb);
     return {
       ...verb,
       isSelected: selectedVerbs.includes(verb.name),

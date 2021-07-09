@@ -1,4 +1,3 @@
-import { setVerbsOnStorage } from "../services/storageService";
 import {
   ControlStateAction,
   CurrentVerbAction,
@@ -12,6 +11,7 @@ import {
   SelectedVerbsActionType,
   VerbType,
 } from "./types";
+import { OrderedMap } from "immutable";
 
 export const currentVerbReducer = (
   state: CurrentVerbType,
@@ -101,34 +101,29 @@ export const controlStateReducer = (
 };
 
 export const verbsReducer = (
-  state: VerbType[],
+  state: OrderedMap<string, VerbType | undefined>,
   action: SelectedVerbsActionType
-): VerbType[] => {
+): OrderedMap<string, VerbType | undefined> => {
   const errorMessage = `Action type "${action.type}" is not defined for selectedVerbsReducer`;
-  let newState: VerbType[];
   switch (action.type) {
     case SelectedVerbsAction.SelectVerb:
-      newState = [
-        ...state.slice(0, action.payload.index),
-        {
-          ...state[action.payload.index],
-          isSelected: true,
-        },
-        ...state.slice(action.payload.index + 1),
-      ];
-      setVerbsOnStorage(newState);
-      return newState;
+      return state.update(action.payload.verb?.name || "", (verb) => {
+        if (verb) {
+          return {
+            ...verb,
+            isSelected: true,
+          };
+        }
+      });
     case SelectedVerbsAction.UnselectVerb:
-      newState = [
-        ...state.slice(0, action.payload.index),
-        {
-          ...state[action.payload.index],
-          isSelected: false,
-        },
-        ...state.slice(action.payload.index + 1),
-      ];
-      setVerbsOnStorage(newState);
-      return newState;
+      return state.update(action.payload.verb?.name || "", (verb) => {
+        if (verb) {
+          return {
+            ...verb,
+            isSelected: false,
+          };
+        }
+      });
     default:
       throw new Error(errorMessage);
   }

@@ -50,19 +50,19 @@ export const PracticeForm: FC = () => {
         });
         setPracticeForm({
           present: !currentVerb.isPresentCorrect
-            ? currentVerb.verbTense.tenses.present.join(", ")
+            ? currentVerb.verbTense?.tenses.present.join(", ") || ""
             : practiceForm.present,
           past: !currentVerb.isPastCorrect
-            ? currentVerb.verbTense.tenses.past.join(", ")
+            ? currentVerb.verbTense?.tenses.past.join(", ") || ""
             : practiceForm.past,
           pastParticiple: !currentVerb.isPastParticipleCorrect
-            ? currentVerb.verbTense.tenses.pastParticiple.join(", ")
+            ? currentVerb.verbTense?.tenses.pastParticiple.join(", ") || ""
             : practiceForm.pastParticiple,
           presentParticiple: !currentVerb.isPresentParticipleCorrect
-            ? currentVerb.verbTense.tenses.presentParticiple.join(", ")
+            ? currentVerb.verbTense?.tenses.presentParticiple.join(", ") || ""
             : practiceForm.presentParticiple,
           meaning: !currentVerb.isMeaningCorrect
-            ? currentVerb.verbTense.tenses.meaning.join(", ")
+            ? currentVerb.verbTense?.tenses.meaning.join(", ") || ""
             : practiceForm.meaning,
         });
       } else {

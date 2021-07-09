@@ -22,7 +22,7 @@ export const Play = () => {
     controlStateDispatch({ type: ControlStateAction.ResetCounter });
     controlStateDispatch({
       type: ControlStateAction.SetVerbsLenght,
-      payload: verbs.filter((verb) => verb.isSelected).length,
+      payload: verbs?.filter((verb) => verb?.isSelected).size || 0,
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -30,9 +30,10 @@ export const Play = () => {
     currentVerbDispatch({
       type: CurrentVerbAction.SetCurrentVerb,
       payload: {
-        newCurrentVerb: verbs.filter((verb) => verb.isSelected)[
-          controlState.counter
-        ],
+        newCurrentVerb: verbs
+          ?.filter((verb) => verb?.isSelected)
+          .toIndexedSeq()
+          .get(controlState.counter),
       },
     });
     // eslint-disable-next-line react-hooks/exhaustive-deps
