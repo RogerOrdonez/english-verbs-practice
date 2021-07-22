@@ -7,6 +7,7 @@ import { SelectedVerbsAction } from "../../shared/enums";
 import { Link } from "react-router-dom";
 import { VerbType } from "../../shared/types";
 import { setVerbsOnStorage } from "../../services/storageService";
+import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
 
 export const Config = () => {
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
@@ -46,27 +47,26 @@ export const Config = () => {
           </div>
           <div css={tw`flex flex-col justify-between min-h-full`}>
             <div css={tw`flex flex-wrap justify-start`}>
-              {verbs?.toIndexedSeq().map((verb) => {
-                return (
-                  <div
-                    key={verb?.name}
-                    css={tw`text-gray-900 text-base lg:text-lg w-36 mt-2.5`}
-                  >
-                    <label>
-                      <input
-                        css={tw`transform scale-125 cursor-pointer`}
-                        type="checkbox"
+              <CheckboxGroup>
+                {verbs?.toIndexedSeq().map((verb) => {
+                  return (
+                    <div
+                      key={verb?.name}
+                      css={tw`text-gray-900 text-base lg:text-lg w-36 mt-2.5`}
+                    >
+                      <Checkbox
                         checked={verb?.isSelected}
+                        colorScheme="gray"
+                        size="lg"
                         name={verb?.name}
                         onChange={(e) => handleChange(e, verb)}
-                      />
-                      <span css={tw`ml-2 text-lg cursor-pointer`}>
+                      >
                         {verb?.name}
-                      </span>
-                    </label>
-                  </div>
-                );
-              })}
+                      </Checkbox>
+                    </div>
+                  );
+                })}
+              </CheckboxGroup>
             </div>
             <Link to="/play">
               <div css={tw`flex justify-center lg:justify-start`}>
