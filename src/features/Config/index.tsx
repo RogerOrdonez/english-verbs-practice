@@ -55,7 +55,7 @@ export const Config = () => {
                       css={tw`text-gray-900 text-base lg:text-lg w-36 mt-2.5`}
                     >
                       <Checkbox
-                        checked={verb?.isSelected}
+                        isChecked={verb?.isSelected}
                         colorScheme="gray"
                         size="lg"
                         name={verb?.name}
