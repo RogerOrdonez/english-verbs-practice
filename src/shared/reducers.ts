@@ -107,7 +107,7 @@ export const verbsReducer = (
   const errorMessage = `Action type "${action.type}" is not defined for selectedVerbsReducer`;
   switch (action.type) {
     case SelectedVerbsAction.SelectVerb:
-      return state.update(action.payload.verb?.name || "", (verb) => {
+      return state.update(action.payload.verb?.name.trim() || "", (verb) => {
         if (verb) {
           return {
             ...verb,
@@ -116,7 +116,7 @@ export const verbsReducer = (
         }
       });
     case SelectedVerbsAction.UnselectVerb:
-      return state.update(action.payload.verb?.name || "", (verb) => {
+      return state.update(action.payload.verb?.name.trim() || "", (verb) => {
         if (verb) {
           return {
             ...verb,
