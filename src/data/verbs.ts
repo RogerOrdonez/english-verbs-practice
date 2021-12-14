@@ -13,6 +13,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Answering"],
       meaning: ["Responder", "Contestar"],
     },
+    section: "Section 1",
   },
   Ask: {
     name: "Ask",
@@ -25,6 +26,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Asking"],
       meaning: ["Preguntar", "Pedir"],
     },
+    section: "Section 1",
   },
   Be: {
     name: "Be",
@@ -37,6 +39,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Being"],
       meaning: ["Ser", "Estar"],
     },
+    section: "Section 1",
   },
   Call: {
     name: "Call",
@@ -49,6 +52,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Calling"],
       meaning: ["Llamar"],
     },
+    section: "Section 1",
   },
   Clean: {
     name: "Clean",
@@ -61,6 +65,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Cleaning"],
       meaning: ["Limpiar"],
     },
+    section: "Section 1",
   },
   Close: {
     name: "Close",
@@ -73,6 +78,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Closing"],
       meaning: ["Cerrar"],
     },
+    section: "Section 1",
   },
   Come: {
     name: "Come",
@@ -85,6 +91,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Coming"],
       meaning: ["Venir"],
     },
+    section: "Section 1",
   },
   Copy: {
     name: "Copy",
@@ -97,6 +104,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Copying"],
       meaning: ["Copiar"],
     },
+    section: "Section 1",
   },
   Do: {
     name: "Do",
@@ -109,6 +117,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Doing"],
       meaning: ["Hacer"],
     },
+    section: "Section 1",
   },
   Draw: {
     name: "Draw",
@@ -121,6 +130,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Drawing"],
       meaning: ["Dibujar"],
     },
+    section: "Section 1",
   },
   Drink: {
     name: "Drink ",
@@ -133,10 +143,11 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Drinking"],
       meaning: ["Tomar", "Beber"],
     },
+    section: "Section 1",
   },
   Eat: {
     name: "Eat",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Eat",
       present: ["Eat", "Eats"],
@@ -145,10 +156,11 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Eating"],
       meaning: ["Comer", "Consumir"],
     },
+    section: "Section 1",
   },
   Erase: {
     name: "Erase",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Erase",
       present: ["Erase", "Erases"],
@@ -157,10 +169,11 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Erasing"],
       meaning: ["Borrar"],
     },
+    section: "Section 1",
   },
   Explain: {
     name: "Explain",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Explain",
       present: ["Explain", "Explains"],
@@ -169,10 +182,11 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Explaining"],
       meaning: ["Explicar"],
     },
+    section: "Section 1",
   },
   Finish: {
     name: "Finish",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Finish",
       present: ["Finish", "Finishes"],
@@ -181,10 +195,11 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Finishing"],
       meaning: ["Finalizar", "Terminar"],
     },
+    section: "Section 1",
   },
   Forget: {
     name: "Forget",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Forget",
       present: ["Forget", "Forgets"],
@@ -193,10 +208,11 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Forgetting"],
       meaning: ["Olvidar"],
     },
+    section: "Section 2",
   },
   Get: {
     name: "Get",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Get",
       present: ["Get", "Gets"],
@@ -205,10 +221,11 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Getting"],
       meaning: ["Obtener", "Conseguir"],
     },
+    section: "Section 2",
   },
   Give: {
     name: "Give",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Give",
       present: ["Give", "Gives"],
@@ -217,10 +234,11 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Giving"],
       meaning: ["Dar"],
     },
+    section: "Section 2",
   },
   Go: {
     name: "Go",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Go",
       present: ["Go", "Goes"],
@@ -229,10 +247,11 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Going"],
       meaning: ["Ir"],
     },
+    section: "Section 2",
   },
   Grow: {
     name: "Grow",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Grow",
       present: ["Grow", "Grows"],
@@ -241,10 +260,11 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Growing"],
       meaning: ["Crecer", "Desarrollar"],
     },
+    section: "Section 2",
   },
   Have: {
     name: "Have",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Have",
       present: ["Have", "Has"],
@@ -256,7 +276,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Help: {
     name: "Help",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Help",
       present: ["Help", "Helps"],
@@ -268,7 +288,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Know: {
     name: "Know",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Know",
       present: ["Know", "Knows"],
@@ -280,7 +300,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Laugh: {
     name: "Laugh",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Laugh",
       present: ["Laugh", "Laughs"],
@@ -292,7 +312,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Learn: {
     name: "Learn",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Learn",
       present: ["Learn", "Learns"],
@@ -304,7 +324,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Like: {
     name: "Like",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Like",
       present: ["Like", "Likes"],
@@ -316,7 +336,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Listen: {
     name: "Listen",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Listen",
       present: ["Listen", "Listens"],
@@ -328,7 +348,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Live: {
     name: "Live",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Live",
       present: ["Live", "Lives"],
@@ -340,7 +360,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Look: {
     name: "Look",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Look",
       present: ["Look", "Looks"],
@@ -352,7 +372,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Need: {
     name: "Need",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Need",
       present: ["Need", "Needs"],
@@ -364,7 +384,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Open: {
     name: "Open",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Open",
       present: ["Open", "Opens"],
@@ -376,7 +396,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Play: {
     name: "Play",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Play",
       present: ["Play", "Plays"],
@@ -388,7 +408,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Practice: {
     name: "Practice",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Practice",
       present: ["Practice", "Practices"],
@@ -400,7 +420,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Pronounce: {
     name: "Pronounce",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Pronounce",
       present: ["Pronounce", "Pronounces"],
@@ -412,7 +432,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Put: {
     name: "Put",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Put",
       present: ["Put", "Puts"],
@@ -424,7 +444,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Rain: {
     name: "Rain",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Rain",
       present: ["Rain", "Rains"],
@@ -436,7 +456,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Read: {
     name: "Read",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Read",
       present: ["Read", "Reads"],
@@ -448,7 +468,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Rent: {
     name: "Rent",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Rent",
       present: ["Rent", "Rents"],
@@ -460,7 +480,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Repeat: {
     name: "Repeat",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Repeat",
       present: ["Repeat", "Repeats"],
@@ -472,7 +492,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Rest: {
     name: "Rest",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Rest",
       present: ["Rest", "Rests"],
@@ -484,7 +504,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Run: {
     name: "Run",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Run",
       present: ["Run", "Runs"],
@@ -496,7 +516,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Say: {
     name: "Say",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Say",
       present: ["Say", "Says"],
@@ -508,7 +528,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   See: {
     name: "See",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To See",
       present: ["See", "Sees"],
@@ -520,7 +540,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Sing: {
     name: "Sing",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Sing",
       present: ["Sing", "Sings"],
@@ -532,7 +552,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Sit: {
     name: "Sit",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Sit",
       present: ["Sit", "Sits"],
@@ -544,7 +564,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Sleep: {
     name: "Sleep",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Sleep",
       present: ["Sleep", "Sleeps"],
@@ -556,7 +576,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Speak: {
     name: "Speak",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Speak",
       present: ["Speak", "Speaks"],
@@ -568,7 +588,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Spend: {
     name: "Spend",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Spend",
       present: ["Spend", "Spends"],
@@ -580,7 +600,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Stay: {
     name: "Stay",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Stay",
       present: ["Stay", "Stays"],
@@ -592,7 +612,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Study: {
     name: "Study",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Study",
       present: ["Study", "Studies"],
@@ -604,7 +624,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Swim: {
     name: "Swim",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Swim",
       present: ["Swim", "Swims"],
@@ -616,7 +636,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Take: {
     name: "Take",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Take",
       present: ["Take", "Takes"],
@@ -628,7 +648,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Talk: {
     name: "Talk",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Talk",
       present: ["Talk", "Talks"],
@@ -640,7 +660,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Teach: {
     name: "Teach",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Teach",
       present: ["Teach", "Teaches"],
@@ -652,7 +672,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Tell: {
     name: "Tell",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Tell",
       present: ["Tell", "Tells"],
@@ -664,7 +684,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Think: {
     name: "Think",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Think",
       present: ["Think", "Thinks"],
@@ -676,7 +696,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Throw: {
     name: "Throw",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Throw",
       present: ["Throw", "Throws"],
@@ -688,7 +708,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Travel: {
     name: "Travel",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Travel",
       present: ["Travel", "Travels"],
@@ -700,7 +720,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Try: {
     name: "Try",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Try",
       present: ["Try", "Tries"],
@@ -712,7 +732,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Understand: {
     name: "Understand",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Understand",
       present: ["Understand", "Understands"],
@@ -724,7 +744,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Use: {
     name: "Use",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Use",
       present: ["Use", "Uses"],
@@ -736,7 +756,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Visit: {
     name: "Visit",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Visit",
       present: ["Visit", "Visits"],
@@ -748,7 +768,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Wait: {
     name: "Wait",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Wait",
       present: ["Wait", "Waits"],
@@ -760,7 +780,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Walk: {
     name: "Walk",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Walk",
       present: ["Walk", "Walks"],
@@ -772,7 +792,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Want: {
     name: "Want",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Want",
       present: ["Want", "Wants"],
@@ -784,7 +804,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Wash: {
     name: "Wash",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Wash",
       present: ["Wash", "Washes"],
@@ -796,7 +816,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Watch: {
     name: "Watch",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Watch",
       present: ["Watch", "Watches"],
@@ -808,7 +828,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Work: {
     name: "Work",
-    type: "Regular",
+    type: "regular",
     tenses: {
       infinitive: "To Work",
       present: ["Work", "Works"],
@@ -820,7 +840,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
   },
   Write: {
     name: "Write",
-    type: "Irregular",
+    type: "irregular",
     tenses: {
       infinitive: "To Write",
       present: ["Write", "Writes"],

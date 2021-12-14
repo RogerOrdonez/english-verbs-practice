@@ -16,6 +16,7 @@ export type VerbType = {
     meaning: Array<string>;
   };
   isSelected?: boolean;
+  section?: string;
 };
 
 export type CurrentVerbType = {

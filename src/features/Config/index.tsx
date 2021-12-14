@@ -1,6 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import tw, { theme as twTheme } from "twin.macro";
-import { useMediaQuery } from "@material-ui/core";
+import tw from "twin.macro";
 import React, { useContext, useEffect } from "react";
 import { VerbsContext } from "../../shared/context";
 import { SelectedVerbsAction } from "../../shared/enums";
@@ -8,10 +7,11 @@ import { Link } from "react-router-dom";
 import { VerbType } from "../../shared/types";
 import { setVerbsOnStorage } from "../../services/storageService";
 import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
+import { checkBoxesDivider } from "../../shared/constants";
 
 export const Config = () => {
-  const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
   const { state: verbs, dispatch: verbsDispatch } = useContext(VerbsContext);
+  const verbsBySection = verbs.groupBy((verb) => verb?.section);
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
     verb: VerbType | undefined
@@ -40,13 +40,59 @@ export const Config = () => {
         ]}
       >
         <div css={tw`w-full p-2 md:p-8 mb-5`}>
-          <div css={tw`mb-4 text-2xl lg:text-3xl`}>
-            Selected verbs to practice:
-          </div>
+          <div css={tw`text-2xl lg:text-3xl`}>Selected verbs to practice:</div>
           <div css={tw`flex flex-col justify-between min-h-full`}>
-            <div css={tw`flex flex-wrap justify-start`}>
-              <CheckboxGroup>
-                {verbs?.toIndexedSeq().map((verb) => {
+            <CheckboxGroup>
+              <div css={tw`flex flex-col`}>
+                {verbsBySection?.keySeq().map((section) => {
+                  return (
+                    <div key={`verbsSection_${section ?? "No_Section"}`}>
+                      <div css={tw`text-lg font-bold mt-4 mb-2`}>
+                        <ul css={tw`list-disc`}>
+                          <li>{section ? `${section}:` : "No Section:"}</li>
+                        </ul>
+                      </div>
+                      <div css={tw`flex flex-wrap justify-start`}>
+                        {verbsBySection
+                          .get(section)
+                          ?.keySeq()
+                          .map((verbKey, idx) => {
+                            const verb = verbsBySection
+                              .get(section)
+                              ?.get(verbKey);
+                            return (
+                              <>
+                                <div
+                                  key={verb?.name}
+                                  css={tw`text-gray-900 text-base lg:text-lg w-1/2 md:w-36 mt-2.5`}
+                                >
+                                  <Checkbox
+                                    isChecked={verb?.isSelected}
+                                    colorScheme="gray"
+                                    size="lg"
+                                    name={verb?.name}
+                                    onChange={(e) => handleChange(e, verb)}
+                                  >
+                                    {verb?.name}
+                                  </Checkbox>
+                                </div>
+                                {(idx + 1) % checkBoxesDivider === 0 && (
+                                  <>
+                                    <br />
+                                    <div
+                                      css={tw`w-1/2 md:w-full mt-2.5 md:border-b md:border-gray-200`}
+                                    />
+                                  </>
+                                )}
+                              </>
+                            );
+                          })}
+                      </div>
+                    </div>
+                  );
+                })}
+              </div>
+              {/* {verbs?.toIndexedSeq().map((verb) => {
                   return (
                     <div
                       key={verb?.name}
@@ -63,9 +109,8 @@ export const Config = () => {
                       </Checkbox>
                     </div>
                   );
-                })}
-              </CheckboxGroup>
-            </div>
+                })} */}
+            </CheckboxGroup>
             <Link to="/play">
               <div css={tw`flex justify-center lg:justify-start`}>
                 <button
