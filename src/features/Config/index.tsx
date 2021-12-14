@@ -36,12 +36,10 @@ export const Config = () => {
       <div
         className="animate__animated animate__fadeIn"
         css={[
-          tw`flex flex-wrap overflow-y-scroll rounded-lg h-screen md:h-auto bg-white shadow-md w-full md:mx-8 lg:w-4/5 xl:w-3/5`,
-          isDesktop && { minHeight: "40rem", maxHeight: "40rem" },
-          !isDesktop && tw`min-h-screen`,
+          tw`flex flex-wrap overflow-y-scroll rounded-lg bg-white shadow-md w-full md:mx-8 lg:w-4/5 xl:w-3/5 md:h-3/5 h-screen`,
         ]}
       >
-        <div css={tw`w-full p-8 mb-5`}>
+        <div css={tw`w-full p-2 md:p-8 mb-5`}>
           <div css={tw`mb-4 text-2xl lg:text-3xl`}>
             Selected verbs to practice:
           </div>
@@ -52,7 +50,7 @@ export const Config = () => {
                   return (
                     <div
                       key={verb?.name}
-                      css={tw`text-gray-900 text-base lg:text-lg w-36 mt-2.5`}
+                      css={tw`text-gray-900 text-base lg:text-lg w-1/2 md:w-36 mt-2.5`}
                     >
                       <Checkbox
                         isChecked={verb?.isSelected}
