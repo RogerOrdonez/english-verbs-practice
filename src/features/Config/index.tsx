@@ -99,7 +99,7 @@ export const Config = () => {
                 </div>
               </CheckboxGroup>
               <div
-                css={tw`flex flex-col md:flex-row items-center content-center justify-center lg:justify-start`}
+                css={tw`flex flex-col md:flex-row items-center content-center justify-center lg:justify-start mb-10 md:mb-0`}
               >
                 <button
                   css={[
