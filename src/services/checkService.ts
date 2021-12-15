@@ -10,7 +10,8 @@ import {
 
 export const checkVerbTense = (
   formTenseValue: string,
-  currentTenseValue: Array<string>
+  currentTenseValue: Array<string>,
+  hasStrictCheck = true
 ) => {
   const inputValue = formTenseValue
     .toLowerCase()
@@ -23,7 +24,7 @@ export const checkVerbTense = (
   correctValue.forEach((verbTense) => {
     if (inputValue.includes(verbTense)) validInput++;
   });
-  return validInput === correctValue.length;
+  return hasStrictCheck ? validInput === correctValue.length : validInput > 0;
 };
 
 export const checkVerb = (
@@ -79,7 +80,8 @@ export const checkVerb = (
         });
     const isMeaningCorrect = checkVerbTense(
       practiceForm.meaning,
-      verbTense.tenses.meaning
+      verbTense.tenses.meaning,
+      false
     );
     isMeaningCorrect
       ? currentVerbDispatch({ type: CurrentVerbAction.MarkMeaningCorrect })

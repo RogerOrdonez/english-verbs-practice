@@ -1,5 +1,6 @@
 /** @jsxImportSource @emotion/react */
 import { useContext, useEffect } from "react";
+import { useHistory } from "react-router-dom";
 import tw from "twin.macro";
 import {
   ControlStateContext,
@@ -11,10 +12,14 @@ import { InfoSection } from "../InfoSection";
 import { PracticeForm } from "../PracticeForm";
 
 export const Play = () => {
+  const history = useHistory();
   const { state: controlState, dispatch: controlStateDispatch } =
     useContext(ControlStateContext);
   const { dispatch: currentVerbDispatch } = useContext(CurrentVerbContext);
   const { state: verbs } = useContext(VerbsContext);
+  if (controlState.verbsLength === 0) {
+    history.push("/");
+  }
   useEffect(() => {
     controlStateDispatch({ type: ControlStateAction.ResetSuccess });
     controlStateDispatch({ type: ControlStateAction.ResetError });

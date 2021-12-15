@@ -3,14 +3,15 @@ import tw from "twin.macro";
 import React, { useContext, useEffect } from "react";
 import { VerbsContext } from "../../shared/context";
 import { SelectedVerbsAction } from "../../shared/enums";
-import { Link } from "react-router-dom";
 import { VerbType } from "../../shared/types";
 import { setVerbsOnStorage } from "../../services/storageService";
 import { Checkbox, CheckboxGroup } from "@chakra-ui/react";
 import { checkBoxesDivider } from "../../shared/constants";
+import { useHistory } from "react-router-dom";
 
 export const Config = () => {
   const { state: verbs, dispatch: verbsDispatch } = useContext(VerbsContext);
+  const history = useHistory();
   const verbsBySection = verbs.groupBy((verb) => verb?.section);
   const handleChange = (
     event: React.ChangeEvent<HTMLInputElement>,
@@ -97,18 +98,30 @@ export const Config = () => {
                   })}
                 </div>
               </CheckboxGroup>
-              <Link to="/play">
-                <div css={tw`flex justify-center lg:justify-start`}>
-                  <button
-                    css={[
+              <div
+                css={tw`flex flex-col md:flex-row items-center content-center justify-center lg:justify-start`}
+              >
+                <button
+                  css={[
+                    verbs?.filter((verb) => verb?.isSelected).size > 0 &&
                       tw`px-12 py-3 mb-5 lg:py-2 bg-gray-900 rounded-full text-gray-100 text-lg shadow-md hover:bg-gray-800 focus:outline-none`,
-                    ]}
-                    type="button"
-                  >
-                    Play pratice
-                  </button>
-                </div>
-              </Link>
+                    verbs?.filter((verb) => verb?.isSelected).size === 0 &&
+                      tw`px-12 py-3 mb-5 lg:py-2 bg-gray-50 rounded-full text-gray-500 text-lg shadow-md hover:cursor-not-allowed focus:outline-none`,
+                  ]}
+                  type="button"
+                  disabled={
+                    verbs?.filter((verb) => verb?.isSelected).size === 0
+                  }
+                  onClick={() => history.push("/play")}
+                >
+                  Play pratice
+                </button>
+                {verbs?.filter((verb) => verb?.isSelected).size === 0 && (
+                  <p css={tw`ml-0 md:ml-2 text-center mb-4 text-red-700`}>
+                    Select at least one verb from the list.
+                  </p>
+                )}
+              </div>
             </div>
           </div>
         </div>

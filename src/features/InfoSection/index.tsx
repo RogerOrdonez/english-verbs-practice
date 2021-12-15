@@ -23,9 +23,8 @@ export const InfoSection: FC = () => {
   return (
     <div
       css={[
-        tw`flex flex-col justify-around  p-4 bg-gray-900 w-full lg:w-1/3`,
+        tw`flex flex-col justify-around p-1 md:p-4 bg-gray-900 w-full lg:w-1/3`,
         isDesktop && { minHeight: "10rem" },
-        !isDesktop && { minHeight: "8rem" },
       ]}
     >
       <div css={tw`flex flex-col lg:items-center`}>
