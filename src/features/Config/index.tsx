@@ -36,93 +36,80 @@ export const Config = () => {
       <div
         className="animate__animated animate__fadeIn"
         css={[
-          tw`flex flex-wrap overflow-y-scroll rounded-lg bg-white shadow-md w-full md:mx-8 lg:w-4/5 xl:w-3/5 md:h-3/5 h-screen`,
+          tw`rounded-lg bg-white shadow-md w-full md:mx-8 lg:w-4/5 xl:w-3/5 md:h-3/5 `,
         ]}
       >
-        <div css={tw`w-full p-2 md:p-8 mb-5`}>
-          <div css={tw`text-2xl lg:text-3xl`}>Selected verbs to practice:</div>
-          <div css={tw`flex flex-col justify-between min-h-full`}>
-            <CheckboxGroup>
-              <div css={tw`flex flex-col`}>
-                {verbsBySection?.keySeq().map((section) => {
-                  return (
-                    <div key={`verbsSection_${section ?? "No_Section"}`}>
-                      <div css={tw`text-lg font-bold mt-4 mb-2`}>
-                        <ul css={tw`list-disc`}>
-                          <li>{section ? `${section}:` : "No Section:"}</li>
-                        </ul>
-                      </div>
-                      <div css={tw`flex flex-wrap justify-start`}>
-                        {verbsBySection
-                          .get(section)
-                          ?.keySeq()
-                          .map((verbKey, idx) => {
-                            const verb = verbsBySection
-                              .get(section)
-                              ?.get(verbKey);
-                            return (
-                              <>
-                                <div
-                                  key={verb?.name}
-                                  css={tw`text-gray-900 text-base lg:text-lg w-1/2 md:w-36 mt-2.5`}
-                                >
-                                  <Checkbox
-                                    isChecked={verb?.isSelected}
-                                    colorScheme="gray"
-                                    size="lg"
-                                    name={verb?.name}
-                                    onChange={(e) => handleChange(e, verb)}
+        <div
+          css={[
+            tw`flex flex-wrap overflow-y-auto rounded-lg bg-white w-full h-screen md:h-full pt-2.5`,
+          ]}
+        >
+          <div css={tw`w-full p-2 md:p-8 mb-5`}>
+            <div css={tw`text-2xl lg:text-3xl`}>
+              Selected verbs to practice:
+            </div>
+            <div css={tw`flex flex-col justify-between min-h-full`}>
+              <CheckboxGroup>
+                <div css={tw`flex flex-col`}>
+                  {verbsBySection?.keySeq().map((section) => {
+                    return (
+                      <div key={section ? `${section}:` : "No Section:"}>
+                        <div css={tw`text-lg font-bold mt-4 mb-2`}>
+                          {section ? `${section}:` : "No Section:"}
+                        </div>
+                        <div css={tw`flex flex-wrap justify-start`}>
+                          {verbsBySection
+                            .get(section)
+                            ?.keySeq()
+                            .map((verbKey, idx) => {
+                              const verb = verbsBySection
+                                .get(section)
+                                ?.get(verbKey);
+                              return (
+                                <React.Fragment key={verb?.name}>
+                                  <div
+                                    css={tw`text-gray-900 text-base lg:text-lg w-1/2 md:w-36 mt-2.5`}
                                   >
-                                    {verb?.name}
-                                  </Checkbox>
-                                </div>
-                                {(idx + 1) % checkBoxesDivider === 0 && (
-                                  <>
-                                    <br />
-                                    <div
-                                      css={tw`w-1/2 md:w-full mt-2.5 md:border-b md:border-gray-200`}
-                                    />
-                                  </>
-                                )}
-                              </>
-                            );
-                          })}
+                                    <Checkbox
+                                      isChecked={verb?.isSelected}
+                                      colorScheme="gray"
+                                      size="lg"
+                                      name={verb?.name}
+                                      onChange={(e) => handleChange(e, verb)}
+                                    >
+                                      {verb?.name}
+                                    </Checkbox>
+                                  </div>
+                                  {(idx + 1) % checkBoxesDivider === 0 && (
+                                    <>
+                                      <br />
+                                      <div
+                                        css={tw`w-full mt-3 border-b border-gray-200`}
+                                      />
+                                    </>
+                                  )}
+                                </React.Fragment>
+                              );
+                            })}
+                        </div>
                       </div>
-                    </div>
-                  );
-                })}
-              </div>
-              {/* {verbs?.toIndexedSeq().map((verb) => {
-                  return (
-                    <div
-                      key={verb?.name}
-                      css={tw`text-gray-900 text-base lg:text-lg w-1/2 md:w-36 mt-2.5`}
-                    >
-                      <Checkbox
-                        isChecked={verb?.isSelected}
-                        colorScheme="gray"
-                        size="lg"
-                        name={verb?.name}
-                        onChange={(e) => handleChange(e, verb)}
-                      >
-                        {verb?.name}
-                      </Checkbox>
-                    </div>
-                  );
-                })} */}
-            </CheckboxGroup>
-            <Link to="/play">
-              <div css={tw`flex justify-center lg:justify-start`}>
-                <button
-                  css={[
-                    tw`px-12 py-3 mb-5 lg:py-2 bg-gray-900 rounded-full text-gray-100 text-lg shadow-md hover:bg-gray-800 focus:outline-none`,
-                  ]}
-                  type="button"
-                >
-                  Play pratice
-                </button>
-              </div>
-            </Link>
+                    );
+                  })}
+                </div>
+              </CheckboxGroup>
+              <Link to="/play">
+                <div css={tw`flex justify-center lg:justify-start`}>
+                  <button
+                    css={[
+                      tw`px-12 py-3 mb-5 lg:py-2 bg-gray-900 rounded-full text-gray-100 text-lg shadow-md hover:bg-gray-800 focus:outline-none`,
+                    ]}
+                    type="button"
+                  >
+                    Play pratice
+                  </button>
+                </div>
+              </Link>
+            </div>
           </div>
         </div>
       </div>
