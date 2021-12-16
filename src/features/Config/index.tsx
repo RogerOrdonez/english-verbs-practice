@@ -46,7 +46,7 @@ export const Config = () => {
           ]}
         >
           <div
-            css={tw`flex flex-col md:flex-row items-center content-center justify-center lg:justify-between sticky h-32 md:h-20 py-2.5 top-0 z-10 bg-white pt-2.5 border-b w-full md:px-8`}
+            css={tw`flex flex-col md:flex-row items-center content-center justify-center lg:justify-between sticky h-32 md:h-20 py-2.5 top-0 z-10 bg-white pt-2.5 border-b shadow-md w-full md:px-8`}
           >
             <div
               css={tw`flex flex-col items-center md:items-start mb-4 md:mb-0`}
