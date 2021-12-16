@@ -208,7 +208,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Forgetting"],
       meaning: ["Olvidar"],
     },
-    section: "Section 2",
+    section: "Section 1",
   },
   Get: {
     name: "Get",
@@ -221,7 +221,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Getting"],
       meaning: ["Obtener", "Conseguir"],
     },
-    section: "Section 2",
+    section: "Section 1",
   },
   Give: {
     name: "Give",
@@ -234,7 +234,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Giving"],
       meaning: ["Dar"],
     },
-    section: "Section 2",
+    section: "Section 1",
   },
   Go: {
     name: "Go",
@@ -247,7 +247,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Going"],
       meaning: ["Ir"],
     },
-    section: "Section 2",
+    section: "Section 1",
   },
   Grow: {
     name: "Grow",
@@ -260,7 +260,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Growing"],
       meaning: ["Crecer", "Desarrollar"],
     },
-    section: "Section 2",
+    section: "Section 1",
   },
   Have: {
     name: "Have",
@@ -273,6 +273,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Having"],
       meaning: ["Tener", "Haber"],
     },
+    section: "Section 1",
   },
   Help: {
     name: "Help",
@@ -285,6 +286,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Helping"],
       meaning: ["Ayudar"],
     },
+    section: "Section 1",
   },
   Know: {
     name: "Know",
@@ -297,6 +299,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Knowing"],
       meaning: ["Saber", "Conocer"],
     },
+    section: "Section 1",
   },
   Laugh: {
     name: "Laugh",
@@ -309,6 +312,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Laughing"],
       meaning: ["Reir"],
     },
+    section: "Section 1",
   },
   Learn: {
     name: "Learn",
@@ -321,6 +325,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Learning"],
       meaning: ["Aprender"],
     },
+    section: "Section 1",
   },
   Like: {
     name: "Like",
@@ -333,6 +338,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Liking"],
       meaning: ["Gustar"],
     },
+    section: "Section 1",
   },
   Listen: {
     name: "Listen",
@@ -345,6 +351,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Listening"],
       meaning: ["Escuchar"],
     },
+    section: "Section 1",
   },
   Live: {
     name: "Live",
@@ -357,6 +364,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Living"],
       meaning: ["Vivir"],
     },
+    section: "Section 1",
   },
   Look: {
     name: "Look",
@@ -369,6 +377,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Looking"],
       meaning: ["Mirar"],
     },
+    section: "Section 1",
   },
   Need: {
     name: "Need",
@@ -381,6 +390,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Needing"],
       meaning: ["Necesitar"],
     },
+    section: "Section 1",
   },
   Open: {
     name: "Open",
@@ -393,6 +403,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Opening"],
       meaning: ["Abrir"],
     },
+    section: "Section 1",
   },
   Play: {
     name: "Play",
@@ -405,6 +416,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Playing"],
       meaning: ["Jugar", "Reproducir", "Tocar"],
     },
+    section: "Section 1",
   },
   Practice: {
     name: "Practice",
@@ -417,6 +429,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Practicing"],
       meaning: ["Practicar"],
     },
+    section: "Section 1",
   },
   Pronounce: {
     name: "Pronounce",
@@ -429,6 +442,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Pronouncing"],
       meaning: ["Pronunciar"],
     },
+    section: "Section 1",
   },
   Put: {
     name: "Put",
@@ -441,6 +455,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Putting"],
       meaning: ["Poner", "Colocar", "Situar"],
     },
+    section: "Section 1",
   },
   Rain: {
     name: "Rain",
@@ -453,6 +468,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Raining"],
       meaning: ["Llover"],
     },
+    section: "Section 1",
   },
   Read: {
     name: "Read",
@@ -465,6 +481,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Reading"],
       meaning: ["Leer"],
     },
+    section: "Section 1",
   },
   Rent: {
     name: "Rent",
@@ -477,6 +494,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Renting"],
       meaning: ["Rentar"],
     },
+    section: "Section 1",
   },
   Repeat: {
     name: "Repeat",
@@ -489,6 +507,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Repeating"],
       meaning: ["Repetir"],
     },
+    section: "Section 1",
   },
   Rest: {
     name: "Rest",
@@ -501,6 +520,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Resting"],
       meaning: ["Descansar"],
     },
+    section: "Section 1",
   },
   Run: {
     name: "Run",
@@ -513,6 +533,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Running"],
       meaning: ["Correr"],
     },
+    section: "Section 1",
   },
   Say: {
     name: "Say",
@@ -525,6 +546,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Saying"],
       meaning: ["Decir"],
     },
+    section: "Section 1",
   },
   See: {
     name: "See",
@@ -537,6 +559,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Seeing"],
       meaning: ["Ver"],
     },
+    section: "Section 1",
   },
   Sing: {
     name: "Sing",
@@ -549,6 +572,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Singing"],
       meaning: ["Cantar"],
     },
+    section: "Section 1",
   },
   Sit: {
     name: "Sit",
@@ -561,6 +585,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Sitting"],
       meaning: ["Sentarse"],
     },
+    section: "Section 1",
   },
   Sleep: {
     name: "Sleep",
@@ -573,6 +598,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Sleeping"],
       meaning: ["Dormir"],
     },
+    section: "Section 1",
   },
   Speak: {
     name: "Speak",
@@ -585,6 +611,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Speaking"],
       meaning: ["Hablar"],
     },
+    section: "Section 1",
   },
   Spend: {
     name: "Spend",
@@ -597,6 +624,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Spending"],
       meaning: ["Gastar", "Pasar"],
     },
+    section: "Section 1",
   },
   Stay: {
     name: "Stay",
@@ -609,6 +637,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Staying"],
       meaning: ["Quedar", "Permanecer"],
     },
+    section: "Section 1",
   },
   Study: {
     name: "Study",
@@ -621,6 +650,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Studying"],
       meaning: ["Estudiar"],
     },
+    section: "Section 1",
   },
   Swim: {
     name: "Swim",
@@ -633,6 +663,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Swimming"],
       meaning: ["Nadar"],
     },
+    section: "Section 1",
   },
   Take: {
     name: "Take",
@@ -645,6 +676,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Taking"],
       meaning: ["Tomar", "Agarrar"],
     },
+    section: "Section 1",
   },
   Talk: {
     name: "Talk",
@@ -657,6 +689,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Talking"],
       meaning: ["Hablar", "Platicar"],
     },
+    section: "Section 1",
   },
   Teach: {
     name: "Teach",
@@ -669,6 +702,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Teaching"],
       meaning: ["Enseñar"],
     },
+    section: "Section 1",
   },
   Tell: {
     name: "Tell",
@@ -681,6 +715,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Telling"],
       meaning: ["Decir", "Contar", "Narrar"],
     },
+    section: "Section 1",
   },
   Think: {
     name: "Think",
@@ -693,6 +728,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Thinking"],
       meaning: ["Pensar", "Creer"],
     },
+    section: "Section 1",
   },
   Throw: {
     name: "Throw",
@@ -705,6 +741,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Throwing"],
       meaning: ["Tirar", "Lanzar"],
     },
+    section: "Section 1",
   },
   Travel: {
     name: "Travel",
@@ -717,6 +754,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Traveling"],
       meaning: ["Viajar"],
     },
+    section: "Section 1",
   },
   Try: {
     name: "Try",
@@ -729,6 +767,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Trying"],
       meaning: ["Probar", "Tratar"],
     },
+    section: "Section 1",
   },
   Understand: {
     name: "Understand",
@@ -741,6 +780,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Understanding"],
       meaning: ["Entender", "Comprender"],
     },
+    section: "Section 1",
   },
   Use: {
     name: "Use",
@@ -753,6 +793,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Using"],
       meaning: ["Usar", "Emplear"],
     },
+    section: "Section 1",
   },
   Visit: {
     name: "Visit",
@@ -765,6 +806,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Visiting"],
       meaning: ["Visitar"],
     },
+    section: "Section 1",
   },
   Wait: {
     name: "Wait",
@@ -777,6 +819,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Waiting"],
       meaning: ["Esperar"],
     },
+    section: "Section 1",
   },
   Walk: {
     name: "Walk",
@@ -789,6 +832,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Walking"],
       meaning: ["Caminar"],
     },
+    section: "Section 1",
   },
   Want: {
     name: "Want",
@@ -801,6 +845,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Wanting"],
       meaning: ["Querer", "Desear"],
     },
+    section: "Section 1",
   },
   Wash: {
     name: "Wash",
@@ -813,6 +858,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Washing"],
       meaning: ["Lavar"],
     },
+    section: "Section 1",
   },
   Watch: {
     name: "Watch",
@@ -825,6 +871,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Watching"],
       meaning: ["Mirar"],
     },
+    section: "Section 1",
   },
   Work: {
     name: "Work",
@@ -837,6 +884,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Working"],
       meaning: ["Trabajar"],
     },
+    section: "Section 1",
   },
   Write: {
     name: "Write",
@@ -849,5 +897,6 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       presentParticiple: ["Writing"],
       meaning: ["Escribir"],
     },
+    section: "Section 1",
   },
 });

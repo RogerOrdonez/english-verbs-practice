@@ -42,14 +42,38 @@ export const Config = () => {
       >
         <div
           css={[
-            tw`flex flex-wrap overflow-y-auto rounded-lg bg-white w-full h-screen md:h-full pt-2.5`,
+            tw`flex flex-wrap overflow-y-auto rounded-lg bg-white w-full h-screen md:h-full`,
           ]}
         >
-          <div css={tw`w-full p-2 md:p-8 mb-5`}>
-            <div css={tw`text-2xl lg:text-3xl`}>
-              Selected verbs to practice:
+          <div
+            css={tw`flex flex-col md:flex-row items-center content-center justify-center lg:justify-between sticky h-32 md:h-20 py-2.5 top-0 z-10 bg-white pt-2.5 border-b w-full md:px-8`}
+          >
+            <div
+              css={tw`flex flex-col items-center md:items-start mb-4 md:mb-0`}
+            >
+              <div css={tw`text-xl lg:text-2xl`}>List of verbs to practice</div>
+              {verbs?.filter((verb) => verb?.isSelected).size === 0 && (
+                <p css={tw`text-center text-red-700`}>
+                  Select at least one verb from the list.
+                </p>
+              )}
             </div>
-            <div css={tw`flex flex-col justify-between min-h-full`}>
+            <button
+              css={[
+                verbs?.filter((verb) => verb?.isSelected).size > 0 &&
+                  tw`px-12 py-1 lg:py-2 bg-gray-900 rounded-full text-gray-100 text-lg shadow-md hover:bg-gray-800 focus:outline-none`,
+                verbs?.filter((verb) => verb?.isSelected).size === 0 &&
+                  tw`px-12 py-1 lg:py-2 bg-gray-50 rounded-full text-gray-500 text-lg shadow-md hover:cursor-not-allowed focus:outline-none`,
+              ]}
+              type="button"
+              disabled={verbs?.filter((verb) => verb?.isSelected).size === 0}
+              onClick={() => history.push("/play")}
+            >
+              Play Pratice
+            </button>
+          </div>
+          <div css={tw`w-full p-2 md:px-8 mb-5`}>
+            <div css={tw`flex flex-col justify-between mb-12 md:mb-0`}>
               <CheckboxGroup>
                 <div css={tw`flex flex-col`}>
                   {verbsBySection?.keySeq().map((section) => {
@@ -98,30 +122,6 @@ export const Config = () => {
                   })}
                 </div>
               </CheckboxGroup>
-              <div
-                css={tw`flex flex-col md:flex-row items-center content-center justify-center lg:justify-start mb-10 md:mb-0`}
-              >
-                <button
-                  css={[
-                    verbs?.filter((verb) => verb?.isSelected).size > 0 &&
-                      tw`px-12 py-3 mb-5 lg:py-2 bg-gray-900 rounded-full text-gray-100 text-lg shadow-md hover:bg-gray-800 focus:outline-none`,
-                    verbs?.filter((verb) => verb?.isSelected).size === 0 &&
-                      tw`px-12 py-3 mb-5 lg:py-2 bg-gray-50 rounded-full text-gray-500 text-lg shadow-md hover:cursor-not-allowed focus:outline-none`,
-                  ]}
-                  type="button"
-                  disabled={
-                    verbs?.filter((verb) => verb?.isSelected).size === 0
-                  }
-                  onClick={() => history.push("/play")}
-                >
-                  Play pratice
-                </button>
-                {verbs?.filter((verb) => verb?.isSelected).size === 0 && (
-                  <p css={tw`ml-0 md:ml-2 text-center mb-4 text-red-700`}>
-                    Select at least one verb from the list.
-                  </p>
-                )}
-              </div>
             </div>
           </div>
         </div>
