@@ -16,6 +16,8 @@ export const checkVerbTense = (
   const inputValue = formTenseValue
     .toLowerCase()
     .split(",")
+    .join("")
+    .split(" ")
     .map((verbTense) => verbTense.trim());
   const correctValue = currentTenseValue.map((verbTense) =>
     verbTense.trim().toLowerCase()
@@ -107,6 +109,7 @@ export const checkVerb = (
           meaning: "",
         });
         currentVerbDispatch({ type: CurrentVerbAction.MarkVerbUnchecked });
+        document.getElementById("present")?.focus();
       } else {
         controlStateDispatch({ type: ControlStateAction.ResetCounter });
         currentVerbDispatch({ type: CurrentVerbAction.MarkVerbUnchecked });
@@ -118,6 +121,7 @@ export const checkVerb = (
           presentParticiple: "",
           meaning: "",
         });
+        document.getElementById("present")?.focus();
       }
     }
     if (isCurrentVerbCorrect && !isVerbChecked) {

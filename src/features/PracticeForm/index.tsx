@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { FC, useContext, useEffect, useState } from "react";
+import { FC, useContext, useEffect, useState, useRef } from "react";
 import tw, { theme as twTheme } from "twin.macro";
 import { useMediaQuery } from "@material-ui/core";
 import { checkVerb } from "../../services/checkService";
@@ -24,6 +24,7 @@ export const PracticeForm: FC = () => {
     presentParticiple: "",
     meaning: "",
   });
+  const inputRef = useRef<HTMLInputElement>(null);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPracticeForm({
       ...practiceForm,
@@ -32,6 +33,7 @@ export const PracticeForm: FC = () => {
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+    inputRef.current?.focus();
     checkVerb(
       practiceForm,
       setPracticeForm,
@@ -107,7 +109,13 @@ export const PracticeForm: FC = () => {
         totalVerbsCount={controlState.verbsLength}
         isVerbChecked={currentVerb.isVerbChecked}
       />
-      <form onSubmit={(e) => handleSubmit(e)}>
+      <form
+        onSubmit={(e) => handleSubmit(e)}
+        autoComplete="off"
+        autoCorrect="off"
+        spellCheck="false"
+        autoCapitalize="off"
+      >
         <PracticeFormField
           id="present"
           label="Present Tense:"
@@ -117,6 +125,7 @@ export const PracticeForm: FC = () => {
           isTenseCorrect={currentVerb.isPresentCorrect}
           handleInputChange={handleInputChange}
           isShowingAnswer={currentVerb.isShowingAnswer}
+          //ref={inputRef}
         />
         <PracticeFormField
           id="past"
