@@ -38,6 +38,7 @@ export type ControlStateType = {
   successCounter: number;
   errorCounter: number;
   skippedCounter: number;
+  cycles: number;
 };
 
 export type CurrentVerbPayload = {
@@ -76,6 +77,8 @@ export type ControlStatePayload = {
   [ControlStateAction.ResetError]: undefined;
   [ControlStateAction.IncrementSkipped]: undefined;
   [ControlStateAction.ResetSkipped]: undefined;
+  [ControlStateAction.IncrementCycles]: undefined;
+  [ControlStateAction.ResetCycles]: undefined;
 };
 
 export type SelectedVerbsPayload = {

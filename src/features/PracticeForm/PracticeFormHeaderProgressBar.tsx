@@ -7,6 +7,7 @@ type Props = {
   counter: number;
   totalVerbsCount: number;
   isVerbChecked: boolean;
+  cycles: number;
 };
 
 export const PracticeFormHeaderProgressBar: FC<Props> = ({
@@ -14,6 +15,7 @@ export const PracticeFormHeaderProgressBar: FC<Props> = ({
   counter,
   totalVerbsCount,
   isVerbChecked,
+  cycles,
 }) => {
   return (
     <div css={tw`pt-1`}>
@@ -39,8 +41,13 @@ export const PracticeFormHeaderProgressBar: FC<Props> = ({
           ]}
         ></div>
       </div>
-      <div css={tw`text-xs text-gray-400 text-right uppercase`}>
-        {counter + 1}/{totalVerbsCount} Verbs
+      <div css={tw`flex justify-between`}>
+        <div css={tw`text-xs text-gray-400 text-right uppercase`}>
+          Cycles: {cycles}
+        </div>
+        <div css={tw`text-xs text-gray-400 text-right uppercase`}>
+          {counter + 1}/{totalVerbsCount} Verbs
+        </div>
       </div>
     </div>
   );

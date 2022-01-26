@@ -123,6 +123,7 @@ export const checkVerb = (
           }, 10);
         }
         controlStateDispatch({ type: ControlStateAction.ResetCounter });
+        controlStateDispatch({ type: ControlStateAction.IncrementCycles });
         currentVerbDispatch({ type: CurrentVerbAction.MarkVerbUnchecked });
         currentVerbDispatch({ type: CurrentVerbAction.HideAnswer });
         setPracticeForm({

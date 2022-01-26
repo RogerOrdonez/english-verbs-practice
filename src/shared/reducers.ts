@@ -95,6 +95,10 @@ export const controlStateReducer = (
       return { ...state, skippedCounter: state.skippedCounter + 1 };
     case ControlStateAction.ResetSkipped:
       return { ...state, skippedCounter: 0 };
+    case ControlStateAction.IncrementCycles:
+      return { ...state, cycles: state.cycles + 1 };
+    case ControlStateAction.ResetCycles:
+      return { ...state, cycles: 0 };
     default:
       throw new Error(errorMessage);
   }

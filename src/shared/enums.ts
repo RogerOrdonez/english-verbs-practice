@@ -30,6 +30,8 @@ export enum ControlStateAction {
   ResetSkipped = "RESET_SKIPPED",
   ResetCounter = "RESET_COUNTER",
   SetVerbsLenght = "SET_VERBS_LENGTH",
+  IncrementCycles = "INCREMENT_CYCLES",
+  ResetCycles = "RESET_CYCLES",
 }
 
 export enum SelectedVerbsAction {

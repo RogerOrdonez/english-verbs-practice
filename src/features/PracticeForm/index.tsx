@@ -16,7 +16,7 @@ export const PracticeForm: FC = () => {
   const { state: currentVerb, dispatch: currentVerbDispatch } =
     useContext(CurrentVerbContext);
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
-  const progressBarWidth = isDesktop ? 13 : 18;
+  const progressBarWidth = isDesktop ? 15 : 18;
   const [practiceForm, setPracticeForm] = useState<FormType>({
     present: "",
     past: "",
@@ -87,6 +87,7 @@ export const PracticeForm: FC = () => {
         });
         currentVerbDispatch({ type: CurrentVerbAction.MarkVerbUnchecked });
       } else {
+        controlStateDispatch({ type: ControlStateAction.IncrementCycles });
         controlStateDispatch({ type: ControlStateAction.ResetCounter });
         currentVerbDispatch({ type: CurrentVerbAction.MarkVerbUnchecked });
         currentVerbDispatch({ type: CurrentVerbAction.HideAnswer });
@@ -111,6 +112,7 @@ export const PracticeForm: FC = () => {
         counter={controlState.counter}
         totalVerbsCount={controlState.verbsLength}
         isVerbChecked={currentVerb.isVerbChecked}
+        cycles={controlState.cycles}
       />
       <form
         onSubmit={(e) => handleSubmit(e)}

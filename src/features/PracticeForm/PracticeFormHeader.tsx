@@ -9,6 +9,7 @@ type Props = {
   counter: number;
   totalVerbsCount: number;
   isVerbChecked: boolean;
+  cycles: number;
 };
 
 export const PracticeFormHeader: FC<Props> = ({
@@ -16,6 +17,7 @@ export const PracticeFormHeader: FC<Props> = ({
   counter,
   totalVerbsCount,
   isVerbChecked,
+  cycles,
 }) => {
   return (
     <div
@@ -27,6 +29,7 @@ export const PracticeFormHeader: FC<Props> = ({
         counter={counter}
         totalVerbsCount={totalVerbsCount}
         isVerbChecked={isVerbChecked}
+        cycles={cycles}
       />
     </div>
   );

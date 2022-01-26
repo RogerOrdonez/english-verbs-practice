@@ -51,6 +51,7 @@ const initialControlState: ControlStateType = {
   successCounter: 0,
   errorCounter: 0,
   skippedCounter: 0,
+  cycles: 0,
 };
 
 const initialVerbs: OrderedMap<string, VerbType | undefined> = getVerbs();

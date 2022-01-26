@@ -54,21 +54,31 @@ export const InfoSection: FC = () => {
           <div css={tw`flex mb-0 lg:mb-2 self-end`}>
             <div css={tw`text-gray-200`}>
               <span
-                css={tw`pt-0.5 pb-0.5 text-sm lg:text-xs px-2 mr-1 bg-green-200 text-gray-800 rounded-full`}
+                css={tw`pt-1 pb-0.5 text-xs px-1.5 mr-1 bg-gray-200 text-gray-800 rounded-full`}
+              >
+                Total:{" "}
+                {controlState.successCounter +
+                  controlState.errorCounter +
+                  controlState.skippedCounter}
+              </span>
+            </div>
+            <div css={tw`text-gray-200`}>
+              <span
+                css={tw`pt-1 pb-0.5 text-xs px-1.5 mr-1 bg-green-200 text-gray-800 rounded-full`}
               >
                 Success: {controlState.successCounter}
               </span>
             </div>
             <div css={tw`text-gray-200`}>
               <span
-                css={tw`pt-0.5 pb-0.5 text-sm lg:text-xs px-2 mr-1 bg-red-200 text-gray-800 rounded-full`}
+                css={tw`pt-1 pb-0.5 text-xs px-1.5 mr-1 bg-red-200 text-gray-800 rounded-full`}
               >
                 Error: {controlState.errorCounter}
               </span>
             </div>
             <div css={tw`text-gray-200`}>
               <span
-                css={tw`pt-0.5 pb-0.5 text-sm lg:text-xs px-2 mr-1 bg-yellow-200 text-gray-800 rounded-full`}
+                css={tw`pt-1 pb-0.5 text-xs px-1.5 mr-1 bg-yellow-200 text-gray-800 rounded-full`}
               >
                 Skipped: {controlState.skippedCounter}
               </span>
@@ -80,9 +90,9 @@ export const InfoSection: FC = () => {
             verb
           </div>
         </div>
-        <div css={tw`flex justify-between items-center w-full`}>
+        <div css={tw`flex justify-between items-center w-full lg:mt-4`}>
           <div
-            css={tw`text-white text-center text-3xl lg:text-5xl lg:font-bold mt-1 lg:mt-0`}
+            css={tw`text-white text-center text-3xl lg:text-5xl lg:font-bold mt-1 lg:mt-0 lg:flex lg:w-3/5 justify-end `}
           >
             {currentVerb.verbTense?.tenses.infinitive}
           </div>
@@ -95,7 +105,7 @@ export const InfoSection: FC = () => {
                 type="button"
                 onClick={skipVerb}
               >
-                Skip verb
+                Skip verb (F1)
               </button>
             </div>
           </div>
@@ -136,7 +146,8 @@ export const InfoSection: FC = () => {
               `Show Answer`}
             {!currentVerb.isVerbCorrect &&
               currentVerb.isShowingAnswer &&
-              `Hide Answer`}
+              `Hide Answer`}{" "}
+            (F2)
           </button>
         </div>
       </div>
