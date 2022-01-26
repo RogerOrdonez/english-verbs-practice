@@ -105,7 +105,7 @@ export const PracticeForm: FC = () => {
     firstInputRef.current?.focus();
   }, []);
   return (
-    <div css={tw`px-4 pt-1 lg:pt-4 w-full lg:w-2/3`}>
+    <div css={tw`px-4 pt-1 lg:pt-4 w-full`}>
       <PracticeFormHeader
         progressBarWidth={progressBarWidth}
         counter={controlState.counter}

@@ -23,13 +23,15 @@ export const InfoSection: FC = () => {
   return (
     <div
       css={[
-        tw`flex flex-col justify-around px-4 md:p-4 bg-gray-900 w-full lg:w-1/3`,
+        tw`flex flex-col justify-around px-4 py-1 md:py-0 md:px-4 bg-gray-900 w-full`,
         isDesktop && { minHeight: "10rem" },
       ]}
     >
-      <div css={tw`flex flex-col lg:items-center`}>
-        <div css={tw`flex items-center justify-center mb-2 lg:flex-col`}>
-          <div css={tw`flex mb-0 lg:mb-8`}>
+      <div css={tw`flex flex-col lg:items-start`}>
+        <div
+          css={tw`flex items-start justify-center  lg:justify-between mb-2 lg:flex-row-reverse w-full`}
+        >
+          <div css={tw`flex mb-0 lg:mb-2 self-end`}>
             <div css={tw`text-gray-200`}>
               <span
                 css={tw`pt-0.5 pb-0.5 text-sm lg:text-xs px-2 mr-1 bg-green-200 text-gray-800 rounded-full`}
@@ -58,33 +60,35 @@ export const InfoSection: FC = () => {
             verb
           </div>
         </div>
-        <div
-          css={tw`flex justify-between items-center lg:justify-center lg:flex-col`}
-        >
+        <div css={tw`flex justify-between items-center w-full`}>
           <div
-            css={tw`text-white text-center text-2xl lg:text-4xl mt-2 lg:mt-4`}
+            css={tw`text-white text-center text-3xl lg:text-5xl lg:font-bold mt-1 lg:mt-0`}
           >
             {currentVerb.verbTense?.tenses.infinitive}
           </div>
-          <div css={tw`lg:pt-5`}>
-            <button
-              css={[
-                tw`px-7 py-1 w-36 lg:w-auto lg:px-16 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-base lg:text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
-              ]}
-              type="button"
-              onClick={skipVerb}
-            >
-              Skip verb
-            </button>
+          <div css={tw`flex flex-col md:flex-row`}>
+            <div>
+              <button
+                css={[
+                  tw`text-gray-400 text-lg mt-2 lg:mt-0 lg:hover:underline focus:outline-none`,
+                ]}
+                type="button"
+                onClick={skipVerb}
+              >
+                Skip verb
+              </button>
+            </div>
           </div>
         </div>
       </div>
       <div
-        css={tw`flex flex-wrap lg:flex-col-reverse justify-between items-end lg:items-center`}
+        css={tw`flex flex-wrap lg:flex-row justify-between items-end lg:items-center`}
       >
         <Link to="/">
           <div>
-            <div css={tw`text-gray-400 text-base lg:text-lg mt-2 lg:mt-0`}>
+            <div
+              css={tw`text-gray-400 text-lg mt-2 lg:mt-0 lg:hover:underline`}
+            >
               View all verbs{" "}
               <svg
                 css={tw`inline w-2 h-2 fill-current`}
@@ -97,25 +101,23 @@ export const InfoSection: FC = () => {
           </div>
         </Link>
         <div>
-          <div>
-            <button
-              css={[
-                currentVerb.isVerbChecked &&
-                  tw`px-4 py-1 w-36 lg:w-auto lg:px-12 lg:py-2 lg:mb-8  bg-gray-100 text-gray-900 text-base lg:text-lg rounded-full shadow-md hover:bg-gray-300 focus:outline-none`,
-                !currentVerb.isVerbChecked && tw`hidden`,
-                currentVerb.isVerbCorrect && tw`hidden`,
-              ]}
-              type="button"
-              onClick={showAnswer}
-            >
-              {!currentVerb.isVerbCorrect &&
-                !currentVerb.isShowingAnswer &&
-                `Show Answer`}
-              {!currentVerb.isVerbCorrect &&
-                currentVerb.isShowingAnswer &&
-                `Hide Answer`}
-            </button>
-          </div>
+          <button
+            css={[
+              currentVerb.isVerbChecked &&
+                tw`text-gray-400 text-lg lg:text-lg mt-2 lg:mt-0 lg:hover:underline focus:outline-none`,
+              !currentVerb.isVerbChecked && tw`hidden`,
+              currentVerb.isVerbCorrect && tw`hidden`,
+            ]}
+            type="button"
+            onClick={showAnswer}
+          >
+            {!currentVerb.isVerbCorrect &&
+              !currentVerb.isShowingAnswer &&
+              `Show Answer`}
+            {!currentVerb.isVerbCorrect &&
+              currentVerb.isShowingAnswer &&
+              `Hide Answer`}
+          </button>
         </div>
       </div>
     </div>

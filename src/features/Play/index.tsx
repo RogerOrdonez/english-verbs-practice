@@ -48,7 +48,7 @@ export const Play = () => {
       <div css={tw`flex justify-center items-center h-screen bg-gray-600`}>
         <div
           className="animate__animated animate__fadeIn"
-          css={tw`flex flex-wrap rounded-lg h-screen md:h-auto bg-white shadow-md overflow-hidden w-full md:mx-8 lg:w-4/5 xl:w-3/5`}
+          css={tw`flex flex-wrap md:flex-col rounded-lg h-screen md:h-auto bg-white shadow-md overflow-hidden w-full md:mx-8 lg:w-2/5`}
         >
           <InfoSection />
           <PracticeForm />
