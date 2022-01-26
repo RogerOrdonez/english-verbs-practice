@@ -1,10 +1,11 @@
 /** @jsxImportSource @emotion/react */
-import React, { FC, useContext } from "react";
+import React, { FC, useContext, useEffect } from "react";
 import tw, { theme as twTheme } from "twin.macro";
 import { useMediaQuery } from "@material-ui/core";
 import { ControlStateContext, CurrentVerbContext } from "../../shared/context";
 import { ControlStateAction, CurrentVerbAction } from "../../shared/enums";
 import { Link } from "react-router-dom";
+import { useKeyPress } from "../../shared/hooks";
 
 export const InfoSection: FC = () => {
   const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
@@ -20,6 +21,25 @@ export const InfoSection: FC = () => {
   const skipVerb = () => {
     controlStateDispatch({ type: ControlStateAction.IncrementSkipped });
   };
+  const skipVerbCommand: boolean = useKeyPress("F1");
+  const showAnswersCommand: boolean = useKeyPress("F2");
+  useEffect(() => {
+    if (skipVerbCommand) {
+      skipVerb();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [skipVerbCommand]);
+  useEffect(() => {
+    if (
+      showAnswersCommand &&
+      !currentVerb.isVerbCorrect &&
+      currentVerb.isVerbChecked
+    ) {
+      showAnswer();
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [showAnswersCommand]);
+
   return (
     <div
       css={[
