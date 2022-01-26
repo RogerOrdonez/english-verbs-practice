@@ -1,4 +1,4 @@
-import { Dispatch, SetStateAction } from "react";
+import { Dispatch, RefObject, SetStateAction } from "react";
 import { ControlStateAction, CurrentVerbAction } from "../shared/enums";
 import {
   ControlStateActionType,
@@ -35,7 +35,8 @@ export const checkVerb = (
   currentVerb: CurrentVerbType,
   controlState: ControlStateType,
   controlStateDispatch: Dispatch<ControlStateActionType>,
-  currentVerbDispatch: Dispatch<CurrentVerbActionType>
+  currentVerbDispatch: Dispatch<CurrentVerbActionType>,
+  firstInputRef: RefObject<HTMLInputElement>
 ) => {
   const { verbTense, isVerbCorrect, isVerbChecked } = currentVerb;
   const { counter, verbsLength } = controlState;
@@ -109,8 +110,18 @@ export const checkVerb = (
           meaning: "",
         });
         currentVerbDispatch({ type: CurrentVerbAction.MarkVerbUnchecked });
-        document.getElementById("present")?.focus();
+        firstInputRef.current?.focus();
       } else {
+        if (counter === 0) {
+          setTimeout(() => {
+            controlStateDispatch({ type: ControlStateAction.IncrementCounter });
+            setTimeout(() => {
+              controlStateDispatch({
+                type: ControlStateAction.DecrementCounter,
+              });
+            }, 10);
+          }, 10);
+        }
         controlStateDispatch({ type: ControlStateAction.ResetCounter });
         currentVerbDispatch({ type: CurrentVerbAction.MarkVerbUnchecked });
         currentVerbDispatch({ type: CurrentVerbAction.HideAnswer });
@@ -121,7 +132,7 @@ export const checkVerb = (
           presentParticiple: "",
           meaning: "",
         });
-        document.getElementById("present")?.focus();
+        firstInputRef.current?.focus();
       }
     }
     if (isCurrentVerbCorrect && !isVerbChecked) {

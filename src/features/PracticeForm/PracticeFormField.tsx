@@ -1,5 +1,5 @@
 /** @jsxImportSource @emotion/react */
-import { FC } from "react";
+import { forwardRef } from "react";
 import tw from "twin.macro";
 
 type Props = {
@@ -15,19 +15,22 @@ type Props = {
   marginBottom?: boolean;
 };
 
-export const PracticeFormField: FC<Props> = ({
-  id,
-  label,
-  additionalLabel,
-  formValue,
-  isVerbChecked,
-  isTenseCorrect,
-  isShowingAnswer,
-  handleInputChange,
-  marginTop,
-  marginBottom,
-}) => {
-  return (
+export const PracticeFormField = forwardRef<HTMLInputElement, Props>(
+  (
+    {
+      id,
+      label,
+      additionalLabel,
+      formValue,
+      isVerbChecked,
+      isTenseCorrect,
+      isShowingAnswer,
+      handleInputChange,
+      marginTop,
+      marginBottom,
+    },
+    ref
+  ) => (
     <div
       css={[
         tw`flex flex-wrap lg:flex-nowrap text-lg text-gray-900 mt-1 items-center w-full`,
@@ -71,8 +74,9 @@ export const PracticeFormField: FC<Props> = ({
               tw`border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-red-600`,
           ]}
           onChange={(e) => handleInputChange(e)}
+          ref={ref}
         />
       </div>
     </div>
-  );
-};
+  )
+);

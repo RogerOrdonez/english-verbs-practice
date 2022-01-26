@@ -24,7 +24,7 @@ export const PracticeForm: FC = () => {
     presentParticiple: "",
     meaning: "",
   });
-  const inputRef = useRef<HTMLInputElement>(null);
+  const firstInputRef = useRef<HTMLInputElement>(null);
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPracticeForm({
       ...practiceForm,
@@ -33,14 +33,14 @@ export const PracticeForm: FC = () => {
   };
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    inputRef.current?.focus();
     checkVerb(
       practiceForm,
       setPracticeForm,
       currentVerb,
       controlState,
       controlStateDispatch,
-      currentVerbDispatch
+      currentVerbDispatch,
+      firstInputRef
     );
   };
   useEffect(() => {
@@ -101,6 +101,9 @@ export const PracticeForm: FC = () => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [controlState.skippedCounter]);
+  useEffect(() => {
+    firstInputRef.current?.focus();
+  }, []);
   return (
     <div css={tw`px-4 pt-1 lg:pt-4 w-full lg:w-2/3`}>
       <PracticeFormHeader
@@ -125,7 +128,7 @@ export const PracticeForm: FC = () => {
           isTenseCorrect={currentVerb.isPresentCorrect}
           handleInputChange={handleInputChange}
           isShowingAnswer={currentVerb.isShowingAnswer}
-          //ref={inputRef}
+          ref={firstInputRef}
         />
         <PracticeFormField
           id="past"
