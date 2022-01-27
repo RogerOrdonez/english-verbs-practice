@@ -33,11 +33,11 @@ export const Config = () => {
     setVerbsOnStorage(verbs);
   }, [verbs]);
   return (
-    <div css={[tw`flex justify-center items-center h-screen bg-gray-600`]}>
+    <div css={[tw`flex justify-center items-start h-screen bg-gray-600`]}>
       <div
         className="animate__animated animate__fadeIn"
         css={[
-          tw`rounded-lg bg-white shadow-md w-full md:mx-8 lg:w-4/5 xl:w-3/5 md:h-3/5 `,
+          tw`mt-16 rounded-lg bg-white shadow-md w-full md:mx-8 lg:w-4/5 xl:w-3/5 md:h-4/5 `,
         ]}
       >
         <div

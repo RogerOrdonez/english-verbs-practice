@@ -91,13 +91,13 @@ export const InfoSection: FC = () => {
           </div>
         </div>
         <div css={tw`flex justify-between items-center w-full lg:mt-4`}>
-          <div css={tw`w-1/3 hidden md:block`} />
+          <div css={tw`w-1/5 hidden md:block`} />
           <div
-            css={tw`text-white text-center text-3xl lg:text-5xl lg:font-bold mt-1 lg:mt-0 lg:w-1/3`}
+            css={tw`text-white text-center text-3xl lg:text-5xl lg:font-bold mt-1 lg:mt-0 `}
           >
             {currentVerb.verbTense?.tenses.infinitive}
           </div>
-          <div css={tw`flex justify-end lg:w-1/3`}>
+          <div css={tw`flex justify-end lg:w-1/5`}>
             <div>
               <button
                 css={[
