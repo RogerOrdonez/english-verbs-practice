@@ -1,1 +1,1 @@
-export const checkBoxesDivider = 15;
+export const checkBoxesDivider = 5;
