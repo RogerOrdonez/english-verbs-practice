@@ -54,7 +54,7 @@ export const InfoSection: FC = () => {
           <div css={tw`flex mb-0 lg:mb-2 self-end`}>
             <div css={tw`text-gray-200`}>
               <span
-                css={tw`pt-1 pb-0.5 text-xs px-1.5 mr-1 bg-gray-200 text-gray-800 rounded-full`}
+                css={tw`pt-0.5 pb-0.5 text-xs px-1.5 mr-1 bg-gray-200 text-gray-800 rounded-full`}
               >
                 Total:{" "}
                 {controlState.successCounter +
@@ -64,21 +64,21 @@ export const InfoSection: FC = () => {
             </div>
             <div css={tw`text-gray-200`}>
               <span
-                css={tw`pt-1 pb-0.5 text-xs px-1.5 mr-1 bg-green-200 text-gray-800 rounded-full`}
+                css={tw`pt-0.5 pb-0.5 text-xs px-1.5 mr-1 bg-green-200 text-gray-800 rounded-full`}
               >
                 Success: {controlState.successCounter}
               </span>
             </div>
             <div css={tw`text-gray-200`}>
               <span
-                css={tw`pt-1 pb-0.5 text-xs px-1.5 mr-1 bg-red-200 text-gray-800 rounded-full`}
+                css={tw`pt-0.5 pb-0.5 text-xs px-1.5 mr-1 bg-red-200 text-gray-800 rounded-full`}
               >
                 Error: {controlState.errorCounter}
               </span>
             </div>
             <div css={tw`text-gray-200`}>
               <span
-                css={tw`pt-1 pb-0.5 text-xs px-1.5 mr-1 bg-yellow-200 text-gray-800 rounded-full`}
+                css={tw`pt-0.5 pb-0.5 text-xs px-1.5 mr-1 bg-yellow-200 text-gray-800 rounded-full`}
               >
                 Skipped: {controlState.skippedCounter}
               </span>

@@ -52,9 +52,15 @@ export const Config = () => {
               css={tw`flex flex-col items-center md:items-start mb-4 md:mb-0`}
             >
               <div css={tw`text-xl lg:text-2xl`}>List of verbs to practice</div>
-              {verbs?.filter((verb) => verb?.isSelected).size === 0 && (
+              {verbs?.filter((verb) => verb?.isSelected).size === 0 ? (
                 <p css={tw`text-center text-red-700`}>
                   Select at least one verb from the list.
+                </p>
+              ) : (
+                <p css={tw`text-center text-green-700`}>
+                  {`You have selected ${
+                    verbs?.filter((verb) => verb?.isSelected).size
+                  } verbs.`}
                 </p>
               )}
             </div>
