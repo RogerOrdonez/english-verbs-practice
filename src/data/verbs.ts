@@ -1151,7 +1151,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
     type: "Irregular",
     tenses: {
       infinitive: "To Drive",
-      present: ["Drive", "Dirves"],
+      present: ["Drive", "Drives"],
       past: ["Drove"],
       pastParticiple: ["Driven"],
       presentParticiple: ["Driving"],
