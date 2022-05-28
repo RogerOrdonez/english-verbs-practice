@@ -1269,9 +1269,9 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
     tenses: {
       infinitive: "To Graduate",
       present: ["Graduate", "Graduates"],
-      past: ["Gratuated"],
-      pastParticiple: ["Gratuated"],
-      presentParticiple: ["Gratuating"],
+      past: ["Graduated"],
+      pastParticiple: ["Graduated"],
+      presentParticiple: ["Graduating"],
       meaning: ["Graduar"],
     },
     section: "Section 2",
