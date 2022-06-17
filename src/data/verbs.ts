@@ -2207,7 +2207,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       present: ["Spread", "Spreads"],
       past: ["Spread"],
       pastParticiple: ["Spread"],
-      presentParticiple: ["Spreadind"],
+      presentParticiple: ["Spreading"],
       meaning: ["Esparcir", "Difundir"],
     },
     section: "Section 3",
