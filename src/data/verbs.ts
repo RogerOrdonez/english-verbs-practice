@@ -2373,7 +2373,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
     type: "Irregular",
     tenses: {
       infinitive: "To Freeze",
-      present: ["Freeze", "Frezees"],
+      present: ["Freeze", "Freezes"],
       past: ["Froze"],
       pastParticiple: ["Frozen"],
       presentParticiple: ["Freezing"],
