@@ -2532,7 +2532,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       present: ["Swear", "Swears"],
       past: ["Swore"],
       pastParticiple: ["Sworn"],
-      presentParticiple: ["Swering"],
+      presentParticiple: ["Swearing"],
       meaning: ["Jurar"],
     },
     section: "Section 4",
