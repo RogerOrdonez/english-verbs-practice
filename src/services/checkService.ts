@@ -19,13 +19,19 @@ export const checkVerbTense = (
     .join("")
     .split(" ")
     .map((verbTense) => verbTense.trim());
-  const correctValue = currentTenseValue.map((verbTense) =>
+  let correctValue = currentTenseValue.map((verbTense) =>
     verbTense.trim().toLowerCase()
   );
   let validInput = 0;
   correctValue.forEach((verbTense) => {
     if (inputValue.includes(verbTense)) validInput++;
   });
+  if (inputValue.length > 1 && correctValue.length === 1) {
+    correctValue = correctValue[0].split(" ");
+    correctValue.forEach((verbTense) => {
+      if (inputValue.includes(verbTense)) validInput++;
+    });
+  }
   return hasStrictCheck ? validInput === correctValue.length : validInput > 0;
 };
 
