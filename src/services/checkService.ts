@@ -18,7 +18,8 @@ export const checkVerbTense = (
     .split(",")
     .join("")
     .split(" ")
-    .map((verbTense) => verbTense.trim());
+    .map((verbTense) => verbTense.trim())
+    .filter((verbTense) => verbTense !== "");
   let correctValue = currentTenseValue.map((verbTense) =>
     verbTense.trim().toLowerCase()
   );
