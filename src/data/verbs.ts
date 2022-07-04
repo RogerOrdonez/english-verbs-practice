@@ -2919,7 +2919,7 @@ export const verbs: OrderedMap<string, VerbType> = OrderedMap({
       past: ["Lent"],
       pastParticiple: ["Lent"],
       presentParticiple: ["Lending"],
-      meaning: ["Prestar dinero"],
+      meaning: ["Prestar"],
     },
     section: "Section 5",
   },
