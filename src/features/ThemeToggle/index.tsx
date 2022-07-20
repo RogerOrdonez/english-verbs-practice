@@ -11,7 +11,6 @@ export const ThemeToggle: FC = () => {
       css={[
         tw`absolute right-0 mt-2 mr-2 sm:mt-4 sm:mr-4 p-2 z-50`,
         tw`outline-none transition-all rounded-md`,
-        tw`bg-gray-200 dark:bg-gray-600 lg:bg-transparent dark:lg:bg-transparent`,
       ]}
       onClick={() => setTheme(theme === 'dark' ? 'light' : 'dark')}
     >
