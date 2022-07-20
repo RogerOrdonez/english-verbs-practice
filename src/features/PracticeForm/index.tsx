@@ -1,38 +1,37 @@
-/** @jsxImportSource @emotion/react */
-import { FC, useContext, useEffect, useState, useRef } from "react";
-import tw, { theme as twTheme } from "twin.macro";
-import { useMediaQuery } from "@material-ui/core";
-import { checkVerb } from "../../services/checkService";
-import { FormType } from "../../shared/types";
-import { PracticeFormField } from "./PracticeFormField";
-import { PracticeFormFooter } from "./PracticeFormFooter";
-import { PracticeFormHeader } from "./PracticeFormHeader";
-import { CurrentVerbContext, ControlStateContext } from "../../shared/context";
-import { ControlStateAction, CurrentVerbAction } from "../../shared/enums";
+import { FC, useContext, useEffect, useState, useRef } from 'react'
+import tw, { theme as twTheme } from 'twin.macro'
+import { useMediaQuery } from '@material-ui/core'
+import { checkVerb } from '../../services/checkService'
+import { FormType } from '../../shared/types'
+import { PracticeFormField } from './PracticeFormField'
+import { PracticeFormFooter } from './PracticeFormFooter'
+import { PracticeFormHeader } from './PracticeFormHeader'
+import { CurrentVerbContext, ControlStateContext } from '../../shared/context'
+import { ControlStateAction, CurrentVerbAction } from '../../shared/enums'
 
 export const PracticeForm: FC = () => {
   const { state: controlState, dispatch: controlStateDispatch } =
-    useContext(ControlStateContext);
+    useContext(ControlStateContext)
   const { state: currentVerb, dispatch: currentVerbDispatch } =
-    useContext(CurrentVerbContext);
-  const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
-  const progressBarWidth = isDesktop ? 15 : 18;
+    useContext(CurrentVerbContext)
+  const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`)
+  const progressBarWidth = isDesktop ? 15 : 18
   const [practiceForm, setPracticeForm] = useState<FormType>({
-    present: "",
-    past: "",
-    pastParticiple: "",
-    presentParticiple: "",
-    meaning: "",
-  });
-  const firstInputRef = useRef<HTMLInputElement>(null);
+    present: '',
+    past: '',
+    pastParticiple: '',
+    presentParticiple: '',
+    meaning: '',
+  })
+  const firstInputRef = useRef<HTMLInputElement>(null)
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPracticeForm({
       ...practiceForm,
       [e.target.name]: e.target.value,
-    });
-  };
+    })
+  }
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+    e.preventDefault()
     checkVerb(
       practiceForm,
       setPracticeForm,
@@ -40,71 +39,71 @@ export const PracticeForm: FC = () => {
       controlState,
       controlStateDispatch,
       currentVerbDispatch,
-      firstInputRef
-    );
-  };
+      firstInputRef,
+    )
+  }
   useEffect(() => {
     if (currentVerb.isVerbChecked) {
       if (currentVerb.isShowingAnswer) {
         currentVerbDispatch({
           type: CurrentVerbAction.SetUserInput,
           payload: { userInputVerb: practiceForm },
-        });
+        })
         setPracticeForm({
           present: !currentVerb.isPresentCorrect
-            ? currentVerb.verbTense?.tenses.present.join(", ") || ""
+            ? currentVerb.verbTense?.tenses.present.join(', ') || ''
             : practiceForm.present,
           past: !currentVerb.isPastCorrect
-            ? currentVerb.verbTense?.tenses.past.join(", ") || ""
+            ? currentVerb.verbTense?.tenses.past.join(', ') || ''
             : practiceForm.past,
           pastParticiple: !currentVerb.isPastParticipleCorrect
-            ? currentVerb.verbTense?.tenses.pastParticiple.join(", ") || ""
+            ? currentVerb.verbTense?.tenses.pastParticiple.join(', ') || ''
             : practiceForm.pastParticiple,
           presentParticiple: !currentVerb.isPresentParticipleCorrect
-            ? currentVerb.verbTense?.tenses.presentParticiple.join(", ") || ""
+            ? currentVerb.verbTense?.tenses.presentParticiple.join(', ') || ''
             : practiceForm.presentParticiple,
           meaning: !currentVerb.isMeaningCorrect
-            ? currentVerb.verbTense?.tenses.meaning.join(", ") || ""
+            ? currentVerb.verbTense?.tenses.meaning.join(', ') || ''
             : practiceForm.meaning,
-        });
+        })
       } else {
-        setPracticeForm(currentVerb.userInputVerb);
+        setPracticeForm(currentVerb.userInputVerb)
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [currentVerb.isShowingAnswer]);
+  }, [currentVerb.isShowingAnswer])
   useEffect(() => {
     if (controlState.skippedCounter > 0) {
       if (controlState.counter < controlState.verbsLength - 1) {
-        controlStateDispatch({ type: ControlStateAction.IncrementCounter });
-        currentVerbDispatch({ type: CurrentVerbAction.HideAnswer });
+        controlStateDispatch({ type: ControlStateAction.IncrementCounter })
+        currentVerbDispatch({ type: CurrentVerbAction.HideAnswer })
         setPracticeForm({
-          present: "",
-          past: "",
-          pastParticiple: "",
-          presentParticiple: "",
-          meaning: "",
-        });
-        currentVerbDispatch({ type: CurrentVerbAction.MarkVerbUnchecked });
+          present: '',
+          past: '',
+          pastParticiple: '',
+          presentParticiple: '',
+          meaning: '',
+        })
+        currentVerbDispatch({ type: CurrentVerbAction.MarkVerbUnchecked })
       } else {
-        controlStateDispatch({ type: ControlStateAction.IncrementCycles });
-        controlStateDispatch({ type: ControlStateAction.ResetCounter });
-        currentVerbDispatch({ type: CurrentVerbAction.MarkVerbUnchecked });
-        currentVerbDispatch({ type: CurrentVerbAction.HideAnswer });
+        controlStateDispatch({ type: ControlStateAction.IncrementCycles })
+        controlStateDispatch({ type: ControlStateAction.ResetCounter })
+        currentVerbDispatch({ type: CurrentVerbAction.MarkVerbUnchecked })
+        currentVerbDispatch({ type: CurrentVerbAction.HideAnswer })
         setPracticeForm({
-          present: "",
-          past: "",
-          pastParticiple: "",
-          presentParticiple: "",
-          meaning: "",
-        });
+          present: '',
+          past: '',
+          pastParticiple: '',
+          presentParticiple: '',
+          meaning: '',
+        })
       }
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [controlState.skippedCounter]);
+  }, [controlState.skippedCounter])
   useEffect(() => {
-    firstInputRef.current?.focus();
-  }, []);
+    firstInputRef.current?.focus()
+  }, [])
   return (
     <div css={tw`px-4 pt-1 lg:pt-4 w-full`}>
       <PracticeFormHeader
@@ -115,7 +114,7 @@ export const PracticeForm: FC = () => {
         cycles={controlState.cycles}
       />
       <form
-        onSubmit={(e) => handleSubmit(e)}
+        onSubmit={e => handleSubmit(e)}
         autoComplete="off"
         autoCorrect="off"
         spellCheck="false"
@@ -181,5 +180,5 @@ export const PracticeForm: FC = () => {
         />
       </form>
     </div>
-  );
-};
+  )
+}

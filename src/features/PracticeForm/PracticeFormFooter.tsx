@@ -1,16 +1,15 @@
-/** @jsxImportSource @emotion/react */
-import { FC } from "react";
-import tw from "twin.macro";
-import { PracticeFormMessage } from "./PracticeFormMessage";
-import { PracticeFormButton } from "./PracticeFormButton";
+import { FC } from 'react'
+import tw from 'twin.macro'
+import { PracticeFormMessage } from './PracticeFormMessage'
+import { PracticeFormButton } from './PracticeFormButton'
 
 type Props = {
-  isVerbChecked: boolean;
-  isVerbCorrect: boolean;
-  counter: number;
-  verbsLength: number;
-  isShowingAnswer: boolean;
-};
+  isVerbChecked: boolean
+  isVerbCorrect: boolean
+  counter: number
+  verbsLength: number
+  isShowingAnswer: boolean
+}
 
 export const PracticeFormFooter: FC<Props> = ({
   isVerbChecked,
@@ -33,5 +32,5 @@ export const PracticeFormFooter: FC<Props> = ({
         isShowingAnswer={isShowingAnswer}
       />
     </div>
-  );
-};
+  )
+}

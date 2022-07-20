@@ -1,14 +1,13 @@
-/** @jsxImportSource @emotion/react */
-import { FC } from "react";
-import tw from "twin.macro";
+import { FC } from 'react'
+import tw from 'twin.macro'
 
 type Props = {
-  progressBarWidth: number;
-  counter: number;
-  totalVerbsCount: number;
-  isVerbChecked: boolean;
-  cycles: number;
-};
+  progressBarWidth: number
+  counter: number
+  totalVerbsCount: number
+  isVerbChecked: boolean
+  cycles: number
+}
 
 export const PracticeFormHeaderProgressBar: FC<Props> = ({
   progressBarWidth,
@@ -21,14 +20,14 @@ export const PracticeFormHeaderProgressBar: FC<Props> = ({
     <div css={tw`pt-1`}>
       <div
         css={[
-          tw`bg-gray-200 rounded-full h-2 overflow-hidden`,
+          tw`bg-gray-200  rounded-full h-2 overflow-hidden`,
           { width: `${progressBarWidth}rem` },
         ]}
       >
         <div
           css={[
             counter > 0 && tw`transition-all duration-1000 ease-in-out`,
-            tw`h-2 bg-gray-900`,
+            tw`h-2 bg-gray-900 dark:bg-gray-400`,
             {
               width: `${
                 ((counter * 100) / totalVerbsCount / 100) * progressBarWidth
@@ -50,5 +49,5 @@ export const PracticeFormHeaderProgressBar: FC<Props> = ({
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

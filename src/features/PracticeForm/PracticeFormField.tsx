@@ -1,19 +1,18 @@
-/** @jsxImportSource @emotion/react */
-import { forwardRef } from "react";
-import tw from "twin.macro";
+import { forwardRef } from 'react'
+import tw from 'twin.macro'
 
 type Props = {
-  id: string;
-  label: string;
-  additionalLabel?: string;
-  formValue: string;
-  isVerbChecked: boolean;
-  isTenseCorrect: boolean;
-  isShowingAnswer: boolean;
-  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  marginTop?: boolean;
-  marginBottom?: boolean;
-};
+  id: string
+  label: string
+  additionalLabel?: string
+  formValue: string
+  isVerbChecked: boolean
+  isTenseCorrect: boolean
+  isShowingAnswer: boolean
+  handleInputChange: (e: React.ChangeEvent<HTMLInputElement>) => void
+  marginTop?: boolean
+  marginBottom?: boolean
+}
 
 export const PracticeFormField = forwardRef<HTMLInputElement, Props>(
   (
@@ -29,11 +28,11 @@ export const PracticeFormField = forwardRef<HTMLInputElement, Props>(
       marginTop,
       marginBottom,
     },
-    ref
+    ref,
   ) => (
     <div
       css={[
-        tw`flex flex-wrap lg:flex-nowrap text-lg text-gray-900 mt-1 items-center w-full`,
+        tw`flex flex-wrap lg:flex-nowrap text-lg text-gray-900 dark:text-gray-100 mt-1 items-center w-full`,
         additionalLabel && tw`lg:mb-0`,
         !additionalLabel && tw`lg:mb-5`,
         marginTop && tw`mt-0 lg:mt-7`,
@@ -41,7 +40,7 @@ export const PracticeFormField = forwardRef<HTMLInputElement, Props>(
       ]}
     >
       <div
-        css={tw`flex flex-row flex-wrap lg:items-end lg:flex-col w-full lg:w-1/2 text-gray-700 lg:mr-4 font-bold py-1 text-sm lg:text-lg`}
+        css={tw`flex flex-row flex-wrap lg:items-end lg:flex-col w-full lg:w-1/2 text-gray-700 dark:text-gray-100 lg:mr-4 font-bold py-1 text-sm lg:text-lg`}
       >
         <div>
           <label htmlFor={id}> {label}</label>
@@ -64,19 +63,19 @@ export const PracticeFormField = forwardRef<HTMLInputElement, Props>(
           spellCheck="false"
           autoCapitalize="off"
           css={[
-            tw`w-full p-1 lg:p-2 shadow border rounded text-gray-900 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600`,
+            tw`w-full p-1 lg:p-2 shadow dark:shadow-none border rounded dark:border-gray-500 dark:bg-gray-800 text-gray-900 dark:text-gray-100 leading-tight focus:outline-none focus:ring-2 focus:ring-gray-600 dark:focus:ring-gray-100`,
             isVerbChecked &&
               isTenseCorrect &&
-              tw`border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-gray-600`,
+              tw`border rounded text-gray-900 dark:text-gray-100 leading-tight focus:outline-none ring-2 ring-gray-600 dark:ring-gray-100 dark:border-none`,
             isVerbChecked &&
               !isTenseCorrect &&
               !isShowingAnswer &&
-              tw`border rounded text-gray-900 leading-tight focus:outline-none ring-2 ring-red-600`,
+              tw`border rounded text-gray-900 dark:text-gray-100 leading-tight focus:outline-none ring-2 ring-red-600 dark:ring-red-400 dark:border-none`,
           ]}
-          onChange={(e) => handleInputChange(e)}
+          onChange={e => handleInputChange(e)}
           ref={ref}
         />
       </div>
     </div>
-  )
-);
+  ),
+)

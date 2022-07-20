@@ -1,50 +1,49 @@
-/** @jsxImportSource @emotion/react */
-import React, { FC, useContext, useEffect } from "react";
-import tw, { theme as twTheme } from "twin.macro";
-import { useMediaQuery } from "@material-ui/core";
-import { ControlStateContext, CurrentVerbContext } from "../../shared/context";
-import { ControlStateAction, CurrentVerbAction } from "../../shared/enums";
-import { Link } from "react-router-dom";
-import { useKeyPress } from "../../shared/hooks";
+import React, { FC, useContext, useEffect } from 'react'
+import tw, { theme as twTheme } from 'twin.macro'
+import { useMediaQuery } from '@material-ui/core'
+import { ControlStateContext, CurrentVerbContext } from '../../shared/context'
+import { ControlStateAction, CurrentVerbAction } from '../../shared/enums'
+import { Link } from 'react-router-dom'
+import { useKeyPress } from '../../shared/hooks'
 
 export const InfoSection: FC = () => {
-  const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`);
+  const isDesktop = useMediaQuery(`(min-width: ${twTheme`screens.lg`})`)
   const { state: currentVerb, dispatch: currentVerbDispatch } =
-    useContext(CurrentVerbContext);
+    useContext(CurrentVerbContext)
   const { state: controlState, dispatch: controlStateDispatch } =
-    useContext(ControlStateContext);
+    useContext(ControlStateContext)
   const showAnswer = () => {
     currentVerb.isShowingAnswer
       ? currentVerbDispatch({ type: CurrentVerbAction.HideAnswer })
-      : currentVerbDispatch({ type: CurrentVerbAction.ShowAnswer });
-  };
+      : currentVerbDispatch({ type: CurrentVerbAction.ShowAnswer })
+  }
   const skipVerb = () => {
-    controlStateDispatch({ type: ControlStateAction.IncrementSkipped });
-  };
-  const skipVerbCommand: boolean = useKeyPress("F1");
-  const showAnswersCommand: boolean = useKeyPress("F2");
+    controlStateDispatch({ type: ControlStateAction.IncrementSkipped })
+  }
+  const skipVerbCommand: boolean = useKeyPress('F1')
+  const showAnswersCommand: boolean = useKeyPress('F2')
   useEffect(() => {
     if (skipVerbCommand) {
-      skipVerb();
+      skipVerb()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [skipVerbCommand]);
+  }, [skipVerbCommand])
   useEffect(() => {
     if (
       showAnswersCommand &&
       !currentVerb.isVerbCorrect &&
       currentVerb.isVerbChecked
     ) {
-      showAnswer();
+      showAnswer()
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [showAnswersCommand]);
+  }, [showAnswersCommand])
 
   return (
     <div
       css={[
-        tw`flex flex-col justify-around px-4 py-1 md:py-0 md:px-4 bg-gray-900 w-full`,
-        isDesktop && { minHeight: "10rem" },
+        tw`flex flex-col justify-around px-4 py-0 md:px-4 bg-gray-900 w-full`,
+        isDesktop && { minHeight: '10rem' },
       ]}
     >
       <div css={tw`flex flex-col lg:items-start`}>
@@ -56,7 +55,7 @@ export const InfoSection: FC = () => {
               <span
                 css={tw`pt-0.5 pb-0.5 text-xs px-1.5 mr-1 bg-gray-200 text-gray-800 rounded-full`}
               >
-                Total:{" "}
+                Total:{' '}
                 {controlState.successCounter +
                   controlState.errorCounter +
                   controlState.skippedCounter}
@@ -120,7 +119,7 @@ export const InfoSection: FC = () => {
             <div
               css={tw`text-gray-400 text-lg mt-2 lg:mt-0 lg:hover:underline`}
             >
-              View all verbs{" "}
+              View all verbs{' '}
               <svg
                 css={tw`inline w-2 h-2 fill-current`}
                 xmlns="http://www.w3.org/2000/svg"
@@ -147,11 +146,11 @@ export const InfoSection: FC = () => {
               `Show Answer`}
             {!currentVerb.isVerbCorrect &&
               currentVerb.isShowingAnswer &&
-              `Hide Answer`}{" "}
+              `Hide Answer`}{' '}
             (F2)
           </button>
         </div>
       </div>
     </div>
-  );
-};
+  )
+}

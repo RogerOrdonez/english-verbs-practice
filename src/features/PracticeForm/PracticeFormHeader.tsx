@@ -1,16 +1,15 @@
-/** @jsxImportSource @emotion/react */
-import { FC } from "react";
-import tw from "twin.macro";
-import { PracticeFormHeaderMessage } from "./PracticeFormHeaderMessage";
-import { PracticeFormHeaderProgressBar } from "./PracticeFormHeaderProgressBar";
+import { FC } from 'react'
+import tw from 'twin.macro'
+import { PracticeFormHeaderMessage } from './PracticeFormHeaderMessage'
+import { PracticeFormHeaderProgressBar } from './PracticeFormHeaderProgressBar'
 
 type Props = {
-  progressBarWidth: number;
-  counter: number;
-  totalVerbsCount: number;
-  isVerbChecked: boolean;
-  cycles: number;
-};
+  progressBarWidth: number
+  counter: number
+  totalVerbsCount: number
+  isVerbChecked: boolean
+  cycles: number
+}
 
 export const PracticeFormHeader: FC<Props> = ({
   progressBarWidth,
@@ -32,5 +31,5 @@ export const PracticeFormHeader: FC<Props> = ({
         cycles={cycles}
       />
     </div>
-  );
-};
+  )
+}
